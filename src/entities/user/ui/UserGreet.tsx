@@ -1,11 +1,12 @@
-
-import { initData } from "@telegram-apps/sdk";
+import { useLaunchParams } from "@telegram-apps/sdk-react";
 
 function UserGreet() {
 
-    const firstName = initData.user()?.firstName;
-    const photoUrl = initData.user()?.photoUrl;
-    
+    const tgWebAppData = useLaunchParams();
+
+    const firstName = tgWebAppData.initData?.user?.firstName;
+    const photoUrl = tgWebAppData.initData?.user?.photoUrl;
+
     return (
         <div className="flex items-center gap-3">
           {photoUrl ? (
