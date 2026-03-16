@@ -8,7 +8,7 @@ function HomePage() {
     <div className="px-4 pt-4 flex flex-col gap-6">
       <header className="flex items-center justify-between">
         <UserGreet />
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-5">
           <button className="text-text-secondary">
             <Bell />
           </button>

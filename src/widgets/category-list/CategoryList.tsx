@@ -1,5 +1,6 @@
 import SeeAll from '../../shared/ui/SeeAllLink/SeeAll';
 import { Sparkles, Scissors, UserRound, FingerprintPattern } from 'lucide-react';
+import ListScroll from '../../shared/ui/ListScroll/ListScroll';
 
 interface Category {
   label: string
@@ -26,7 +27,31 @@ const CATEGORIES: Category[] = [
     ),
   },
   {
-    label: 'Nail Salon',
+    label: 'Tattoo',
+    icon: (
+      <FingerprintPattern />
+    ),
+  },
+  {
+    label: 'Aliant',
+    icon: (
+      <FingerprintPattern />
+    ),
+  },
+  {
+    label: 'Brother',
+    icon: (
+      <FingerprintPattern />
+    ),
+  },
+  {
+    label: 'Sonner',
+    icon: (
+      <FingerprintPattern />
+    ),
+  },
+  {
+    label: 'Vonner',
     icon: (
       <FingerprintPattern />
     ),
@@ -37,11 +62,11 @@ function CategoryList() {
   return (
     <section>
       <SeeAll route="/" />
-      <div className="flex gap-4">
+      <ListScroll>
         {CATEGORIES.map((category) => (
           <button
             key={category.label}
-            className="flex flex-col items-center gap-2 min-w-[72px]"
+            className="flex flex-col items-center gap-2 min-w-[72px] overflow-hidden"
           >
             <div className="w-14 h-14 rounded-2xl bg-bg-secondary flex items-center justify-center text-text-primary">
               {category.icon}
@@ -51,7 +76,7 @@ function CategoryList() {
             </span>
           </button>
         ))}
-      </div>
+      </ListScroll>
     </section>
   )
 }

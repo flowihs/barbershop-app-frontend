@@ -1,5 +1,6 @@
 import SeeAll from '../../shared/ui/SeeAllLink/SeeAll';
 import BarberCard from '../../entities/barber/ui/BarberCard';
+import ListScroll from '../../shared/ui/ListScroll/ListScroll';
 
 interface Barber {
   id: number
@@ -42,11 +43,11 @@ const MOCK_BARBERS: Barber[] = [
 
 function BarberCardList() {
   return (
-    <section>
+    <section className="mb-5">
       <SeeAll route="/" />
-      <div className="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2 mx-1 px-4">
+      <ListScroll>
         {MOCK_BARBERS.map((barber) => (
-          <BarberCard
+          <BarberCard 
             key={barber.id}
             name={barber.name}
             description={barber.description}
@@ -54,7 +55,7 @@ function BarberCardList() {
             imageUrl={barber.imageUrl}
           />
         ))}
-      </div>
+      </ListScroll> 
     </section>
   )
 }
