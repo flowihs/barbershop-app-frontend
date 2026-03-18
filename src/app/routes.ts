@@ -3,6 +3,7 @@ import Layout from './Layout';
 import HomePage from '../pages/home/HomePage';
 import BookingPage from '../pages/booking/BookingPage';
 import ProfilePage from '../pages/profile/ProfilePage';
+import ServiceDetailPage from '../pages/service/ServiceDetailPage';
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
       {
         path: 'profile',
         Component: ProfilePage,
+      },
+      {
+        path: 'provisions/:id',
+        Component: ServiceDetailPage,
       },
     ],
   },

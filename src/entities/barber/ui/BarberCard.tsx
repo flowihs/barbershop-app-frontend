@@ -1,11 +1,16 @@
+import { useNavigate } from 'react-router';
+
 interface BarberCardProps {
+  id: number
   name: string
   description: string
   rating: number
   imageUrl: string
 }
 
-function BarberCard({ name, description, rating, imageUrl }: BarberCardProps) {
+function BarberCard({ id, name, description, rating, imageUrl }: BarberCardProps) {
+  const navigate = useNavigate();
+
   return (
     <div className="relative min-w-[260px] max-w-[280px] rounded-2xl overflow-hidden bg-bg-card snap-start">
       <div className="relative h-[200px]">
@@ -32,7 +37,10 @@ function BarberCard({ name, description, rating, imageUrl }: BarberCardProps) {
           <h3 className="text-sm font-bold text-text-primary">{name}</h3>
           <p className="text-xs text-text-secondary mt-0.5">{description}</p>
         </div>
-        <button className="w-9 h-9 flex items-center justify-center bg-accent rounded-full shrink-0">
+        <button
+          onClick={() => navigate(`/provisions/${id}`)}
+          className="w-9 h-9 flex items-center justify-center bg-accent rounded-full shrink-0"
+        >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <line x1="5" y1="12" x2="19" y2="12" />
             <polyline points="12 5 19 12 12 19" />

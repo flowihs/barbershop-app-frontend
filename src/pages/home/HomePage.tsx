@@ -1,5 +1,5 @@
 import CategoryList from '../../widgets/category-list';
-import BarberCardList from '../../widgets/barber-list';
+import ProvisionCardList from '../../widgets/barber-list';
 import { Bell, Settings } from 'lucide-react';
 import { UserGreet } from '../../entities/user';
 
@@ -36,7 +36,7 @@ function HomePage() {
       </div>
 
       <CategoryList />
-      <BarberCardList />
+      <ProvisionCardList />
     </div>
   )
 }
