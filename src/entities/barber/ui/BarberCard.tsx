@@ -21,11 +21,11 @@ function BarberCard({ id, name, description, rating, imageUrl }: BarberCardProps
           className="w-full h-full object-cover"
         />
         <div className="absolute top-3 left-3 flex items-center gap-1 bg-black/60 backdrop-blur-sm rounded-full px-2 py-1">
-          <Star width={14} height={14} fill="#f5c518" stroke="none" />
+          <Star width={14} height={14} className="fill-accent stroke-none" />
           <span className="text-xs font-semibold text-white">{rating}</span>
         </div>
         <button className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center bg-black/60 backdrop-blur-sm rounded-full">
-          <MapPin width={14} height={14} color="white" />
+          <MapPin width={14} height={14} className="text-icon-primary" />
         </button>
       </div>
       <div className="p-3 flex items-center justify-between">
@@ -37,7 +37,7 @@ function BarberCard({ id, name, description, rating, imageUrl }: BarberCardProps
           onClick={() => navigate(`/provisions/${id}`)}
           className="w-9 h-9 flex items-center justify-center bg-accent rounded-full shrink-0"
         >
-          <ArrowRight width={16} height={16} color="#1a1a1a" strokeWidth={2.5} />
+          <ArrowRight width={16} height={16} className="text-icon-dark" strokeWidth={2.5} />
         </button>
       </div>
     </div>

@@ -11,7 +11,7 @@ function BackButton() {
                 onClick={() => navigate(-1)}
                 className="w-8 h-8 flex cursor-pointer items-center justify-center rounded-full bg-white/1 backdrop-blur-md"
             >
-                <MoveLeft width={20} height={20} color="#ffffff"/>
+                <MoveLeft width={20} height={20} className="text-icon-primary"/>
             </button>
         </div>
     )
