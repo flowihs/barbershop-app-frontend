@@ -1,68 +1,59 @@
 import { Clock, Scissors, MapPin, Heart } from 'lucide-react';
+import type { Provision } from '../../entities/provision';
 
-interface ServiceInfoProps {
-    imageUrl: string
-    name: string
-    price: number
-    description: string
-    durationMinutes: number
-    cutType: string
-    barberName: string
-    barberRole: string
-    barberAvatarUrl: string
-}
+// interface ServiceInfoProps {
+//     imageUrl: string
+//     name: string
+//     price: number
+//     description: string
+//     durationMinutes: number
+//     cutType: string
+//     barberName: string
+//     barberRole: string
+//     barberAvatarUrl: string
+// }
 
-function ServiceInfo({
-    imageUrl,
-    name,
-    price,
-    description,
-    durationMinutes,
-    cutType,
-    barberName,
-    barberRole,
-    barberAvatarUrl,
-}: ServiceInfoProps) {
+function ServiceInfo({ provision }: {provision: Provision}) {
     return (
         <div className="flex flex-col gap-4">
             <div className="relative h-[250px] rounded-2xl overflow-hidden">
                 <img
-                    src={imageUrl}
-                    alt={name}
+                    src={provision.image}
+                    alt={provision.title}
                     className="w-full h-full object-cover"
                 />
             </div>
 
             <div className="flex items-start justify-between">
-                <h1 className="text-xl font-bold text-text-primary">{name}</h1>
-                <span className="text-xl font-bold text-accent">${price}</span>
+                <h1 className="text-xl font-bold text-text-primary">{provision.title}</h1>
+                <span className="text-xl font-bold text-accent">${provision.price}</span>
             </div>
 
             <p className="text-sm text-text-secondary leading-relaxed">
-                {description}
+                {provision.description}
             </p>
-
             <div className="flex items-center gap-4 text-text-secondary">
                 <div className="flex items-center gap-1.5">
                     <Clock size={16} />
-                    <span className="text-xs">{durationMinutes} mins</span>
+                    {/*<span className="text-xs">{provision.time} mins</span>*/}
+                    <span className="text-xs">40 mins</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                     <Scissors size={16} />
-                    <span className="text-xs">{cutType}</span>
+                    <span className="text-xs">{provision.category.name}</span>
                 </div>
             </div>
 
             <div className="flex items-center justify-between mt-2">
                 <div className="flex items-center gap-3">
                     <img
-                        src={barberAvatarUrl}
-                        alt={barberName}
+                        src="/public/default-user.png"
+                        alt={provision.user.firstName}
                         className="w-10 h-10 rounded-full object-cover"
                     />
                     <div>
-                        <p className="text-sm font-bold text-text-primary">{barberName}</p>
-                        <p className="text-xs text-text-secondary uppercase">{barberRole}</p>
+                        <p className="text-sm font-bold text-text-primary">{provision.user.firstName}</p>
+                        <p className="text-xs text-text-secondary uppercase">Barber or client</p>
                     </div>
                 </div>
                 <div className="flex items-center gap-3">

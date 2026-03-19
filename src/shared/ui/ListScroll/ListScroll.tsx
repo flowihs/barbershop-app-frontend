@@ -13,7 +13,6 @@ function ListScroll({ children }: { children: React.ReactNode }) {
         setIsDragging(true);
         startX.current = event.clientX;
         scrollStart.current = container.scrollLeft;
-        container.setPointerCapture(event.pointerId);
     }
 
     const handlePointerMove = (event: React.PointerEvent) => {

@@ -1,9 +1,11 @@
 import type { Provision } from '../model/types';
-import { Link } from 'react-router';
 import { MoveRight, MapPin } from 'lucide-react';
+import { useNavigate } from 'react-router';
 
 
 function ProvisionCard({ provision }: { provision: Provision }) {
+
+  const navigate = useNavigate();
 
   return (
     <div className="relative min-w-[260px] max-w-[280px] rounded-2xl overflow-hidden bg-bg-card snap-start">
@@ -20,14 +22,14 @@ function ProvisionCard({ provision }: { provision: Provision }) {
       <div className="p-3 flex items-center justify-between">
         <div>
           <h3 className="text-sm font-bold text-text-primary">{provision.title}</h3>
-          <p className="text-xs text-text-secondary mt-0.5">{provision.description}</p>
+          <p className="text-xs text-text-secondary mt-0.5">{provision.category.name}</p>
         </div>
-        <Link
-          to={`/provisions/${provision.id}`}
-          className="w-9 h-9 flex items-center justify-center bg-accent rounded-full shrink-0"
+        <button
+          onClick={() => navigate(`/provisions/${provision.id}`, { state: { provision } })}
+          className="w-9 h-9 flex cursor-pointer items-center justify-center bg-accent rounded-full shrink-0"
         >
           <MoveRight width={20} height={20} color='#000000'/>
-        </Link>
+        </button>
       </div>
     </div>
   );
