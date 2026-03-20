@@ -1,6 +1,6 @@
 import { useLaunchParams } from "@telegram-apps/sdk-react";
 
-function UserGreet() {
+function AccountGreet() {
 
     const tgWebAppData = useLaunchParams();
 
@@ -20,7 +20,7 @@ function UserGreet() {
             <span className="text-lg font-semibold">Hey, Stranger</span>
           )}
         </div>
-      )
+      );
 }
 
-export default UserGreet;
+export default AccountGreet;

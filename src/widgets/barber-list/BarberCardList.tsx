@@ -10,8 +10,8 @@ const MOCK_PROVISIONS: Provision[] = [
     description: 'Quality, Trusted Services.',
     price: 35,
     image: 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=400&h=300&fit=crop',
-    user: { id: 1, firstName: 'Fred', username: 'fred', description: '', email: '', createdAt: '', updatedAt: '' },
-    category: { id: 1, name: 'Barber' },
+    user: { id: 1, firstName: 'Fred', username: 'fred', description: null, email: null, createdAt: '', updatedAt: '' },
+    category: { id: 1, name: 'Barber', provision: [] },
     slots: [],
   },
   {
@@ -20,8 +20,8 @@ const MOCK_PROVISIONS: Provision[] = [
     description: 'Quality, Trusted Services.',
     price: 40,
     image: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&h=300&fit=crop',
-    user: { id: 2, firstName: 'Joe', username: '@joe', description: '', email: '', createdAt: '', updatedAt: '' },
-    category: { id: 2, name: 'Makeup' },
+    user: { id: 2, firstName: 'Joe', username: '@joe', description: null, email: null, createdAt: '', updatedAt: '' },
+    category: { id: 2, name: 'Makeup', provision: [] },
     slots: [],
   },
   {
@@ -30,8 +30,8 @@ const MOCK_PROVISIONS: Provision[] = [
     description: 'Modern & Traditional Styles.',
     price: 45,
     image: 'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=400&h=300&fit=crop',
-    user: { id: 3, firstName: 'Tony', username: '@tony', description: '', email: '', createdAt: '', updatedAt: '' },
-    category: { id: 3, name: 'Tatoo' },
+    user: { id: 3, firstName: 'Tony', username: '@tony', description: null, email: null, createdAt: '', updatedAt: '' },
+    category: { id: 3, name: 'Tatoo', provision: [] },
     slots: [],
   },
   {
@@ -40,8 +40,8 @@ const MOCK_PROVISIONS: Provision[] = [
     description: 'Fades, Lineups & More.',
     price: 30,
     image: 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=400&h=300&fit=crop',
-    user: { id: 4, firstName: 'Sam', username: '@sam', description: '', email: '', createdAt: '', updatedAt: '' },
-    category: { id: 4, name: 'Hair Salon' },
+    user: { id: 4, firstName: 'Sam', username: '@sam', description: null, email: null, createdAt: '', updatedAt: '' },
+    category: { id: 4, name: 'Hair Salon', provision: [] },
     slots: [],
   },
 ];

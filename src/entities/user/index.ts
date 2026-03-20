@@ -1,1 +1,0 @@
-export { default as UserGreet } from "../user/ui/UserGreet";

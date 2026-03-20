@@ -13,6 +13,7 @@
     "@tailwindcss/vite": "^4.2.1",
     "@telegram-apps/sdk": "^2.11.3",
     "@telegram-apps/sdk-react": "^2.0.25",
+    "axios": "^1.13.6",
     "lucide-react": "^0.577.0",
     "motion": "^12.36.0",
     "react": "^19.2.0",

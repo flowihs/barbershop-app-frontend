@@ -2,8 +2,9 @@ import type { Provision } from '../model/types';
 import { MoveRight, MapPin } from 'lucide-react';
 import { useNavigate } from 'react-router';
 
+type ProvisionProps = Omit<Provision, "slots">;
 
-function ProvisionCard({ provision }: { provision: Provision }) {
+function ProvisionCard({ provision }: { provision: ProvisionProps }) {
 
   const navigate = useNavigate();
 

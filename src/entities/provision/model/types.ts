@@ -1,8 +1,9 @@
-import type { TelegramUser } from '../../user/model/types';
+import type { TelegramProfile } from '../../account/model/types';
 
 export interface Category {
   id: number;
   name: string;
+  provision: string[];
 }
 
 export interface Slot {
@@ -17,7 +18,7 @@ export interface Provision {
   description: string;
   price: number;
   image: string;
-  user: TelegramUser;
+  user: TelegramProfile;
   category: Category;
   slots: Slot[];
 }
