@@ -1,17 +1,6 @@
 import { Clock, Scissors, MapPin, Heart } from 'lucide-react';
 import type { Provision } from '../../entities/provision';
 
-// interface ServiceInfoProps {
-//     imageUrl: string
-//     name: string
-//     price: number
-//     description: string
-//     durationMinutes: number
-//     cutType: string
-//     barberName: string
-//     barberRole: string
-//     barberAvatarUrl: string
-// }
 
 function ServiceInfo({ provision }: {provision: Provision}) {
     return (

@@ -32,30 +32,6 @@ const CATEGORIES: Category[] = [
       <FingerprintPattern />
     ),
   },
-  {
-    label: 'Aliant',
-    icon: (
-      <FingerprintPattern />
-    ),
-  },
-  {
-    label: 'Brother',
-    icon: (
-      <FingerprintPattern />
-    ),
-  },
-  {
-    label: 'Sonner',
-    icon: (
-      <FingerprintPattern />
-    ),
-  },
-  {
-    label: 'Vonner',
-    icon: (
-      <FingerprintPattern />
-    ),
-  },
 ]
 
 function CategoryList() {
