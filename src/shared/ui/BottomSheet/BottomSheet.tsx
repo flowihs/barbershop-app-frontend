@@ -17,6 +17,7 @@ function BottomSheet({ sheet }: {sheet: SheetProps}) {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
+                        onClick={sheet.onClose}
                     />
                     <motion.div
                         className="fixed inset-0 z-50 bg-bg-primary rounded-t-2x1 px-4 pt-6 pb-8 max-w-(--width-app) mx-auto"
@@ -34,4 +35,4 @@ function BottomSheet({ sheet }: {sheet: SheetProps}) {
     );
 }
 
-export default BottomSheet;
+export { BottomSheet };

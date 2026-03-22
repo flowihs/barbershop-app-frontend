@@ -27,4 +27,4 @@ function Slot({ slot }: { slot: SlotProps }) {
     );
 }
 
-export default Slot;
+export { Slot };
