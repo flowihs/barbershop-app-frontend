@@ -14,6 +14,11 @@
   --width-app: 430px;
 }
 
+
+@import "./variables.less";
+@import "./fonts.less";
+@import "./helpers.less";
+
 body {
   margin: 0;
   background-color: var(--color-bg-primary);
