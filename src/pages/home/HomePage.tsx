@@ -1,6 +1,6 @@
 import CategoryList from '../../widgets/category-list';
 import ProvisionCardList from '../../widgets/barber-list';
-import { Bell, Settings, Search, SlidersHorizontal } from 'lucide-react';
+import { Search, SlidersHorizontal } from 'lucide-react';
 import { AccountGreet } from '../../entities/account';
 
 function HomePage() {
@@ -8,14 +8,7 @@ function HomePage() {
     <div className="px-4 pt-4 flex flex-col gap-6">
       <header className="flex items-center justify-between">
         <AccountGreet />
-        <div className="flex items-center gap-5">
-          <button className="text-text-secondary">
-            <Bell />
-          </button>
-          <button className="text-text-secondary">
-            <Settings />
-          </button>
-        </div>
+        
       </header>
 
       <div className="relative">
