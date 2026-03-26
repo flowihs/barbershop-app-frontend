@@ -4,10 +4,9 @@ import { Minus } from 'lucide-react';
 interface SheetProps {
     isOpen: boolean;
     onClose: () => void;
-    children: React.ReactNode;
 }
 
-function BottomSheet({ sheet }: {sheet: SheetProps}) {
+function BottomSheet({ sheet, children }: { sheet: SheetProps; children: React.ReactNode }) {
     return (
         <AnimatePresence>
             {sheet.isOpen && (
@@ -27,7 +26,7 @@ function BottomSheet({ sheet }: {sheet: SheetProps}) {
                         transition={{ type: "tween", duration: 0.3}}
                     >
                         <Minus width={16} height={16}/>
-                        {sheet.children}
+                        {children}
                     </motion.div>
                 </>
             )}

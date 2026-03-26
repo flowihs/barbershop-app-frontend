@@ -1,5 +1,5 @@
 import SeeAll from '../../shared/ui/SeeAllLink/SeeAll';
-import { Sparkles, Scissors, UserRound, FingerprintPattern } from 'lucide-react';
+import { Sparkles, Scissors, UserRound, FingerprintPattern, GamepadDirectional } from 'lucide-react';
 import ListScroll from '../../shared/ui/ListScroll/ListScroll';
 
 interface Category {
@@ -30,6 +30,12 @@ const CATEGORIES: Category[] = [
     label: 'Tattoo',
     icon: (
       <FingerprintPattern />
+    ),
+  },
+  {
+    label: 'Games',
+    icon: (
+      <GamepadDirectional />
     ),
   },
 ]

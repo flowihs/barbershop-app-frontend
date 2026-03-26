@@ -1,30 +1,37 @@
 interface SlotProps {
     label: string;
-    sublabel?: string;
     isSelected: boolean;
     onSelect: () => void;
 }
 
-function Slot({ slot }: { slot: SlotProps }) {
+function SlotDate({ slotDate }: { slotDate: SlotProps }) {
     return (
         <button
-            onClick={slot.onSelect}
+            onClick={slotDate.onSelect}
             className={`flex flex-col items-center justify-center py-2 px-4 rounded-xl cursor-pointer transition-colors ${
-                slot.isSelected 
+                slotDate.isSelected 
                     ? 'bg-accent text-icon-dark'
                     : 'bg-bg-secondary text-text-primary'
-                }`}
+            }`}
         >
-            <span className="text-sm font-bold">{slot.label}</span>
-            {slot.sublabel && (
-                <span className={`text-xs uppercase ${
-                    slot.isSelected ? 'text-icon-dark/70' : `text-text-muted`
-                }`}>
-                    {slot.sublabel}
-                </span>
-            )}
+            <span className="text-sm font-bold">{slotDate.label}</span>
         </button>
     );
 }
 
-export { Slot };
+function SlotTime({ slotTime }: {slotTime: SlotProps}) {
+    return (
+        <button
+            onClick={slotTime.onSelect}
+            className={`flex flex-col items-center justify-center py-2 px-2 rounded-xl cursor-pointer transition-colors ${
+                slotTime.isSelected 
+                    ? 'bg-accent text-icon-dark'
+                    : 'bg-bg-secondary text-text-primary'
+            }`}
+        >
+            <span className="text-sm font-bold">{slotTime.label}</span>
+        </button>
+    );
+}
+
+export { SlotDate, SlotTime };

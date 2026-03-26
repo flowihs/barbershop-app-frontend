@@ -26,7 +26,7 @@ function ProvisionCard({ provision }: { provision: ProvisionProps }) {
           <p className="text-xs text-text-secondary mt-0.5">{provision.category.name}</p>
         </div>
         <button
-          onClick={() => navigate(`/provisions/${provision.id}`, { state: { provision } })}
+          onClick={() => navigate(`/provisions/${provision.id}`)}
           className="w-9 h-9 flex cursor-pointer items-center justify-center bg-accent rounded-full shrink-0"
         >
           <MoveRight width={20} height={20} color='#000000'/>
