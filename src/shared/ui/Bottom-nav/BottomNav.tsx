@@ -3,6 +3,7 @@ import { House, Calendar, User } from 'lucide-react';
 import { Link } from "react-router";
 
 interface NavItem {
+  id: number
   path: string
   label: string
   icon: React.ReactNode
@@ -10,6 +11,7 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   {
+    id: 1,
     path: '/',
     label: 'Home',
     icon: (
@@ -17,6 +19,7 @@ const NAV_ITEMS: NavItem[] = [
     ),
   },
   {
+    id: 2,
     path: '/booking',
     label: 'Schedule',
     icon: (
@@ -24,6 +27,7 @@ const NAV_ITEMS: NavItem[] = [
     ),
   },
   {
+    id: 3,
     path: '/profile',
     label: 'Profile',
     icon: (
@@ -42,6 +46,7 @@ function BottomNav() {
           const isActive = location.pathname === item.path
           return (
             <Link
+              key={item.id}
               to={item.path}
               className={`flex flex-col items-center gap-1 py-1 ${
                 isActive ? 'text-accent' : 'text-text-muted'

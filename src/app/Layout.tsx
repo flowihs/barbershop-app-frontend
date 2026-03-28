@@ -1,7 +1,7 @@
-import { Outlet, useLocation, Link } from 'react-router-dom'
-import { ArrowLeft, Bell, Settings } from 'lucide-react'
-import BottomNav from '../shared/ui/Bottom-nav/BottomNav'
-import Logo from '../shared/ui/Logo/Logo'
+import { Outlet, useLocation, Link } from 'react-router-dom';
+import { ArrowLeft, Bell, Settings } from 'lucide-react';
+import BottomNav from '../shared/ui/Bottom-nav/BottomNav';
+import Logo from '../shared/ui/Logo/Logo';
 
 const pageTitles: Record<string, string> = {
   '/': '',
@@ -10,9 +10,9 @@ const pageTitles: Record<string, string> = {
 }
 
 function Layout() {
-  const location = useLocation()
-  const currentTitle = pageTitles[location.pathname]
-  const isHomePage = location.pathname === '/'
+  const location = useLocation();
+  const currentTitle = pageTitles[location.pathname];
+  const isHomePage = location.pathname === '/';
 
   return (
 		<div className='flex flex-col min-h-screen pb-16 max-w-[430px] mx-auto w-full bg-bg-primary'>
