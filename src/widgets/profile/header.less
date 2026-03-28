@@ -1,0 +1,109 @@
+.profile-header {
+	width: 100%;
+  margin-top: 24px;
+	pointer-events: auto;
+  
+	& .profile-user {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		justify-content: center;
+		margin-bottom: 20px;
+
+		& .avatar {
+			margin-bottom: 12px;
+			width: 96px;
+			height: 96px;
+			border-radius: 50%;
+			object-fit: cover;
+		}
+
+		& .user-info {
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			justify-content: center;
+			text-align: center;
+
+			& .user-name {
+				margin-bottom: 4px;
+				font-size: 1.25rem;
+				font-weight: 600;
+			}
+
+			& .user-bio {
+				font-size: 0.75rem;
+				color: #8e9a9f;
+			}
+		}
+	}
+
+	& .stats-row {
+    padding-left: 20px;
+		display: flex;
+    gap: 10px;
+		overflow-x: auto;
+		overflow-y: hidden;
+		scroll-behavior: smooth;
+
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		&:active {
+			cursor: grabbing;
+		}
+
+		& .stat-item {
+			flex-shrink: 0;
+			padding: 10px 20px;
+			background: #1c1f22;
+		pointer-events: auto;
+			border-radius: 12px;
+			border: 0.5px solid rgba(51, 56, 61, 0.5);
+			color: #8e9a9f;
+			font-weight: 500;
+			min-width: 85px;
+			text-align: center;
+			pointer-events: none;
+
+			& .stat-content {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 6px;
+				margin-bottom: 4px;
+
+				& .stat-icon {
+					display: flex;
+					align-items: center;
+					color: #ffc107;
+
+					svg {
+						width: 14px;
+						height: 14px;
+						stroke-width: 1.5;
+					}
+				}
+
+				& .stat-value {
+					font-size: 16px;
+					color: #ffffff;
+					font-weight: 600;
+				}
+			}
+
+			& .stat-label {
+				font-size: 10px;
+				font-weight: 500;
+				letter-spacing: 0.3px;
+				margin: 0;
+				color: #6c7a80;
+			}
+		}
+	}
+}
+
