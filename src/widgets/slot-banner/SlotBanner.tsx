@@ -19,7 +19,6 @@ interface GroupedSlot {
 
 type GroupedSlots = Record<string, GroupedSlot[]>;
 
-
 function SlotBanner({ slotBanner }: { slotBanner: SlotBannerProps}) {
 
     const [selectedDate, setSelectedDate] = useState<string | null>(null);
