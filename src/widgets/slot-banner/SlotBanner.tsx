@@ -2,7 +2,7 @@ import { SlotTime, SlotDate } from "../../entities/provision/ui/Slot";
 import { BottomSheet } from "../../shared/ui/BottomSheet/BottomSheet";
 import { provisionService } from "../../entities/provision/api/provisionApi";
 import { useState } from "react";
-import BookNowButton from "../../shared/ui/BookNowButton/BookNowButton";
+import BookNowButton from "../../shared/ui/DefaultButton/DefaultButton";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 

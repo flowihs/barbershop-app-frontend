@@ -1,5 +1,5 @@
 import ServiceInfo from '../../widgets/service-info/ServiceInfo';
-import BookNowButton from '../../shared/ui/BookNowButton/BookNowButton';
+import BookNowButton from '../../shared/ui/DefaultButton/DefaultButton';
 import { useQuery } from '@tanstack/react-query';
 import { provisionService } from '../../entities/provision/api/provisionApi';
 import { useParams } from "react-router";
