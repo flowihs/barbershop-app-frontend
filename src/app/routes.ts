@@ -1,8 +1,7 @@
 import { createBrowserRouter } from 'react-router';
 import Layout from './Layout';
-import DetailLayout from './DetailLayout';
 import HomePage from '../pages/home/HomePage';
-import BookingPage from '../pages/booking/BookingPage';
+import ShedulePage from '../pages/schedule/SchedulePage';
 import ProfilePage from '../pages/profile/ProfilePage';
 import ServiceDetailPage from '../pages/provisions/ServiceDetailPage';
 
@@ -16,21 +15,16 @@ export const router = createBrowserRouter([
         Component: HomePage,
       },
       {
-        path: 'booking',
-        Component: BookingPage,
+        path: 'schedule',
+        Component: ShedulePage,
       },
       {
         path: 'profile',
         Component: ProfilePage,
       },
       {
-        Component: DetailLayout,
-        children: [
-          {
-            path: 'provisions/:id',
-            Component: ServiceDetailPage,
-          },
-        ],
+        path: 'provisions/:id',
+        Component: ServiceDetailPage,
       },
     ],
   },

@@ -1,5 +1,5 @@
 import CategoryList from '../../widgets/category-list';
-import ProvisionCardList from '../../widgets/barber-list';
+import ProvisionCardList from '../../widgets/provision-list';
 import { Search, SlidersHorizontal } from 'lucide-react';
 import { AccountGreet } from '../../entities/account';
 

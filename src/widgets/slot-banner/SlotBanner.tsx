@@ -6,11 +6,6 @@ import BookNowButton from "../../shared/ui/DefaultButton/DefaultButton";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 
-interface SlotBannerProps {
-    isOpen: boolean;
-    onClose: () => void;
-    provisionId: number;
-}
 interface GroupedSlot {
     id: number;
     day: string;
@@ -19,16 +14,24 @@ interface GroupedSlot {
 
 type GroupedSlots = Record<string, GroupedSlot[]>;
 
-function SlotBanner({ slotBanner }: { slotBanner: SlotBannerProps}) {
+function SlotBanner({
+    isOpen,
+    onClose,
+    provisionId
+}: {
+    isOpen: boolean,
+    onClose: () => void,
+    provisionId: number
+}) {
 
     const [selectedDate, setSelectedDate] = useState<string | null>(null);
     const [selectedTime, setSelectedTime] = useState<string | null>(null);
     const [currentDate, setCurrentDate] = useState(new Date());
 
     const { data: provisions, isLoading, error } = useQuery({
-        queryKey: ['provisions', 'free', slotBanner.provisionId],
-        queryFn: () => provisionService.getFreeSlots(slotBanner.provisionId),
-        enabled: slotBanner.isOpen
+        queryKey: ['provisions', 'free', provisionId],
+        queryFn: () => provisionService.getFreeSlots(provisionId),
+        enabled: isOpen
     });
 
     const freeSlots = provisions?.slots ?? [];
@@ -65,7 +68,7 @@ function SlotBanner({ slotBanner }: { slotBanner: SlotBannerProps}) {
     const currentSlots = groupedSlots[currentMonth] ?? [];
     
     return (
-        <BottomSheet sheet={{ isOpen: slotBanner.isOpen, onClose: slotBanner.onClose}}>
+        <BottomSheet sheet={{ isOpen: isOpen, onClose: onClose}}>
             <div className="flex flex-col gap-6">
                 <h2 className="text-lg font-bold text-text-primary uppercase">Date & Time</h2>
 
@@ -74,7 +77,11 @@ function SlotBanner({ slotBanner }: { slotBanner: SlotBannerProps}) {
                 )}
 
                 {error && (
-                    <p className="text-red-500 text-sm">Failed to load slots</p>
+                    <div className="flex w-full min-h-[50vh] justify-center p-4">
+                        <p className="text-center text-red-500 text-sm">
+                            Failed to load slots
+                        </p>
+                    </div>
                 )}
 
                 {!isLoading && !error && (

@@ -1,11 +1,11 @@
 import { Outlet, useLocation, Link } from 'react-router-dom';
 import { ArrowLeft, Bell, Settings } from 'lucide-react';
-import BottomNav from '../shared/ui/Bottom-nav/BottomNav';
+import BottomNav from '../shared/ui/BottomNav/BottomNav';
 import Logo from '../shared/ui/Logo/Logo';
 
 const pageTitles: Record<string, string> = {
   '/': '',
-  '/booking': 'Schedule',
+  '/schedule': 'Schedule',
   '/profile': 'Profile',
 }
 

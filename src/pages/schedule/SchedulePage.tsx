@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router';
 
-function BookingPage() {
-  const navigate = useNavigate()
+function ShedulePage() {
+  const navigate = useNavigate();
 
   return (
     <div className="p-4">
@@ -17,4 +17,4 @@ function BookingPage() {
   )
 }
 
-export default BookingPage
+export default ShedulePage;
