@@ -15,12 +15,10 @@ interface GroupedSlot {
 type GroupedSlots = Record<string, GroupedSlot[]>;
 
 function SlotBanner({
-    isOpen,
     onClose,
     provisionId
 }: {
-    isOpen: boolean,
-    onClose: () => void,
+    onClose: () => void
     provisionId: number
 }) {
 
@@ -31,7 +29,6 @@ function SlotBanner({
     const { data: provisions, isLoading, error } = useQuery({
         queryKey: ['provisions', 'free', provisionId],
         queryFn: () => provisionService.getFreeSlots(provisionId),
-        enabled: isOpen
     });
 
     const freeSlots = provisions?.slots ?? [];
@@ -68,7 +65,7 @@ function SlotBanner({
     const currentSlots = groupedSlots[currentMonth] ?? [];
     
     return (
-        <BottomSheet sheet={{ isOpen: isOpen, onClose: onClose}}>
+        <BottomSheet onClose={onClose}>
             <div className="flex flex-col gap-6">
                 <h2 className="text-lg font-bold text-text-primary uppercase">Date & Time</h2>
 
@@ -136,11 +133,9 @@ function SlotBanner({
                                 </div>
                             </div>
                         )}
-
                         <BookNowButton />
                     </>
                 )}
-
             </div>
         </BottomSheet>
     )

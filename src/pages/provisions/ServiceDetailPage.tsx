@@ -33,9 +33,15 @@ function ServiceDetailPage() {
     if (error || !provision) return <DefaultError text="Failed to load service..." />
     return (
         <div className="px-4 pt-4 pb-6 flex flex-col gap-6">
-            <ServiceInfo provision={provision}/>
-            <BookNowButton onClick={() => setIsOpen(!isOpen)}/>
-            <SlotBanner isOpen={isOpen} onClose={() => {}} provisionId={nId}/>
+            <ServiceInfo provision={provision} />
+            <BookNowButton onClick={() => setIsOpen(!isOpen)} />
+            {isOpen && (
+                <SlotBanner 
+                    onClose={() => setIsOpen(!isOpen)} 
+                    provisionId={nId} 
+                />
+            )}
+
         </div>
     )
 }

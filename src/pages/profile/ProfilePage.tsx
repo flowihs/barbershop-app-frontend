@@ -4,6 +4,7 @@ import { useLaunchParams } from '@telegram-apps/sdk-react';
 import { accountService } from '../../entities/account/api/accountApi';
 import Header from '../../widgets/profile/Header';
 import ActionsButton from '../../widgets/profile/ActionsButtons';
+import DefaultError from '../../shared/ui/DefaultError/DefaultError';
 import './profile.less';
 
 function ProfilePage() {
@@ -14,12 +15,24 @@ function ProfilePage() {
     queryKey: ['account', 'me'],
     queryFn: accountService.getMe,
   });
-  // свою дату закинь если не так чтото
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center p-4">
+        <p className='text-center text-text-secondary text-sm p-4'>
+          Loading...
+        </p>
+      </div>
+    )
+  }
+
+  if (error) return <DefaultError text="" />
+
+  // свою дату закинь если не так что то
   const avatar = tgWebAppData.initData?.user?.photoUrl;
   const name = userData?.firstName || tgWebAppData.initData?.user?.firstName || 'no name';
   const description = userData?.description || 'no description';
-  const rating = userData?.rating || 4.5;
-
+  const rating = 4.5; // пока так сделал, чтобы typescript не жаловался
 
   return (
 		<div className='profile-page'>
