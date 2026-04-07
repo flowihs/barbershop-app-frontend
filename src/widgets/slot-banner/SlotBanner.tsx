@@ -5,6 +5,7 @@ import { useState } from "react";
 import BookNowButton from "../../shared/ui/DefaultButton/DefaultButton";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
+import DefaultError from "../../shared/ui/DefaultError/DefaultError";
 
 interface GroupedSlot {
     id: number;
@@ -74,17 +75,13 @@ function SlotBanner({
                 )}
 
                 {error && (
-                    <div className="flex w-full min-h-[50vh] justify-center p-4">
-                        <p className="text-center text-red-500 text-sm">
-                            Failed to load slots
-                        </p>
-                    </div>
+                    <DefaultError text="Failed to load slots" />
                 )}
 
                 {!isLoading && !error && (
                     <>
-                        <div className="flex items-center justify-between">
-                            <button onClick={prevMonth} className="text-accent">
+                        <div className="flex items-center justify-between rounded-xl p-3 border border-border/10">
+                            <button onClick={prevMonth} className="text-accent cursor-pointer p-1 rounded-md hover:bg-accent-hover/30">
                                 <ChevronLeft size={20} />
                             </button>
 
@@ -92,13 +89,13 @@ function SlotBanner({
                                 {currentMonth}
                             </span>
 
-                            <button onClick={nextMonth} className="text-accent">
+                            <button onClick={nextMonth} className="text-accent cursor-pointer p-1 rounded-md hover:bg-accent-hover/30">
                                 <ChevronRight size={20} />
                             </button>
                         </div>
 
                         <div>
-                            <p className="text-xs text-text-secondary font-semibold uppercase mb-2">Date</p>
+                            <p className="text-sm text-text-primary font-semibold uppercase mb-4">Date</p>
                             <div className="flex gap-2 overflow-x-auto">
                                 {currentSlots.map((slot) => (
                                     <SlotDate
@@ -118,7 +115,7 @@ function SlotBanner({
 
                         {selectedDate && (
                             <div>
-                                <p className="text-xs text-text-secondary font-semibold uppercase mb-3">Time</p>
+                                <p className="text-sm text-text-primary font-semibold uppercase mb-4">Time</p>
                                 <div className="grid grid-cols-2 gap-3">
                                     {currentSlots.filter((slot) => slot.day === selectedDate).map((slot) => (
                                         <SlotTime
@@ -133,7 +130,9 @@ function SlotBanner({
                                 </div>
                             </div>
                         )}
-                        <BookNowButton />
+                        <div className="pt-4">
+                            <BookNowButton text="BOOK"/>
+                        </div>
                     </>
                 )}
             </div>
