@@ -4,7 +4,6 @@ interface SeeAllProps {
   route: string
 }
 
-
 function SeeAll({route}: SeeAllProps) {
   return (
     <div className="flex items-center justify-between mb-5 pl-4">

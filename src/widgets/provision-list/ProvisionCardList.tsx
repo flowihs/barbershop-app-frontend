@@ -20,8 +20,15 @@ function ProvisionCardList() {
   }
 
   return (
-    <section className="mb-5">
-      <SeeAll route="/" />
+    <section className="mb-10">
+      <div className='flex justify-between py-4 px-2'>
+        <p className="text-xl text-text-primary">
+          Provisions
+        </p>
+        <div className="mt-1">
+          <SeeAll route="/" />
+        </div>
+      </div>
       <ListScroll>
         {provisions?.map((provision) => (
           <ProvisionCard key={provision.id} provision={provision} />

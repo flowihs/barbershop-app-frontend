@@ -1,6 +1,6 @@
 import CategoryList from '../../widgets/category-list';
 import ProvisionCardList from '../../widgets/provision-list';
-import { Search, SlidersHorizontal } from 'lucide-react';
+import { Search, Funnel  } from 'lucide-react';
 import { AccountGreet } from '../../entities/account';
 
 function HomePage() {
@@ -16,13 +16,13 @@ function HomePage() {
         <input
           type="text"
           placeholder="Search for services..."
-          className="w-full bg-bg-secondary rounded-xl py-3 pl-10 pr-12 text-sm text-text-primary placeholder:text-text-muted outline-none"
+          className="w-full bg-bg-card-2 rounded-xl py-3 pl-10 pr-12 text-sm text-text-primary placeholder:text-text-muted outline-none"
         />
         <button className="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary">
-          <SlidersHorizontal width={18} height={18} />
+          <Funnel size={18} />
         </button>
       </div>
-
+      
       <CategoryList />
       
       <ProvisionCardList />

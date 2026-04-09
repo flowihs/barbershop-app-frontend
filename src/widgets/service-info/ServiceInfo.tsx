@@ -1,5 +1,6 @@
 import { Clock, Scissors, MapPin, Heart } from 'lucide-react';
 import type { Provision } from '../../entities/provision';
+import { ExpandButton } from '../../shared/ui/ExpandButton/ExpandButton';
 
 
 function ServiceInfo({ provision }: {provision: Provision}) {
@@ -17,18 +18,19 @@ function ServiceInfo({ provision }: {provision: Provision}) {
                 <h1 className="text-xl font-bold text-text-primary">{provision.title}</h1>
                 <span className="text-xl font-bold text-accent">${provision.price}</span>
             </div>
-
-            <p className="text-sm text-text-secondary leading-relaxed">
-                {provision.description}
-            </p>
+            <ExpandButton>
+                <p className="text-sm text-text-secondary leading-relaxed">
+                    {provision.description} 
+                </p>
+            </ExpandButton>
             <div className="flex items-center gap-4 text-text-secondary">
                 <div className="flex items-center gap-1.5">
-                    <Clock size={16} />
+                    <Clock size={16} className="text-accent"/>
                     {/*<span className="text-xs">{provision.time} mins</span>*/}
                     <span className="text-xs">40 mins</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                    <Scissors size={16} />
+                    <Scissors size={16} className="text-accent"/>
                     <span className="text-xs">{provision.category.name}</span>
                 </div>
             </div>
@@ -47,10 +49,10 @@ function ServiceInfo({ provision }: {provision: Provision}) {
                 </div>
                 <div className="flex items-center gap-3">
                     <button className="text-text-secondary">
-                        <MapPin size={20} />
+                        <MapPin size={20} className="text-accent cursor-pointer"/>
                     </button>
                     <button className="text-text-secondary">
-                        <Heart size={20} />
+                        <Heart size={20} className="transition-colors duration-300 hover:text-red-500 cursor-pointer"/>
                     </button>
                 </div>
             </div>

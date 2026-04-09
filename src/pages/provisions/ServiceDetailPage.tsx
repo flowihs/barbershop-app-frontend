@@ -2,6 +2,7 @@ import ServiceInfo from '../../widgets/service-info/ServiceInfo';
 import BookNowButton from '../../shared/ui/DefaultButton/DefaultButton';
 import SlotBanner from '../../widgets/slot-banner/SlotBanner';
 import DefaultError from '../../shared/ui/DefaultError/DefaultError';
+import { AnimatePresence } from 'motion/react';
 import { useQuery } from '@tanstack/react-query';
 import { provisionService } from '../../entities/provision/api/provisionApi';
 import { useParams } from "react-router";
@@ -35,12 +36,14 @@ function ServiceDetailPage() {
         <div className="px-4 pt-4 pb-6 flex flex-col gap-6">
             <ServiceInfo provision={provision} />
             <BookNowButton onClick={() => setIsOpen(!isOpen)} />
-            {isOpen && (
-                <SlotBanner 
-                    onClose={() => setIsOpen(!isOpen)} 
-                    provisionId={nId} 
-                />
-            )}
+            <AnimatePresence>
+                {isOpen && (
+                    <SlotBanner  
+                        onClose={() => setIsOpen(false)} 
+                        provisionId={nId} 
+                    />
+                )}
+            </AnimatePresence>
 
         </div>
     )

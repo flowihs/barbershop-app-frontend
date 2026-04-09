@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 
 function BottomSheet({ 
     onClose, 
@@ -11,7 +11,7 @@ function BottomSheet({
     const limit = 300;
 
     return (
-        <AnimatePresence>
+        <>
             <motion.div
                 className="
                     fixed inset-0 z-1 bg-black/50
@@ -38,7 +38,7 @@ function BottomSheet({
                 initial={{ y: "100%" }}
                 animate={{ y: "0" }}
                 exit={{ y: "100%" }}
-                transition={{ type: "tween", duration: 0.3}}
+                transition={{ type: "tween", duration: 0.2}}
                 onDragEnd={(_, info) => {
                     if (info.offset.y >= limit) onClose();
                 }}
@@ -48,7 +48,7 @@ function BottomSheet({
                 </div>
                 {children}
             </motion.div>
-        </AnimatePresence>
+        </>
     );
 }
 
