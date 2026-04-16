@@ -4,8 +4,9 @@ import { ExpandButton } from '../../shared/ui/ExpandButton/ExpandButton';
 
 
 function ServiceInfo({ provision }: {provision: Provision}) {
+
     return (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col ml-1 gap-4">
             <div className="relative h-[250px] rounded-2xl overflow-hidden">
                 <img
                     src={provision.image}

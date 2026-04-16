@@ -1,11 +1,11 @@
-import { useLaunchParams } from "@telegram-apps/sdk-react";
+import { useTelegramUser } from "../../../shared/hooks/useTelegramUser";
 
 function AccountGreet() {
 
-    const tgWebAppData = useLaunchParams();
+    const user = useTelegramUser();
 
-    const firstName = tgWebAppData.initData?.user?.firstName;
-    const photoUrl = tgWebAppData.initData?.user?.photoUrl;
+	const photoUrl = user?.photoUrl;
+	const firstName = user?.firstName;
 
     return (
 			<div className='flex items-center gap-4'>

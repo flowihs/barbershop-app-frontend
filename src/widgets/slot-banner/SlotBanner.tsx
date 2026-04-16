@@ -7,13 +7,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import DefaultError from "../../shared/ui/DefaultError/DefaultError";
 
-interface GroupedSlot {
-    id: number;
-    day: string;
-    time: string;
-}
-
-type GroupedSlots = Record<string, GroupedSlot[]>;
+type GroupedSlots = Record<string, Record<string, string[]>>;
 
 function SlotBanner({
     onClose,
@@ -39,15 +33,19 @@ function SlotBanner({
     freeSlots.forEach((slot) => {
         const dateObject = new Date(slot.time);
 
-        const date = dateObject.toLocaleString("en", { month: "long", year: "numeric" });
+        const date = dateObject.toLocaleString("en", { month: "long", year: "numeric" }); // "March 2026"
+        const day = dateObject.toLocaleString("en", { weekday: "short", day: "numeric" }).replace(',', ''); // Wed 1
 
-        if (!groupedSlots[date]) groupedSlots[date] = [];
+        if (!groupedSlots[date]) groupedSlots[date] = {}
+        if (!groupedSlots[date][day]) groupedSlots[date][day] = [];
 
-        groupedSlots[date].push({
-             id: slot.id,
-             day: dateObject.toLocaleString("en", { weekday: "short", day: "numeric" }),
-             time: dateObject.toLocaleString("en-GB", { timeStyle: "short"})
-         })
+        groupedSlots[date][day].push(
+            dateObject.toLocaleString("en-GB", {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            })
+        ); // 09:00
     });
 
     const prevMonth = () => {
@@ -57,13 +55,15 @@ function SlotBanner({
     };
 
     const nextMonth = () => {
-        setCurrentDate((current) => new Date(current?.getFullYear(), current?.getMonth() + 1));
+        setCurrentDate((current) => new Date(current.getFullYear(), current.getMonth() + 1));
         setSelectedDate(null);
         setSelectedTime(null);
     };
 
     const currentMonth = currentDate.toLocaleString("en", { month: "long", year: "numeric" });
-    const currentSlots = groupedSlots[currentMonth] ?? [];
+    const currentSlots = groupedSlots[currentMonth] ?? {};
+    const currentDays = Object.keys(currentSlots);
+    const selectedTimes = selectedDate ? currentSlots[selectedDate] ?? [] : [];
     
     return (
         <BottomSheet onClose={onClose}>
@@ -97,14 +97,14 @@ function SlotBanner({
                         <div>
                             <p className="text-sm text-text-primary font-semibold uppercase mb-4">Date</p>
                             <div className="flex gap-2 overflow-x-auto">
-                                {currentSlots.map((slot) => (
+                                {currentDays.map((day, i) => (
                                     <SlotDate
-                                        key={slot.id}
+                                        key={i}
                                         slotDate={{
-                                            label: slot.day,
-                                            isSelected: selectedDate === slot.day,
+                                            label: day,
+                                            isSelected: selectedDate === day,
                                             onSelect: () => {
-                                                setSelectedDate(slot.day);
+                                                setSelectedDate(day);
                                                 setSelectedTime(null);
                                             },
                                         }}
@@ -117,13 +117,13 @@ function SlotBanner({
                             <div>
                                 <p className="text-sm text-text-primary font-semibold uppercase mb-4">Time</p>
                                 <div className="grid grid-cols-2 gap-3">
-                                    {currentSlots.filter((slot) => slot.day === selectedDate).map((slot) => (
+                                    {selectedTimes.map((time, i) => (
                                         <SlotTime
-                                            key={slot.id}
+                                            key={i}
                                             slotTime={{
-                                                label: slot.time,
-                                                isSelected: selectedTime === slot.time,
-                                                onSelect: () => setSelectedTime(slot.time),
+                                                label: time,
+                                                isSelected: selectedTime === time,
+                                                onSelect: () => setSelectedTime(time),
                                             }}
                                         />
                                     ))}

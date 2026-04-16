@@ -3,7 +3,7 @@ export interface TelegramProfile {
   firstName: string;
   username: string | null;
   description: string | null;
-  email: string | null;
+  email: string | null; 
   createdAt: string;
   updatedAt: string;
 }
