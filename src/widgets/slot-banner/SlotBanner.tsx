@@ -3,6 +3,7 @@ import { BottomSheet } from "../../shared/ui/BottomSheet/BottomSheet";
 import { provisionService } from "../../entities/provision/api/provisionApi";
 import { useState } from "react";
 import BookNowButton from "../../shared/ui/DefaultButton/DefaultButton";
+import ListScroll from "../../shared/ui/ListScroll/ListScroll";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import DefaultError from "../../shared/ui/DefaultError/DefaultError";
@@ -24,6 +25,8 @@ function SlotBanner({
     const { data: provisions, isLoading, error } = useQuery({
         queryKey: ['provisions', 'free', provisionId],
         queryFn: () => provisionService.getFreeSlots(provisionId),
+        staleTime: 2000,
+        gcTime: 20000
     });
 
     const freeSlots = provisions?.slots ?? [];
@@ -64,6 +67,8 @@ function SlotBanner({
     const currentSlots = groupedSlots[currentMonth] ?? {};
     const currentDays = Object.keys(currentSlots);
     const selectedTimes = selectedDate ? currentSlots[selectedDate] ?? [] : [];
+
+    // получить отдельно day = 2, weekday = Mon
     
     return (
         <BottomSheet onClose={onClose}>
@@ -96,21 +101,29 @@ function SlotBanner({
 
                         <div>
                             <p className="text-sm text-text-primary font-semibold uppercase mb-4">Date</p>
-                            <div className="flex gap-2 overflow-x-auto">
-                                {currentDays.map((day, i) => (
-                                    <SlotDate
-                                        key={i}
-                                        slotDate={{
-                                            label: day,
-                                            isSelected: selectedDate === day,
-                                            onSelect: () => {
-                                                setSelectedDate(day);
-                                                setSelectedTime(null);
-                                            },
-                                        }}
-                                    />
-                                ))}
-                            </div>
+                            <ListScroll>
+                                <div className="flex gap-3">
+                                    {currentDays.map((dateSlot, i) => {
+
+                                        const day = dateSlot?.split(' ')[0];
+                                        const weekday = dateSlot?.split(' ')[1];
+
+                                        return <SlotDate
+                                            key={i}
+                                            slotDate={{
+                                                label: day,
+                                                sublabel: weekday,
+                                                isSelected: selectedDate === dateSlot,
+                                                onSelect: () => {
+                                                    setSelectedDate(dateSlot);
+                                                    setSelectedTime(null);
+                                                },
+                                            }}
+                                        />
+                                        }
+                                    )}   
+                                </div>
+                            </ListScroll>
                         </div>
 
                         {selectedDate && (

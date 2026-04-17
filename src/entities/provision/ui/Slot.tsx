@@ -1,5 +1,6 @@
 interface SlotProps {
     label: string;
+    sublabel?: string; 
     isSelected: boolean;
     onSelect: () => void;
 }
@@ -8,13 +9,14 @@ function SlotDate({ slotDate }: { slotDate: SlotProps }) {
     return (
         <button
             onClick={slotDate.onSelect}
-            className={`flex flex-col items-center justify-center py-6 px-1 rounded-xl cursor-pointer transition-colors ${
+            className={`min-w-(--width-date-card) flex flex-col items-center justify-center py-6 px-0 rounded-xl cursor-pointer transition-colors ${
                 slotDate.isSelected 
                     ? 'bg-accent text-icon-dark'
                     : 'bg-bg-slot/70 text-text-primary'
             }`}
         >
-            <span className="text-sm font-bold">{slotDate.label}</span>
+            <p className="text-sm">{slotDate.label}</p>
+            <p className="text-sm">{slotDate.sublabel}</p>
         </button>
     );
 }
@@ -29,7 +31,7 @@ function SlotTime({ slotTime }: {slotTime: SlotProps}) {
                     : 'bg-bg-slot/70 text-text-primary'
             }`}
         >
-            <span className="text-sm font-bold">{slotTime.label}</span>
+            <span className="text-sm">{slotTime.label}</span>
         </button>
     );
 }

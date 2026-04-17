@@ -25,7 +25,7 @@ function BottomSheet({
             <motion.div
                 className="
                     z-2 fixed inset-x-0 bottom-0 bg-bg-primary
-                    h-[87vh] max-w-(--width-app) mx-auto border
+                    h-[90vh] max-w-(--width-app) mx-auto border
                     border-t-border/10 rounded-t-[10px] px-4 pt-3
                     calc(env(safe-area-inset-bottom) + 24px)
 
