@@ -67,8 +67,6 @@ function SlotBanner({
     const currentSlots = groupedSlots[currentMonth] ?? {};
     const currentDays = Object.keys(currentSlots);
     const selectedTimes = selectedDate ? currentSlots[selectedDate] ?? [] : [];
-
-    // получить отдельно day = 2, weekday = Mon
     
     return (
         <BottomSheet onClose={onClose}>
@@ -104,7 +102,9 @@ function SlotBanner({
                             <ListScroll>
                                 <div className="flex gap-3">
                                     {currentDays.map((dateSlot, i) => {
-
+                                        
+                                         // получить отдельно day = 2, weekday = Mon
+                                         
                                         const day = dateSlot?.split(' ')[0];
                                         const weekday = dateSlot?.split(' ')[1];
 

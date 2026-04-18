@@ -15,8 +15,8 @@ function SlotDate({ slotDate }: { slotDate: SlotProps }) {
                     : 'bg-bg-slot/70 text-text-primary'
             }`}
         >
-            <p className="text-sm">{slotDate.label}</p>
-            <p className="text-sm">{slotDate.sublabel}</p>
+            <p className="text-lg">{slotDate.label}</p>
+            <p className="text-[10px] uppercase">{slotDate.sublabel}</p>
         </button>
     );
 }
