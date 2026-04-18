@@ -100,11 +100,11 @@ function SlotBanner({
                         <div>
                             <p className="text-sm text-text-primary font-semibold uppercase mb-4">Date</p>
                             <ListScroll>
-                                <div className="flex gap-3">
+                                <div className="flex flex-row-reverse gap-3">
                                     {currentDays.map((dateSlot, i) => {
                                         
-                                         // получить отдельно day = 2, weekday = Mon
-                                         
+                                        // получить отдельно day = 2, weekday = Mon
+                                        
                                         const day = dateSlot?.split(' ')[0];
                                         const weekday = dateSlot?.split(' ')[1];
 
@@ -129,21 +129,23 @@ function SlotBanner({
                         {selectedDate && (
                             <div>
                                 <p className="text-sm text-text-primary font-semibold uppercase mb-4">Time</p>
-                                <div className="grid grid-cols-2 gap-3">
-                                    {selectedTimes.map((time, i) => (
-                                        <SlotTime
-                                            key={i}
-                                            slotTime={{
-                                                label: time,
-                                                isSelected: selectedTime === time,
-                                                onSelect: () => setSelectedTime(time),
-                                            }}
-                                        />
-                                    ))}
+                                <div className="pr-1 max-h-[100px] overflow-y-auto">
+                                    <div className="grid grid-cols-2 gap-3">
+                                        {selectedTimes.map((time, i) => (
+                                            <SlotTime
+                                                key={i}
+                                                slotTime={{
+                                                    label: time,
+                                                    isSelected: selectedTime === time,
+                                                    onSelect: () => setSelectedTime(time),
+                                                }}
+                                            />
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         )}
-                        <div className="pt-4">
+                        <div>
                             <BookNowButton text="BOOK"/>
                         </div>
                     </>

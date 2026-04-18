@@ -9,7 +9,7 @@ function SlotDate({ slotDate }: { slotDate: SlotProps }) {
     return (
         <button
             onClick={slotDate.onSelect}
-            className={`min-w-(--width-date-card) flex flex-col items-center justify-center py-6 px-0 rounded-xl cursor-pointer transition-colors ${
+            className={`min-w-(--width-date-card) flex flex-col items-center justify-center py-5 px-0 rounded-xl cursor-pointer transition-colors ${
                 slotDate.isSelected 
                     ? 'bg-accent text-icon-dark'
                     : 'bg-bg-slot/70 text-text-primary'

@@ -13,8 +13,12 @@ function BottomSheet({
     const limit = 300;
 
     useEffect(() => {
+        const preOverflow = document.body.style.overflow;
+
+        document.body.style.overflow = "hidden";
+
         return () => {
-            document.body.style.overflow = "hidden";
+            document.body.style.overflow = preOverflow;
         }
     }, []);
 
@@ -32,9 +36,9 @@ function BottomSheet({
             />
             <motion.div
                 className="
-                    z-2 fixed inset-x-0 bottom-0 bg-bg-primary
+                    fixed z-2 inset-x-0 bottom-0 bg-bg-primary
                     h-[90vh] w-full max-w-(--width-app) mx-auto border
-                    border-t-border/10 rounded-t-[10px] px-4 pt-3
+                    border-t-border/10 rounded-t-[10px] px-4 pt-10
                 "
                 drag="y"
                 dragControls={controls}
@@ -54,7 +58,12 @@ function BottomSheet({
 
                 <div
                     onPointerDown={event => controls.start(event)} 
-                    className="pt-2 bg-bg-cancel pb-4 w-full cursor-grab max-w-(--width-app) flex justify-center active:cursor-grabbing active:select-none"
+                    className="
+                        absolute inset-x-0 rounded-t-[10px] top-0 py-4.5 
+                        w-full cursor-grab max-w-(--width-app) 
+                        flex justify-center active:cursor-grabbing 
+                        active:select-none
+                    "
                 >
                     <div className="h-1 w-13 rounded-full bg-text-primary/70" />
                 </div>
