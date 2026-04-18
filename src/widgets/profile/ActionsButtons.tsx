@@ -1,5 +1,4 @@
 import { Calendar } from 'lucide-react'
-import React from 'react'
 import './actions-buttons.less'
 
 function ActionsButton({
