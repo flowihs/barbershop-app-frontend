@@ -1,9 +1,9 @@
-import type { TelegramProfile } from '../../account/model/types';
+import type { TelegramProfile } from '../../account';
 
 export interface Category {
   id: number;
   name: string;
-  provision: string[];
+  imageUrl: string;
 }
 
 export interface Slot {

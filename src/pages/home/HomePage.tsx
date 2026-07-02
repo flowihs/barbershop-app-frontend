@@ -4,6 +4,7 @@ import { Search, Funnel  } from 'lucide-react';
 import { AccountGreet } from '../../entities/account';
 
 function HomePage() {
+
   return (
     <div className="px-4 pt-4 flex flex-col gap-6">
       <header className="flex items-center justify-between">

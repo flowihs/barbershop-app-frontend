@@ -30,7 +30,7 @@ function ExpandButton({ children }: { children: React.ReactNode }) {
                 transition={{ duration: animationDefaultTime, ease: "easeInOut"}}
                 className='overflow-hidden'
             >
-                <div ref={container} className="mt-1">
+                <div ref={container} className="mt-0">
                     {children}
                 </div>
             </motion.div>

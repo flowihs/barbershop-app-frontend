@@ -21,7 +21,7 @@ function ServiceInfo({ provision }: {provision: Provision}) {
             </div>
             <ExpandButton>
                 <p className="text-sm text-text-secondary leading-relaxed">
-                    {provision.description} 
+                    {provision.description}
                 </p>
             </ExpandButton>
             <div className="flex items-center gap-4 text-text-secondary">

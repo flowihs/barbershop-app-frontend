@@ -20,7 +20,7 @@ const NAV_ITEMS: NavItem[] = [
   },
   {
     id: 2,
-    path: '/booking',
+    path: '/schedule',
     label: 'Schedule',
     icon: (
       <Calendar />

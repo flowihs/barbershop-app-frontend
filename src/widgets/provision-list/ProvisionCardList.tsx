@@ -3,6 +3,7 @@ import { ProvisionCard } from '../../entities/provision';
 import { useQuery } from '@tanstack/react-query';
 import { provisionService } from '../../entities/provision/api/provisionApi';
 import ListScroll from '../../shared/ui/ListScroll/ListScroll';
+import DefaultError from '../../shared/ui/DefaultError/DefaultError';
 
 function ProvisionCardList() {
 
@@ -15,9 +16,15 @@ function ProvisionCardList() {
     return <p className='text-text-secondary text-sm p-4'>Loading...</p>
   }
 
-  if (error) {
-    return <p className='text-red-500 text-sm p-4'>Failed to load provisions</p>
+  const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+
+  if (errorMessage === 'Список категорий пуст') {
+    return (
+      <p>Noooo</p>
+    )
   }
+  
+  if (error) return <DefaultError text={`Error: ${errorMessage}`} />
 
   return (
     <section className="mb-10">
