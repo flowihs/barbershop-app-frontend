@@ -1,49 +1,49 @@
-import { useNavigate } from 'react-router';
+
 import { useQuery } from '@tanstack/react-query';
-import { useLaunchParams } from '@telegram-apps/sdk-react';
 import { accountService } from '../../entities/account/api/accountApi';
-import Header from '../../widgets/profile/Header';
-import ActionsButton from '../../widgets/profile/ActionsButtons';
+import { getUserId } from '../../features/stores/userSession';
+import { getUserRole } from '../../features/stores/userSession';
+import { ErrorHandlingMassage } from '../../shared/lib/api-error/apiErrorHandling';
+import DefaultLoading from '../../shared/ui/DefaultLoading/DefaultLoading';
+import Header from '../../widgets/profile/barber/Header';
 import DefaultError from '../../shared/ui/DefaultError/DefaultError';
-import './profile.less';
 
 function ProfilePage() {
-  const navigate = useNavigate();
-  const tgWebAppData = useLaunchParams();
 
-  const { data: userData, isLoading, error } = useQuery({
+  const userId = getUserId();
+  const userRole = getUserRole();
+
+  const { data: account, isLoading, error } = useQuery({
     queryKey: ['account', 'me'],
-    queryFn: accountService.getMe,
+    queryFn: () => accountService.getMeById(userId),
   });
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center p-4">
-        <p className='text-center text-text-secondary text-sm p-4'>
-          Loading...
-        </p>
-      </div>
+      <DefaultLoading />
     )
   }
 
-  if (error) return <DefaultError text="" />
+  if (error) return <DefaultError text={ErrorHandlingMassage(error)} />
 
-  // свою дату закинь если не так что то
-  const avatar = tgWebAppData.initData?.user?.photoUrl;
-  const name = userData?.firstName || tgWebAppData.initData?.user?.firstName || 'no name';
-  const description = userData?.description || 'no description';
-  const rating = 4.5; // пока так сделал, чтобы typescript не жаловался
+  const role = account?.role;
+  const photoUrl = account?.photoUrl;
+  const name = 'Marcus "The Blade" Vane';
+  const description = 'Curating confidence through precision cuts and traditional straight razor artistry since 2015.';
+  const rating = 4.5;
 
   return (
-		<div className='profile-page'>
-			<Header
-				avatar={avatar}
-				name={name}
-				description={description}
-				rating={rating}
-			/>
-
-			<ActionsButton onSchedule={() => navigate('/schedule')} onEdit={() => navigate('/settings')} />
+		<div>
+			{userRole === 'BARBER' && (
+        <Header />
+        <TextServicesList />
+        <Footer />
+      )}
+      {userRole === 'CLIENT' && (
+        <Header />
+        <Body />
+        <Footer />
+      )}
 		</div>
 	)
 }
