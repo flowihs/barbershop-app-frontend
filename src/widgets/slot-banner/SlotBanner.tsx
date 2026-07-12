@@ -1,4 +1,4 @@
-import { SlotTime, SlotDate } from "../../entities/provision/ui/Slot";
+import { SlotTime, SlotDate } from "../../entities/provision";
 import { BottomSheet } from "../../shared/ui/BottomSheet/BottomSheet";
 import { provisionService } from "../../entities/provision/api/provisionApi";
 import { useState } from "react";

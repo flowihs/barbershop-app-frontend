@@ -3,7 +3,7 @@ import type { TelegramProfile } from '../../account';
 export interface Category {
   id: number;
   name: string;
-  imageUrl: string;
+  descirption: string;
 }
 
 export interface Slot {
@@ -16,9 +16,9 @@ export interface Provision {
   id: number;
   title: string;
   description: string;
-  price: number;
-  image: string;
+  rating: number;
   user: TelegramProfile;
   category: Category;
-  slots: Slot[];
+  likesCount: number,
+  likedByMe: boolean
 }

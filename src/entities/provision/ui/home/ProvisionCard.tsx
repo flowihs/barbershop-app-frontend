@@ -1,4 +1,4 @@
-import type { Provision } from '../model/types';
+import type { Provision } from '../../model/types';
 import { MoveRight, MapPin, Star } from 'lucide-react';
 import { useNavigate } from 'react-router';
 

@@ -1,1 +1,2 @@
-export { default } from "./Header";
+export { HeaderBarberSide } from "./header/Header";
+export { Socials } from "./socials-list/SocialsList";

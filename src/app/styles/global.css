@@ -2,6 +2,7 @@
 
 @theme {
   --color-bg-primary: #171a1c;
+  --color-bg-textholder-area: #fdcf08;
   --color-bg-secondary: #2a2a2a;
   --color-bg-cancel: #ff0044;
   --color-bg-slot: #1E2124;
@@ -21,10 +22,6 @@
   --height-time-panel: 200px;
   --width-time-panel: 80px;
 }
-
-@import "./variables.less";
-@import "./fonts.less";
-@import "./helpers.less";
 
 
 body {
