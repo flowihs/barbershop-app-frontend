@@ -9,7 +9,6 @@ function ServiceInfo({ provision }: {provision: Provision}) {
         <div className="flex flex-col ml-1 gap-4">
             <div className="relative h-[250px] rounded-2xl overflow-hidden">
                 <img
-                    src={provision.image}
                     alt={provision.title}
                     className="w-full h-full object-cover"
                 />
@@ -17,8 +16,8 @@ function ServiceInfo({ provision }: {provision: Provision}) {
 
             <div className="flex items-start justify-between">
                 <h1 className="text-xl font-bold text-text-primary">{provision.title}</h1>
-                <span className="text-xl font-bold text-accent">${provision.price}</span>
-            </div>
+                <span className="text-xl font-bold text-accent">0 $</span>
+            </div>  
             <ExpandButton>
                 <p className="text-sm text-text-secondary leading-relaxed">
                     {provision.description}

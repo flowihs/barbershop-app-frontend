@@ -1,5 +1,5 @@
 import CategoryList from '../../widgets/category-list';
-import ProvisionCardList from '../../widgets/provision-list';
+import ProvisionCardList from '../../widgets/provision-list-home/ProvisionCardList';
 import { Search, Funnel  } from 'lucide-react';
 import { AccountGreet } from '../../entities/account';
 
