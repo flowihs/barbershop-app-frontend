@@ -12,7 +12,7 @@ function AccountGreet() {
 		queryFn: accountService.getMe,
 	});
 
-	const id = account?.id; 
+	const id = account?.id;
 	
 	if (!id) { 
 		const error = new Error("Something went wrong");
