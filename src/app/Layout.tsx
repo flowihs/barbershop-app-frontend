@@ -16,7 +16,7 @@ function Layout() {
 
   return (
 		<div className='flex flex-col min-h-screen pb-16 max-w-[430px] mx-auto w-full bg-bg-primary'>
-			<header className='px-4 pt-4 pb-2 flex justify-between items-center  border-b border-[#33383D]'>
+			<header className='px-4 pt-4 pb-4 flex justify-between items-center  border-b border-[#33383D]'>
 				<div className='flex items-center gap-3'>
 					{!isHomePage && (
 						<Link to='/' className='text-text-primary'>
@@ -34,10 +34,10 @@ function Layout() {
 
 				<div className='flex items-center gap-5'>
 					<button className='text-text-secondary'>
-						<Bell />
+						<Bell className="cursor-pointer" />
 					</button>
 					<button className='text-text-secondary'>
-						<Settings />
+						<Settings className="cursor-pointer" />
 					</button>
 				</div>
 			</header>

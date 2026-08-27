@@ -1,6 +1,6 @@
 
 // import { getUserRole } from '../../shared/lib/store/userSession';
-import { HeaderBarberSide } from '../../widgets/profile/barber/header/Header';
+// import { HeaderBarberSide } from '../../widgets/profile/barber/header/Header';
 
 function ProfilePage() {
 
@@ -8,7 +8,7 @@ function ProfilePage() {
 
   return (
 		<div className='flex flex-col justify-center'>
-         <HeaderBarberSide />
+         {/* <HeaderBarberSide /> */}
          <div className='flex flex-row justify-end'>
             <span className='font-bold'>Top services</span>
             <button className='border-bg-textholder-area/30 border rounded-lg bg-black/0 shadow-lg'>

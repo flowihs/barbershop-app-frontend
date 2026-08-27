@@ -10,7 +10,7 @@ function ProvisionCard({ provision }: { provision: Provision }) {
     <div className="relative min-w-[260px] max-w-[280px]">
       <div className="relative h-card overflow-hidden rounded-4xl bg-bg-card"  >
         <img
-          src={provision.image}
+          // src={provision.image}
           alt={provision.title}
           className="w-full h-full object-cover"
         />
@@ -32,7 +32,7 @@ function ProvisionCard({ provision }: { provision: Provision }) {
                 {provision.title}
               </h3>
               <p className="mt-1 text-xs text-text-secondary">
-                {provision.category.name}
+                {provision.provisionCategory.name}
               </p>
             </div>
 

@@ -40,7 +40,9 @@ function AccountGreet() {
 						className='w-12 h-12 rounded-full object-cover'
 					/>
 				</div>
-				<span className='text-lg text-text-primary mx-13'>Hey, {firstName} 👋</span>
+				<span className='text-lg mx-13 font-bold'>
+					<span className="text-[rgb(240,192,64)]">Hey,</span> {firstName}👋
+				</span>
 			</div>
 		)
 }

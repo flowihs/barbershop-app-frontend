@@ -1,6 +1,7 @@
-import { Clock, Scissors, MapPin, Heart } from 'lucide-react';
+import { Clock, Scissors, MapPin } from 'lucide-react';
 import type { Provision } from '../../entities/provision';
 import { ExpandButton } from '../../shared/ui/ExpandButton/ExpandButton';
+import { Like } from '../../entities/provision/ui/like/Like';
 
 
 function ServiceInfo({ provision }: {provision: Provision}) {
@@ -31,7 +32,7 @@ function ServiceInfo({ provision }: {provision: Provision}) {
                 </div>
                 <div className="flex items-center gap-1.5">
                     <Scissors size={16} className="text-accent"/>
-                    <span className="text-xs">{provision.category.name}</span>
+                    <span className="text-xs">{provision.provisionCategory.name}</span>
                 </div>
             </div>
 
@@ -51,9 +52,7 @@ function ServiceInfo({ provision }: {provision: Provision}) {
                     <button className="text-text-secondary">
                         <MapPin size={20} className="text-accent cursor-pointer"/>
                     </button>
-                    <button className="text-text-secondary">
-                        <Heart size={20} className="transition-colors duration-300 hover:text-red-500 cursor-pointer"/>
-                    </button>
+                    <Like />
                 </div>
             </div>
         </div>
