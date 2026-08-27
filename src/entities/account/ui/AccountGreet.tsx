@@ -1,47 +1,26 @@
-import DefaultLoading from "../../../shared/ui/DefaultLoading/DefaultLoading";
 import DefaultError from "../../../shared/ui/DefaultError/DefaultError";
-import { setUserId } from "../../../shared/lib/store/userSession";
-import { useQuery } from "@tanstack/react-query";
-import { accountService } from "../api/accountApi";
-import { ErrorHandlingMassage } from "../../../shared/lib/api-error/apiErrorHandling";
+import { useUserStore } from "../store/userStore";
 
 function AccountGreet() {
+	const account = useUserStore((state) => state.user);
 
-	const { data: account, isLoading, error } = useQuery({
-		queryKey: ['account', 'me'],
-		queryFn: accountService.getMe,
-	});
-
-	const id = account?.id;
-	
-	if (!id) { 
-		const error = new Error("Something went wrong");
-		return <DefaultError text={ErrorHandlingMassage(error)} />
+	if (!account) {
+		return <DefaultError text="Something went wrong" />
 	}
 
-	const firstName = account?.firstName;
-	const photoUrl = account?.photoUrl ?? "public/default-user.png";
-
-	setUserId(id);
-
-	if (isLoading) {
-		return (
-			<DefaultLoading />
-		)
-  	}
-
-	if (error) return <DefaultError text={ErrorHandlingMassage(error)} />;
+	const photoUrl = account.photoUrl ?? "/default-user.png";
 	
     return (
 			<div className='flex items-center gap-4'>
 				<div>
 					<img
 						src={photoUrl}
+						alt={account.firstName}
 						className='w-12 h-12 rounded-full object-cover'
 					/>
 				</div>
 				<span className='text-lg mx-13 font-bold'>
-					<span className="text-[rgb(240,192,64)]">Hey,</span> {firstName}👋
+					<span className="text-accent">Hey,</span> {account.firstName} 👋
 				</span>
 			</div>
 		)

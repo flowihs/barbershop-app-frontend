@@ -1,99 +1,103 @@
-// import { useQuery } from "@tanstack/react-query";
-// import { accountService } from "../../../entities/account/api/accountApi";
-// import { getUserId } from "../../../shared/lib/store/userSession";
-import { useState } from "react";
-// import { ErrorHandlingMassage } from "../../../shared/lib/api-error/apiErrorHandling";
-import { Check } from 'lucide-react';
-import { Plus } from 'lucide-react';
-import { Socials } from "../socials-list/SocialsList";
-// import DefaultError from "../../../shared/ui/DefaultError/DefaultError";
-// import DefaultLoading from "../../../shared/ui/DefaultLoading/DefaultLoading";
+import { Check, MessageSquare, Plus } from 'lucide-react';
+import { type SubmitEvent, useState } from 'react';
+import { useUserStore } from '@/entities/account';
+import { Like } from '@/entities/provision';
+import { Socials } from '../socials-list/SocialsList';
 
-function HeaderBarberSide() {
+interface HeaderBarberSideProps {
+  provisionId: number;
+}
 
-	const [name, setName] = useState<string>('Marcus "The Blade" Vane');
-	const [desc, setDesc] = useState<string>('Curating confidence through precision cuts and traditional straight razor artistry since 2015.');
-	const [hasChangedName, setHasChangedName] = useState<boolean>(false);
-	const [hasChangedDesc, setHasChangedDesc] = useState<boolean>(false);
+function HeaderBarberSide({ provisionId }: HeaderBarberSideProps) {
+  const user = useUserStore((state) => state.user);
+  const updateUser = useUserStore((state) => state.updateUser);
 
-	// const userId = getUserId();
-	// const rating = 4.5;
-	const MAX_NAME_WORDS = 50;
-	const MAX_DESC_WORDS = 400;
+  const profileName = user?.firstName ?? '';
+  const profileDescription = user?.description ?? '';
+  const profilePhotoUrl = user?.photoUrl ?? undefined;
 
-	// const { data: account, isLoading, error } = useQuery({
-	// 	queryKey: ['account', 'me'],
-	// 	queryFn: () => accountService.getMeById(userId),
-	// });
+  const [isDescriptionChanged, setIsDescriptionChanged] = useState(false);
 
-	// if (isLoading) return <DefaultLoading />
+  const handleDescriptionSubmit = (event: SubmitEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-	// if (error) return <DefaultError text={ErrorHandlingMassage(error)} />
+    const formData = new FormData(event.currentTarget);
+    const description = String(formData.get('description') ?? '');
 
-	const photoUrl = "/default-user.png";
+    updateUser({ description });
+    setIsDescriptionChanged(false);
+  };
 
-	return (
-		<div className='flex flex-col items-center mx-auto'>
-			<div className='mt-5'>
-				<img
-					src={photoUrl}
-					className='w-24 h-24 rounded-full object-cover ring-white'
-				/>
-			</div>
-			<div>
-				<input
-					type='file'
-					accept="image/png, image/gif, image/jpeg"
-					className='w-7 h-7 rounded-full bg-white items-center'
-				>
-					<Plus size={16} className='text-black shadow-lg'/>
-				</input>
-			</div>
-			<div className='mt-6 space-y-4'>
-				<form className='border-bg-textholder-area/30 border'>
-					<textarea
-						rows={1}
-						className='resize-none text-text-primary rounded-lg px-4 py-3 text-lg font-bold'
-						placeholder='Write your name :)'
-						value={name}
-						onChange={(e) => { 
-							if (e.target.value.length < MAX_NAME_WORDS) {
-								setName(e.target.value)
-								setHasChangedName(true)
-							}
-						}}
-						>
-					</textarea>
-					{hasChangedName && (
-						<button type='submit' className='bg-white py-2 px-4 items-center rounded-full mt-3'>
-							<Check size={16} className='text-black mr-2' />
-						</button>
-					)}
-				</form>
-				<form className='border-bg-textholder-area/30 border'>
-					<textarea
-						rows={5}
-						className='resize-none rounded-lg text-text-muted text-sm px-4 py-2'
-						placeholder='Write your description :)'
-						value={desc}
-						onChange={(e) => {
-							if (e.target.value.length < MAX_DESC_WORDS) {
-								setDesc(e.target.value)
-								setHasChangedDesc(true)
-							}
-						}}
-					>
-					</textarea>
-					{hasChangedDesc && (
-						<button type='submit' className='bg-white py-2 px-4 items-center font-semibold rounded-full mt-3'>
-							<Check size={16} className='text-black mr-2' />
-						</button>
-					)}
-				</form>
-			</div>
-			<Socials />
-		</div>
-	)
+  return (
+    <section className="flex flex-col items-center px-3 pb-6 pt-4">
+      <div className="relative">
+        <img
+          src={profilePhotoUrl}
+          alt={profileName}
+          className="h-28 w-28 rounded-full object-cover"
+        />
+
+        <label
+          aria-label="Change profile photo"
+          className="absolute bottom-0 right-0 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-text-primary text-icon-dark shadow-lg"
+        >
+          <input
+            type="file"
+            accept="image/png, image/jpeg, image/webp"
+            className="sr-only"
+          />
+          <Plus size={25} />
+        </label>
+      </div>
+
+      <p className="mt-4 w-full px-3 py-2 text-center text-xl font-bold text-text-primary">
+        {profileName}
+      </p>
+
+      <form
+        onSubmit={handleDescriptionSubmit}
+        className="mt-4 flex w-full flex-col items-end gap-2"
+      >
+        <textarea
+          key={profileDescription}
+          name="description"
+          defaultValue={profileDescription}
+          onChange={() => setIsDescriptionChanged(true)}
+          maxLength={400}
+          rows={4}
+          aria-label="Barber description"
+          placeholder="Tell clients about your experience and style"
+          className="min-h-28 w-full resize-none rounded-xl border border-accent/40 bg-transparent px-6 py-4 text-center text-sm leading-5 text-text-secondary outline-none transition-colors focus:border-accent focus:text-text-primary"
+        />
+
+        {isDescriptionChanged && (
+          <button
+            type="submit"
+            className="flex cursor-pointer items-center gap-1 rounded-lg bg-accent px-3 py-1 text-[10px] font-semibold text-icon-dark transition-colors hover:bg-accent-hover"
+          >
+            <Check size={12} />
+            Save
+          </button>
+        )}
+      </form>
+
+      <Socials />
+
+      <div className="mt-3 flex w-full items-stretch gap-2">
+        <button
+          type="button"
+          className="flex min-h-10 flex-1 cursor-pointer items-center justify-center gap-2 rounded-lg border border-border/10 text-xs font-semibold text-text-primary transition-colors hover:bg-bg-card-2"
+        >
+          <MessageSquare size={13} />
+          Message
+        </button>
+
+        <div className="flex min-h-10 min-w-11 items-center justify-center rounded-lg border border-border/10 transition-colors hover:bg-bg-card-2">
+          <Like id={provisionId} />
+        </div>
+      </div>
+    </section>
+  );
 }
 
 export { HeaderBarberSide };

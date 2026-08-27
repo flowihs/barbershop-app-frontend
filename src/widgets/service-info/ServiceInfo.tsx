@@ -8,7 +8,7 @@ function ServiceInfo({ provision }: {provision: Provision}) {
 
     return (
         <div className="flex flex-col ml-1 gap-4">
-            <div className="relative h-[250px] rounded-2xl overflow-hidden">
+            <div className="relative h-62.5 rounded-2xl overflow-hidden">
                 <img
                     alt={provision.title}
                     className="w-full h-full object-cover"
@@ -52,7 +52,7 @@ function ServiceInfo({ provision }: {provision: Provision}) {
                     <button className="text-text-secondary">
                         <MapPin size={20} className="text-accent cursor-pointer"/>
                     </button>
-                    <Like />
+                    <Like id={provision.id} />
                 </div>
             </div>
         </div>

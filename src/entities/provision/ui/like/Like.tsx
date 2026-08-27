@@ -1,32 +1,36 @@
 import { Heart } from 'lucide-react';
 import { type ReactElement, useState } from 'react';
 import { provisionService } from "../../api/provisionApi";
-import { useQuery } from '@tanstack/react-query';
 
+interface LikeProps {
+    id: number;
+}
 
-export function Like(): ReactElement {
+export function Like({ id }: LikeProps): ReactElement {
 
     const [isLiked, setIsLiked] = useState<boolean>(false);
+    const [isPending, setIsPeding] = useState<boolean>(false);
 
-    const { data: account, error } = useQuery({
-		queryKey: ['account', 'me'],
-		queryFn: provisionService.like,
-	});
-
-    if (error) {
-        console.log(error);
-    }
-
-    if (account) {
-        setIsLiked(true);
+    const handleLike = async () => {
+        try {
+            setIsPeding(true);
+            await provisionService.like(id);
+        } catch (e: unknown) {
+            console.log(e);
+        } finally {
+            setIsLiked(v => !v);
+            setIsPeding(false);
+        }
     }
 
     return (
-        <button className="text-text-secondary">
+        <button 
+            onClick={handleLike}
+            disabled={isPending}
+        >
             <Heart 
                 size={20} 
-                className="transition-colors duration-300 hover:text-red-500 cursor-pointer"
-                color={isLiked ? '#fb2c36' : ''}
+                className={`transition-colors duration-300 ${ isLiked ? 'text-red-500' : 'text-text-secondary' } hover:text-red-500 cursor-pointer`}
             />
         </button>
     )
