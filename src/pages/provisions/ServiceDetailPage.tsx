@@ -1,5 +1,5 @@
 import ServiceInfo from '../../widgets/service-info/ServiceInfo';
-import BookNowButton from '../../shared/ui/DefaultButton/DefaultButton';
+import BookNowButton from '../../shared/ui/Buttons/home-button';
 import SlotBanner from '../../widgets/slot-banner/SlotBanner';
 import DefaultError from '../../shared/ui/DefaultError/DefaultError';
 import { AnimatePresence } from 'motion/react';

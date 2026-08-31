@@ -30,7 +30,7 @@ function ProvisionCardList() {
     <section className="mb-10">
       <div className='flex justify-between py-4 px-2'>
         <p className="text-xl text-text-primary">
-          Provisions
+          Услуги
         </p>
         <div className="mt-1">
           <SeeAll route="/" />

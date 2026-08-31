@@ -1,7 +1,11 @@
 import { Plus } from 'lucide-react';
+import { SOCIAL_LINKS_MODAL_ID } from '@/features/social-links';
 import { SOCIAL_LINKS } from '@/shared/config/socialLinks';
+import { useModalStore } from '@/shared/lib/store/modalStore';
 
 function Socials() {
+  const openModal = useModalStore((state) => state.openModal);
+
   return (
     <div className="mt-5 flex items-center justify-center gap-4">
       {SOCIAL_LINKS.map((social) => (
@@ -24,6 +28,7 @@ function Socials() {
 
       <button
         type="button"
+        onClick={() => openModal(SOCIAL_LINKS_MODAL_ID)}
         aria-label="Add social network"
         className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-xl border border-accent/40 text-accent transition-colors hover:border-accent hover:bg-bg-card-2"
       >

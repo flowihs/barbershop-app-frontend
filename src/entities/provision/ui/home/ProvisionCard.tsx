@@ -7,10 +7,10 @@ function ProvisionCard({ provision }: { provision: Provision }) {
   const navigate = useNavigate();
 
   return (
-    <div className="relative min-w-[260px] max-w-[280px]">
+    <div className="relative min-w-65 max-w-65">
       <div className="relative h-card overflow-hidden rounded-4xl bg-bg-card"  >
         <img
-          // src={provision.image}
+          src={provision.avatar}
           alt={provision.title}
           className="w-full h-full object-cover"
         />

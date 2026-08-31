@@ -1,40 +1,90 @@
-import { Check, MessageSquare, Plus } from 'lucide-react';
-import { type SubmitEvent, useState } from 'react';
-import { useUserStore } from '@/entities/account';
-import { Like } from '@/entities/provision';
+import { Check, Plus } from 'lucide-react';
+import { type ChangeEvent, type SubmitEvent, useState } from 'react';
+import { accountService, useUserStore } from '@/entities/account';
 import { Socials } from '../socials-list/SocialsList';
+import { Avatar } from '@/shared/ui/Avatar/Avatar';
+import { useQuery } from '@tanstack/react-query';
 
-interface HeaderBarberSideProps {
-  provisionId: number;
-}
-
-function HeaderBarberSide({ provisionId }: HeaderBarberSideProps) {
+function HeaderBarberSide() {
   const user = useUserStore((state) => state.user);
   const updateUser = useUserStore((state) => state.updateUser);
 
-  const profileName = user?.firstName ?? '';
-  const profileDescription = user?.description ?? '';
-  const profilePhotoUrl = user?.photoUrl ?? undefined;
-
   const [isDescriptionChanged, setIsDescriptionChanged] = useState(false);
+  const [avatarPreview, setAvatarPreview] = useState<string>();
 
-  const handleDescriptionSubmit = (event: SubmitEvent<HTMLFormElement>) => {
+  if (!user?.id) {
+    throw new Error('User is not authenticated');
+  }
+
+  const { data: userProfile } = useQuery({
+    queryKey: ['userProfile', user.id],
+    queryFn: () => accountService.getProfileById(user.id),
+    enabled: Boolean(user?.id),
+  });
+
+  const profileName = userProfile?.firstName ?? user?.firstName ?? '';
+  const profileDescription = userProfile?.description ?? user?.description ?? '';
+  const profilePhotoUrl = avatarPreview ?? userProfile?.photoUrl ?? user?.photoUrl;
+
+  const handleDescriptionSubmit = async (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
     const description = String(formData.get('description') ?? '');
+    const id = user?.id;
+
+    if (!id) return;
+
+    const form = {
+      id,
+      description
+    }
+
+    const res = await accountService.updateDescription(form);
+
+    if (!res) return;
 
     updateUser({ description });
     setIsDescriptionChanged(false);
   };
 
+  const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      if (typeof reader.result !== 'string') return;
+
+      setAvatarPreview(reader.result);
+      updateUser({ photoUrl: reader.result });
+    };
+
+    reader.readAsDataURL(file);
+
+    try {
+      const updatedProfile = await accountService.updateAvatar(file);
+
+      if (updatedProfile?.photoUrl) {
+        setAvatarPreview(updatedProfile.photoUrl);
+        updateUser({ photoUrl: updatedProfile.photoUrl });
+      }
+    } catch (error) {
+      console.error('Failed to upload avatar', error);
+    } finally {
+      event.target.value = '';
+    }
+  };
+
   return (
     <section className="flex flex-col items-center px-3 pb-6 pt-4">
       <div className="relative">
-        <img
-          src={profilePhotoUrl}
+        <Avatar
+          photo={profilePhotoUrl}
           alt={profileName}
-          className="h-28 w-28 rounded-full object-cover"
+          className="h-28 w-28"
         />
 
         <label
@@ -42,6 +92,7 @@ function HeaderBarberSide({ provisionId }: HeaderBarberSideProps) {
           className="absolute bottom-0 right-0 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-text-primary text-icon-dark shadow-lg"
         >
           <input
+            onChange={handleFileChange}
             type="file"
             accept="image/png, image/jpeg, image/webp"
             className="sr-only"
@@ -80,22 +131,7 @@ function HeaderBarberSide({ provisionId }: HeaderBarberSideProps) {
           </button>
         )}
       </form>
-
       <Socials />
-
-      <div className="mt-3 flex w-full items-stretch gap-2">
-        <button
-          type="button"
-          className="flex min-h-10 flex-1 cursor-pointer items-center justify-center gap-2 rounded-lg border border-border/10 text-xs font-semibold text-text-primary transition-colors hover:bg-bg-card-2"
-        >
-          <MessageSquare size={13} />
-          Message
-        </button>
-
-        <div className="flex min-h-10 min-w-11 items-center justify-center rounded-lg border border-border/10 transition-colors hover:bg-bg-card-2">
-          <Like id={provisionId} />
-        </div>
-      </div>
     </section>
   );
 }

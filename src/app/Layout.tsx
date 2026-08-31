@@ -2,6 +2,7 @@ import { Outlet, useLocation, Link } from 'react-router-dom';
 import { ArrowLeft, Bell, Settings } from 'lucide-react';
 import BottomNav from '../shared/ui/BottomNav/BottomNav';
 import Logo from '../shared/ui/Logo/Logo';
+import { SocialLinksModal } from '../features/social-links';
 
 const pageTitles: Record<string, string> = {
   '/': '',
@@ -47,6 +48,7 @@ function Layout() {
 			</main>
 
 			<BottomNav />
+			<SocialLinksModal />
 		</div>
 	)
 }

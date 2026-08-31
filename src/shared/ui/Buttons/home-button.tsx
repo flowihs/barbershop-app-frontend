@@ -1,10 +1,10 @@
-interface DefaultButtonProps {
+interface HomePageButtonProps {
     onClick?: () => void
     text?: string
     variant?: 'primary' | 'secondary' | 'cancel'
 }
 
-function DefaultButton({ onClick, text = 'Book Now', variant = 'primary' }: DefaultButtonProps) {
+function HomePageButton({ onClick, text = 'Book Now', variant = 'primary' }: HomePageButtonProps) {
     return (
         <button
             onClick={onClick}
@@ -15,4 +15,4 @@ function DefaultButton({ onClick, text = 'Book Now', variant = 'primary' }: Defa
     )
 }
 
-export default DefaultButton
+export default HomePageButton

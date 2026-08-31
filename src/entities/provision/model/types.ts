@@ -18,6 +18,7 @@ export interface Provision {
   description: string;
   rating: number;
   user: TelegramProfile;
+  avatar: string
   provisionCategory: Category;
   likesCount: number;
   likedByMe: boolean;

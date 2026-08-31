@@ -1,4 +1,5 @@
 import DefaultError from "../../../shared/ui/DefaultError/DefaultError";
+import { Avatar } from "../../../shared/ui/Avatar/Avatar";
 import { useUserStore } from "../store/userStore";
 
 function AccountGreet() {
@@ -8,16 +9,10 @@ function AccountGreet() {
 		return <DefaultError text="Something went wrong" />
 	}
 
-	const photoUrl = account.photoUrl ?? "/default-user.png";
-	
     return (
 			<div className='flex items-center gap-4'>
 				<div>
-					<img
-						src={photoUrl}
-						alt={account.firstName}
-						className='w-12 h-12 rounded-full object-cover'
-					/>
+					<Avatar photo={account.photoUrl} alt={account.firstName} />
 				</div>
 				<span className='text-lg mx-13 font-bold'>
 					<span className="text-accent">Hey,</span> {account.firstName} 👋

@@ -21,7 +21,7 @@ function CategoryList() {
     <section>
       <div className="flex justify-between my-4 px-2">
         <p className="text-xl pb-3 text-text-primary">
-          Categories
+          Категории
         </p>
       </div>
       <ListScroll>
