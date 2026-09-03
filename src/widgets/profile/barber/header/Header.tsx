@@ -1,81 +1,55 @@
 import { Check, Plus } from 'lucide-react';
 import { type ChangeEvent, type SubmitEvent, useState } from 'react';
-import { accountService, useUserStore } from '@/entities/account';
+import {
+  accountQueryKeys,
+  accountService,
+  useUserStore,
+} from '@/entities/account';
 import { Socials } from '../socials-list/SocialsList';
 import { Avatar } from '@/shared/ui/Avatar/Avatar';
 import { useQuery } from '@tanstack/react-query';
+import {
+  useUpdateDescription,
+  useUploadAvatar,
+} from '@/features/edit-profile';
 
 function HeaderBarberSide() {
   const user = useUserStore((state) => state.user);
-  const updateUser = useUserStore((state) => state.updateUser);
-
   const [isDescriptionChanged, setIsDescriptionChanged] = useState(false);
-  const [avatarPreview, setAvatarPreview] = useState<string>();
-
-  if (!user?.id) {
-    throw new Error('User is not authenticated');
-  }
+  const updateDescription = useUpdateDescription();
+  const uploadAvatar = useUploadAvatar();
 
   const { data: userProfile } = useQuery({
-    queryKey: ['userProfile', user.id],
-    queryFn: () => accountService.getProfileById(user.id),
+    queryKey: accountQueryKeys.profile(user?.id),
+    queryFn: () => accountService.getProfileById(user?.id),
     enabled: Boolean(user?.id),
+    staleTime: 5 * 60 * 1000,
+    gcTime: 30 * 60 * 1000,
   });
 
   const profileName = userProfile?.firstName ?? user?.firstName ?? '';
   const profileDescription = userProfile?.description ?? user?.description ?? '';
-  const profilePhotoUrl = avatarPreview ?? userProfile?.photoUrl ?? user?.photoUrl;
+  const profilePhotoUrl = userProfile?.photoUrl ?? user?.photoUrl ?? 'public/default-user.png';
+  const profileSocials = userProfile?.socials ?? user?.socials;
 
-  const handleDescriptionSubmit = async (event: SubmitEvent<HTMLFormElement>) => {
+  const handleDescriptionSubmit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
     const description = String(formData.get('description') ?? '');
-    const id = user?.id;
 
-    if (!id) return;
-
-    const form = {
-      id,
-      description
-    }
-
-    const res = await accountService.updateDescription(form);
-
-    if (!res) return;
-
-    updateUser({ description });
-    setIsDescriptionChanged(false);
+    updateDescription.mutate(description, {
+      onSuccess: () => setIsDescriptionChanged(false),
+    });
   };
 
-  const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.currentTarget.files?.[0];
 
     if (!file) return;
 
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      if (typeof reader.result !== 'string') return;
-
-      setAvatarPreview(reader.result);
-      updateUser({ photoUrl: reader.result });
-    };
-
-    reader.readAsDataURL(file);
-
-    try {
-      const updatedProfile = await accountService.updateAvatar(file);
-
-      if (updatedProfile?.photoUrl) {
-        setAvatarPreview(updatedProfile.photoUrl);
-        updateUser({ photoUrl: updatedProfile.photoUrl });
-      }
-    } catch (error) {
-      console.error('Failed to upload avatar', error);
-    } finally {
-      event.target.value = '';
-    }
+    uploadAvatar.mutate(file);
+    event.currentTarget.value = '';
   };
 
   return (
@@ -93,6 +67,7 @@ function HeaderBarberSide() {
         >
           <input
             onChange={handleFileChange}
+            disabled={uploadAvatar.isPending}
             type="file"
             accept="image/png, image/jpeg, image/webp"
             className="sr-only"
@@ -124,6 +99,7 @@ function HeaderBarberSide() {
         {isDescriptionChanged && (
           <button
             type="submit"
+            disabled={updateDescription.isPending}
             className="flex cursor-pointer items-center gap-1 rounded-lg bg-accent px-3 py-1 text-[10px] font-semibold text-icon-dark transition-colors hover:bg-accent-hover"
           >
             <Check size={12} />
@@ -131,7 +107,11 @@ function HeaderBarberSide() {
           </button>
         )}
       </form>
-      <Socials />
+      <Socials
+        tiktok={profileSocials?.tiktok}
+        instagram={profileSocials?.instagram}
+        number={profileSocials?.number}
+      />
     </section>
   );
 }

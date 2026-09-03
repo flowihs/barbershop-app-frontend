@@ -8,6 +8,7 @@ export interface TelegramProfile {
   username: string;
   photoUrl?: string;
   description?: string;
+  socials?: Socials;
   role: Role;
 }
 
@@ -23,8 +24,12 @@ export interface UserProfile {
   username: string,
   photoUrl: string,
   description: string,
-  tiktok: string,
-  instagram: string,
-  phoneNumber: string,
+  socials: Socials,
   role: Role,
+}
+
+export interface Socials {
+  tiktok?: string,
+  instagram?: string,
+  number?: string
 }

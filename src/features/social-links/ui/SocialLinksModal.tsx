@@ -1,22 +1,21 @@
-import { Phone, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { type SubmitEvent, useEffect } from 'react';
-import { SOCIAL_LINKS } from '@/shared/config/socialLinks';
+import type { Socials } from '@/entities/account';
+import { useUserStore } from '@/entities/account';
+import { useUpdateSocials } from '@/features/edit-profile';
 import { useModalStore } from '@/shared/lib/store/modalStore';
 import HomePageButton from '@/shared/ui/Buttons/home-button';
 import { SOCIAL_LINKS_MODAL_ID } from '../model/constants';
-
-const tiktokIcon = SOCIAL_LINKS.find(
-  (social) => social.name === 'TikTok',
-)?.iconSrc;
-const instagramIcon = SOCIAL_LINKS.find(
-  (social) => social.name === 'Instagram',
-)?.iconSrc;
+import { SOCIAL_LINKS } from '@/shared/config/socialLinks';
+import { SocialIcon } from './SocialIcon';
 
 function SocialLinksModal() {
   const isOpen = useModalStore(
     (state) => state.activeModal === SOCIAL_LINKS_MODAL_ID,
   );
   const closeModal = useModalStore((state) => state.closeModal);
+  const currentSocials = useUserStore((state) => state.user?.socials);
+  const updateSocials = useUpdateSocials();
 
   useEffect(() => {
     if (!isOpen) return;
@@ -39,7 +38,19 @@ function SocialLinksModal() {
 
   const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
-    closeModal();
+
+    const formData = new FormData(event.currentTarget);
+    const socials = SOCIAL_LINKS.reduce<Socials>((values, social) => {
+      const value = formData.get(social.key);
+
+      values[social.key] = typeof value === 'string' ? value.trim() : '';
+
+      return values;
+    }, {});
+
+    updateSocials.mutate(socials, {
+      onSuccess: closeModal,
+    });
   };
 
   return (
@@ -74,60 +85,28 @@ function SocialLinksModal() {
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <label className="flex items-center gap-3">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-bg-card-2">
-              <img
-                src={tiktokIcon}
-                alt="tiktok-icon"
-                aria-hidden="true"
-                className="h-8 w-8 object-contain"
-              />
-            </span>
-            <input
-              type="url"
-              name="tiktok"
-              aria-label="TikTok URL"
-              placeholder="TikTok URL"
-              autoComplete="url"
-              className="h-11 min-w-0 flex-1 rounded-xl border border-border/10 bg-bg-card-2 px-4 text-sm text-text-primary outline-none placeholder:text-text-muted focus:border-accent/60"
-            />
-          </label>
+          {SOCIAL_LINKS.map((social) => (
+            <div key={social.key} className="flex items-center gap-3">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-bg-card-2 text-accent">
+                <SocialIcon social={social} />
+              </span>
 
-          <label className="flex items-center gap-3">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-bg-card-2">
-              <img
-                src={instagramIcon}
-                alt=""
-                aria-hidden="true"
-                className="h-8 w-8 object-contain"
+              <input
+                type={social.inputType}
+                name={social.key}
+                aria-label={social.name}
+                placeholder={social.placeholder}
+                defaultValue={currentSocials?.[social.key] ?? ''}
+                autoComplete={social.inputType === 'tel' ? 'tel' : 'url'}
+                className="h-11 min-w-0 flex-1 rounded-xl border border-border/10 bg-bg-card-2 px-4 text-sm text-text-primary outline-none placeholder:text-text-muted focus:border-accent/60"
               />
-            </span>
-            <input
-              type="url"
-              name="instagram"
-              aria-label="Instagram URL"
-              placeholder="Instagram URL"
-              autoComplete="url"
-              className="h-11 min-w-0 flex-1 rounded-xl border border-border/10 bg-bg-card-2 px-4 text-sm text-text-primary outline-none placeholder:text-text-muted focus:border-accent/60"
-            />
-          </label>
-
-          <label className="flex items-center gap-3">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-bg-card-2 text-accent">
-              <Phone size={24} />
-            </span>
-            <input
-              type="tel"
-              name="phoneNumber"
-              aria-label="Phone number"
-              placeholder="Phone number"
-              autoComplete="tel"
-              className="h-11 min-w-0 flex-1 rounded-xl border border-border/10 bg-bg-card-2 px-4 text-sm text-text-primary outline-none placeholder:text-text-muted focus:border-accent/60"
-            />
-          </label>
+            </div>
+          ))}
 
           <div className="mt-2">
-            <HomePageButton text="Save" />
+            <HomePageButton
+              text={updateSocials.isPending ? 'Saving...' : 'Save'}
+            />
           </div>
         </form>
       </section>

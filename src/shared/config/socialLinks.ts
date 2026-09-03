@@ -1,28 +1,37 @@
 
-interface SocialLink {
+export type SocialFieldName = 'tiktok' | 'instagram' | 'number';
+
+export interface SocialLinkConfig {
+  key: SocialFieldName;
   name: string;
-  href: string;
-  iconSrc: string;
+  iconSrc?: string;
   iconClassName: string;
+  inputType: 'url' | 'tel';
+  placeholder: string;
 }
 
-export const SOCIAL_LINKS: readonly SocialLink[] = [
+export const SOCIAL_LINKS: readonly SocialLinkConfig[] = [
   {
+    key: 'tiktok',
     name: 'TikTok',
-    href: 'https://www.tiktok.com/',
     iconSrc: '/images/icons/tik-tok.png',
-    iconClassName: 'h-9 w-9 object-contain'
+    iconClassName: 'h-9 w-9 object-contain',
+    inputType: 'url',
+    placeholder: 'TikTok URL',
   },
   {
+    key: 'instagram',
     name: 'Instagram',
-    href: 'https://www.instagram.com/',
     iconSrc: '/images/icons/instagram.png',
     iconClassName: 'h-9 w-9 object-contain',
+    inputType: 'url',
+    placeholder: 'Instagram URL',
   },
   {
-    name: 'X',
-    href: 'https://x.com/',
-    iconSrc: '/images/icons/twitter.png',
-    iconClassName: 'h-7 w-7 object-contain invert',
+    key: 'number',
+    name: 'Phone number',
+    iconClassName: 'h-6 w-6',
+    inputType: 'tel',
+    placeholder: 'Phone number',
   },
 ];

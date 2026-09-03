@@ -1,13 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
-import { accountService, useUserStore } from '@/entities/account';
+import {
+  accountQueryKeys,
+  accountService,
+  useUserStore,
+} from '@/entities/account';
 import DefaultError from '@/shared/ui/DefaultError/DefaultError';
 import DefaultLoading from '@/shared/ui/DefaultLoading/DefaultLoading';
 import { ErrorHandlingMassage } from '@/shared/lib/api-error/apiErrorHandling';
 
 function AuthProvider({ children }: { children: ReactNode }) {
   const { isPending, error } = useQuery({
-    queryKey: ['account', 'session'],
+    queryKey: accountQueryKeys.session,
     queryFn: async () => {
       const session = await accountService.getMe();
 
