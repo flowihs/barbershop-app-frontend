@@ -2,9 +2,10 @@ import type { ReactNode } from 'react';
 
 interface ProfilePageDefaultButtonProps {
   children: ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
   variant?: 'icon' | 'compact';
   ariaLabel?: string;
+  className?: string;
 }
 
 export function ProfilePageDefaultButton({

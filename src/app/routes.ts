@@ -4,6 +4,7 @@ import HomePage from '../pages/home/HomePage';
 import ShedulePage from '../pages/schedule/SchedulePage';
 import ProfilePage from '../pages/profile/ProfilePage';
 import ServiceDetailPage from '../pages/provisions/ServiceDetailPage';
+import BarberServicesPage from '../pages/barber/services/BarberServicesPage';
 
 export const router = createBrowserRouter([
   {
@@ -26,7 +27,10 @@ export const router = createBrowserRouter([
         path: 'provisions/:id',
         Component: ServiceDetailPage,
       },
+      {
+        path: 'barber-services',
+        Component: BarberServicesPage,
+      }
     ],
   },
 ]);
-

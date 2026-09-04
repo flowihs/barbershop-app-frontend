@@ -1,5 +1,5 @@
 import { api } from "../../../shared/api/apiClient";
-import type {Category, Provision} from "../model/types";
+import type {Category, Provision, CreateProvisionRequest } from "../model/types";
 
 export const provisionService = {
     getAll: () => api.get<Provision[]>('/api/provisions').then((res) => res.data),
@@ -7,6 +7,7 @@ export const provisionService = {
     getFreeSlots: (id: number) => api.get<Provision>(`/provisions/free/${id}`).then((res) => res.data),
     getTopProvisions: (profileId: number) => api.get<Provision[]>(`/api/provisions/top-five/${profileId}`).then((res) => res.data),
     like: (id: number) => api.post(`/api/provisions/${id}/like`).then((res) => console.log(res)),
+    provisionCreate: (newProvision: CreateProvisionRequest) => api.post<Provision>('/api/provisions/create', newProvision).then((res) => res.data),
 }
 
 export const categoryService = {

@@ -8,6 +8,7 @@ const pageTitles: Record<string, string> = {
   '/': '',
   '/schedule': 'Schedule',
   '/profile': 'Profile',
+  '/barber-services': 'Services',
 }
 
 function Layout() {

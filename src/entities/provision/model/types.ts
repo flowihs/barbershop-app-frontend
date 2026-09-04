@@ -12,6 +12,12 @@ export interface Slot {
   isBooking: boolean;
 }
 
+export interface CreateProvisionSlotRequest {
+  provisionId: number;
+  startTime: string;
+  endTime: string;
+}
+
 export interface Provision {
   id: number;
   title: string;
@@ -23,3 +29,12 @@ export interface Provision {
   likesCount: number;
   likedByMe: boolean;
 }
+
+export interface CreateProvisionRequest {
+  title: string;
+  description: string;
+  categoryId: number;
+  slots: CreateProvisionSlotRequest[];
+}
+
+
