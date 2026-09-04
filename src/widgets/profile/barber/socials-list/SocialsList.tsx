@@ -6,6 +6,7 @@ import {
   SocialIcon,
 } from '@/features/social-links';
 import { useModalStore } from '@/shared/lib/store/modalStore';
+import { ProfilePageDefaultButton } from '@/shared/ui/Buttons/profile-page-button';
 
 function Socials({ tiktok, instagram, number }: SocialValues) {
   const openModal = useModalStore((state) => state.openModal);
@@ -34,14 +35,12 @@ function Socials({ tiktok, instagram, number }: SocialValues) {
         );
       })}
 
-      <button
-        type="button"
+      <ProfilePageDefaultButton
         onClick={() => openModal(SOCIAL_LINKS_MODAL_ID)}
-        aria-label="Add socials"
-        className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-xl border border-accent/40 text-accent transition-colors hover:border-accent hover:bg-bg-card-2"
+        ariaLabel="Add socials"
       >
-        <Plus size={28} />
-      </button>
+        <Plus size={20} />
+      </ProfilePageDefaultButton>
     </div>
   );
 }

@@ -8,7 +8,6 @@ export interface TelegramProfile {
   username: string;
   photoUrl?: string;
   description?: string;
-  socials?: Socials;
   role: Role;
 }
 

@@ -1,7 +1,12 @@
 import { X } from 'lucide-react';
 import { type SubmitEvent, useEffect } from 'react';
-import type { Socials } from '@/entities/account';
-import { useUserStore } from '@/entities/account';
+import { useQuery } from '@tanstack/react-query';
+import {
+  accountQueryKeys,
+  accountService,
+  type Socials,
+  useUserStore,
+} from '@/entities/account';
 import { useUpdateSocials } from '@/features/edit-profile';
 import { useModalStore } from '@/shared/lib/store/modalStore';
 import HomePageButton from '@/shared/ui/Buttons/home-button';
@@ -14,8 +19,15 @@ function SocialLinksModal() {
     (state) => state.activeModal === SOCIAL_LINKS_MODAL_ID,
   );
   const closeModal = useModalStore((state) => state.closeModal);
-  const currentSocials = useUserStore((state) => state.user?.socials);
+  const userId = useUserStore((state) => state.user?.id);
   const updateSocials = useUpdateSocials();
+  const { data: userProfile } = useQuery({
+    queryKey: accountQueryKeys.profile(userId),
+    queryFn: () => accountService.getProfileById(userId),
+    enabled: isOpen && Boolean(userId),
+    staleTime: 5 * 60 * 1000,
+  });
+  const currentSocials = userProfile?.socials;
 
   useEffect(() => {
     if (!isOpen) return;
