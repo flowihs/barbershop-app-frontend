@@ -4,7 +4,6 @@ import { useQuery } from '@tanstack/react-query';
 import {
   accountQueryKeys,
   accountService,
-  type Socials,
   useUserStore,
 } from '@/entities/account';
 import { useUpdateSocials } from '@/features/edit-profile';
@@ -13,6 +12,12 @@ import HomePageButton from '@/shared/ui/Buttons/home-button';
 import { SOCIAL_LINKS_MODAL_ID } from '../model/constants';
 import { SOCIAL_LINKS } from '@/shared/config/socialLinks';
 import { SocialIcon } from './SocialIcon';
+
+type Socials = {
+  tiktok: string,
+  instagram: string,
+  number: string
+}
 
 function SocialLinksModal() {
   const isOpen = useModalStore(
@@ -27,7 +32,11 @@ function SocialLinksModal() {
     enabled: isOpen && Boolean(userId),
     staleTime: 5 * 60 * 1000,
   });
-  const currentSocials = { tiktok: userProfile?.tiktok, instagram: userProfile?.instagram, number: userProfile?.number }
+  const currentSocials = {
+    tiktok: userProfile?.tiktok,
+    instagram: userProfile?.instagram,
+    number: userProfile?.number,
+  };
 
   useEffect(() => {
     if (!isOpen) return;
@@ -54,11 +63,11 @@ function SocialLinksModal() {
     const formData = new FormData(event.currentTarget);
     const socials = SOCIAL_LINKS.reduce<Socials>((values, social) => {
       const value = formData.get(social.key);
-
+      
       values[social.key] = typeof value === 'string' ? value.trim() : '';
 
       return values;
-    }, {});
+    }, { tiktok: '', instagram: '', number: '' });
 
     updateSocials.mutate(socials, {
       onSuccess: closeModal,
