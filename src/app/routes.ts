@@ -5,6 +5,7 @@ import ShedulePage from '../pages/schedule/SchedulePage';
 import ProfilePage from '../pages/profile/ProfilePage';
 import ServiceDetailPage from '../pages/provisions/ServiceDetailPage';
 import BarberServicesPage from '../pages/barber/services/BarberServicesPage';
+import CreateService from '../pages/barber/services/create/CreateService';
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: 'barber-services',
         Component: BarberServicesPage,
+        children: [
+          { path: 'create', Component: CreateService}
+          // { path: 'edit/:id', Component: }
+        ]
       }
     ],
   },

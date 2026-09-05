@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Clock, Pencil } from 'lucide-react';
 import { useUserStore } from '@/entities/account';
 import { provisionService } from '@/entities/provision/api/provisionApi';
+import { provisionQueryKeys } from '@/entities/provision/api/provisionQueryKeys';
 import { BarberServicesCard } from '@/shared/ui/BarverServicesCard/Card';
 import DefaultError from '@/shared/ui/DefaultError/DefaultError';
 import { ProfilePageDefaultButton } from '@/shared/ui/Buttons/profile-page-button';
@@ -17,7 +18,7 @@ export function BarberServicesList() {
     isPending,
     error,
   } = useQuery({
-    queryKey: ['provisions', 'top-five', profileId],
+    queryKey: provisionQueryKeys.topFive(profileId),
     queryFn: () => {
       if (!profileId) {
         throw new Error('Profile is not available');

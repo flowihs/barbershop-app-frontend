@@ -1,13 +1,16 @@
 
-
+import { useNavigate } from 'react-router';
 import { BarberServicesCard } from '@/shared/ui/BarverServicesCard/Card';
 import HomePageButton from '@/shared/ui/Buttons/home-button';
 import { BarberServicesList } from '@/widgets/barber-services-list/BarberServicesList';
 
 function BarberServicesPage() {
+
+  const navigate = useNavigate();
+
   return (
     <section className="px-3 py-4">
-      <HomePageButton text="Добавить услугу" />
+      <HomePageButton onClick={() => navigate('/create')} text="Добавить услугу" />
       <div className="mt-2.5 flex gap-2">
         <BarberServicesCard>
           <span className="text-[8px] font-semibold uppercase tracking-wide text-text-secondary">

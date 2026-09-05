@@ -34,7 +34,7 @@ function SlotBanner({
     const groupedSlots: GroupedSlots = {};
 
     freeSlots.forEach((slot) => {
-        const dateObject = new Date(slot.time);
+        const dateObject = new Date(slot.startTime);
 
         const date = dateObject.toLocaleString("en", { month: "long", year: "numeric" }); // "March 2026"
         const day = dateObject.toLocaleString("en", { weekday: "short", day: "numeric" }).replace(',', ''); // Wed 1
@@ -129,7 +129,7 @@ function SlotBanner({
                         {selectedDate && (
                             <div>
                                 <p className="text-sm text-text-primary font-semibold uppercase mb-4">Time</p>
-                                <div className="pr-1 max-h-[100px] overflow-y-auto">
+                                <div className="pr-1 max-h-25 overflow-y-auto">
                                     <div className="grid grid-cols-2 gap-3">
                                         {selectedTimes.map((time, i) => (
                                             <SlotTime

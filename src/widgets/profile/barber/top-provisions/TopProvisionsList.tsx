@@ -2,6 +2,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useUserStore } from '@/entities/account';
 import { provisionService } from '@/entities/provision/api/provisionApi';
+import { provisionQueryKeys } from '@/entities/provision/api/provisionQueryKeys';
 import DefaultError from '@/shared/ui/DefaultError/DefaultError';
 import { ProvisionShortCard } from '@/widgets/provision-short-card/ProvisionShortCard';
 
@@ -16,7 +17,7 @@ export function TopProvisionsList() {
     isPending,
     error,
   } = useQuery({
-    queryKey: ['provisions', 'top-five', profileId],
+    queryKey: provisionQueryKeys.topFive(profileId),
     queryFn: () => {
       if (!profileId) {
         throw new Error('Profile is not available');

@@ -23,12 +23,14 @@ export interface UserProfile {
   username: string,
   photoUrl: string,
   description: string,
-  socials: Socials,
+  tiktok: string,
+  instagram: string,
+  number: string
   role: Role,
 }
 
-export interface Socials {
-  tiktok?: string,
-  instagram?: string,
-  number?: string
-}
+// export interface Socials {
+//   tiktok?: string,
+//   instagram?: string,
+//   number?: string
+// }

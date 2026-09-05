@@ -1,4 +1,4 @@
-import { Outlet, useLocation, Link } from 'react-router-dom';
+import { Outlet, useLocation, Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Bell, Settings } from 'lucide-react';
 import BottomNav from '../shared/ui/BottomNav/BottomNav';
 import Logo from '../shared/ui/Logo/Logo';
@@ -13,15 +13,17 @@ const pageTitles: Record<string, string> = {
 
 function Layout() {
   const location = useLocation();
+  const navigate = useNavigate();
+
   const currentTitle = pageTitles[location.pathname];
   const isHomePage = location.pathname === '/';
 
   return (
-		<div className='flex flex-col min-h-screen pb-16 max-w-[430px] mx-auto w-full bg-bg-primary'>
+		<div className='flex flex-col min-h-screen pb-16 max-w-107.5 mx-auto w-full bg-bg-primary'>
 			<header className='px-4 pt-4 pb-4 flex justify-between items-center  border-b border-[#33383D]'>
 				<div className='flex items-center gap-3'>
 					{!isHomePage && (
-						<Link to='/' className='text-text-primary'>
+						<Link to='..' onClick={() => navigate(-1)} className='text-text-primary'>
 							<ArrowLeft size={24} />
 						</Link>
 					)}

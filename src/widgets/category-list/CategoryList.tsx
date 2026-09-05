@@ -1,12 +1,16 @@
-import ListScroll from '../../shared/ui/ListScroll/ListScroll';
 import { useQuery } from '@tanstack/react-query';
-import { categoryService } from '../../entities/provision/api/provisionApi';
-import DefaultError from '../../shared/ui/DefaultError/DefaultError';
+import { useState } from 'react';
+import { CategorySelector } from '@/entities/provision';
+import { categoryService } from '@/entities/provision/api/provisionApi';
+import { provisionQueryKeys } from '@/entities/provision/api/provisionQueryKeys';
+import DefaultError from '@/shared/ui/DefaultError/DefaultError';
 
 function CategoryList() {
 
-  const { data: categories, isLoading, error } = useQuery({
-    queryKey: ['categories'],
+  const [selectedCategoryId, setSelectedCategoryId] = useState<number>();
+
+  const { data: categories = [], isLoading, error } = useQuery({
+    queryKey: provisionQueryKeys.categories,
     queryFn: categoryService.getAll,
   });
 
@@ -24,21 +28,12 @@ function CategoryList() {
           Категории
         </p>
       </div>
-      <ListScroll>
-        {categories?.map((cat) => (
-          <button
-            key={cat.id}
-            className="flex flex-col items-center gap-2 min-w-18 overflow-hidden"
-          >
-            <div className="w-14 h-14 rounded-2xl bg-bg-card-2 flex items-center justify-center text-text-primary">
-              {/*{cat.icon}*/}
-            </div>
-            <span className="text-xs text-text-secondary font-medium uppercase tracking-wide">
-              {cat.name}
-            </span>
-          </button>
-        ))}
-      </ListScroll>
+      <CategorySelector
+        categories={categories}
+        name="category-filter"
+        selectedCategoryId={selectedCategoryId}
+        onCategorySelect={setSelectedCategoryId}
+      />
     </section>
   )
 }

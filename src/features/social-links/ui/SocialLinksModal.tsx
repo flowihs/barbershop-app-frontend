@@ -27,7 +27,7 @@ function SocialLinksModal() {
     enabled: isOpen && Boolean(userId),
     staleTime: 5 * 60 * 1000,
   });
-  const currentSocials = userProfile?.socials;
+  const currentSocials = { tiktok: userProfile?.tiktok, instagram: userProfile?.instagram, number: userProfile?.number }
 
   useEffect(() => {
     if (!isOpen) return;
