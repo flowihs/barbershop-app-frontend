@@ -29,8 +29,8 @@ export interface UserProfile {
   role: Role,
 }
 
-// export interface Socials {
-//   tiktok?: string,
-//   instagram?: string,
-//   number?: string
-// }
+export interface Socials {
+  tiktok?: string,
+  instagram?: string,
+  number?: string
+}
