@@ -30,7 +30,6 @@ function HeaderBarberSide() {
   const profileName = userProfile?.firstName ?? user?.firstName ?? '';
   const profileDescription = userProfile?.description ?? user?.description ?? '';
   const profilePhotoUrl = userProfile?.photoUrl ?? user?.photoUrl ?? 'public/default-user.png';
-  // const profileSocials = userProfile?.socials;
 
   const handleDescriptionSubmit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();

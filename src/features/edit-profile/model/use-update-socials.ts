@@ -2,7 +2,6 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   accountQueryKeys,
   accountService,
-  type Socials,
   type UserProfile,
   useUserStore,
 } from '@/entities/account';
@@ -12,7 +11,7 @@ export function useUpdateSocials() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (socials: Socials) => {
+    mutationFn: async (socials: Pick<UserProfile, 'tiktok' | 'instagram' | 'number'>) => {
       if (!userId) {
         throw new Error('User is not authorized');
       }
@@ -24,7 +23,7 @@ export function useUpdateSocials() {
     onSuccess: ({ userId, socials }) => {
       queryClient.setQueryData<UserProfile>(
         accountQueryKeys.profile(userId),
-        (profile) => profile ? { ...profile, socials } : profile,
+        (profile) => profile ? { ...profile, ...socials } : profile,
       );
     },
   });

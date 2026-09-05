@@ -25,12 +25,6 @@ export interface UserProfile {
   description: string,
   tiktok: string,
   instagram: string,
-  number: string
+  number: string,
   role: Role,
-}
-
-export interface Socials {
-  tiktok?: string,
-  instagram?: string,
-  number?: string
 }

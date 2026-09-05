@@ -1,5 +1,5 @@
 import { Plus } from 'lucide-react';
-import type { Socials as SocialValues } from '@/entities/account';
+import type { UserProfile } from '@/entities/account';
 import {
   SOCIAL_LINKS,
   SOCIAL_LINKS_MODAL_ID,
@@ -8,9 +8,9 @@ import {
 import { useModalStore } from '@/shared/lib/store/modalStore';
 import { ProfilePageDefaultButton } from '@/shared/ui/Buttons/profile-page-button';
 
-function Socials({ tiktok, instagram, number }: SocialValues) {
+function Socials({ tiktok, instagram, number }: Partial<Pick<UserProfile, 'tiktok' | 'instagram' | 'number'>>) {
   const openModal = useModalStore((state) => state.openModal);
-  const socialValues: SocialValues = { tiktok, instagram, number };
+  const socialValues = { tiktok, instagram, number };
 
   return (
     <div className="mt-5 flex items-center justify-center gap-4">

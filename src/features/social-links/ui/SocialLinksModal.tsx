@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import {
   accountQueryKeys,
   accountService,
+  type UserProfile,
   useUserStore,
 } from '@/entities/account';
 import { useUpdateSocials } from '@/features/edit-profile';
@@ -12,12 +13,6 @@ import HomePageButton from '@/shared/ui/Buttons/home-button';
 import { SOCIAL_LINKS_MODAL_ID } from '../model/constants';
 import { SOCIAL_LINKS } from '@/shared/config/socialLinks';
 import { SocialIcon } from './SocialIcon';
-
-type Socials = {
-  tiktok: string,
-  instagram: string,
-  number: string
-}
 
 function SocialLinksModal() {
   const isOpen = useModalStore(
@@ -32,11 +27,6 @@ function SocialLinksModal() {
     enabled: isOpen && Boolean(userId),
     staleTime: 5 * 60 * 1000,
   });
-  const currentSocials = {
-    tiktok: userProfile?.tiktok,
-    instagram: userProfile?.instagram,
-    number: userProfile?.number,
-  };
 
   useEffect(() => {
     if (!isOpen) return;
@@ -61,7 +51,7 @@ function SocialLinksModal() {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    const socials = SOCIAL_LINKS.reduce<Socials>((values, social) => {
+    const socials = SOCIAL_LINKS.reduce<Pick<UserProfile, 'tiktok' | 'instagram' | 'number'>>((values, social) => {
       const value = formData.get(social.key);
       
       values[social.key] = typeof value === 'string' ? value.trim() : '';
@@ -117,7 +107,7 @@ function SocialLinksModal() {
                 name={social.key}
                 aria-label={social.name}
                 placeholder={social.placeholder}
-                defaultValue={currentSocials?.[social.key] ?? ''}
+                defaultValue={userProfile?.[social.key] ?? ''}
                 autoComplete={social.inputType === 'tel' ? 'tel' : 'url'}
                 className="h-11 min-w-0 flex-1 rounded-xl border border-border/10 bg-bg-card-2 px-4 text-sm text-text-primary outline-none placeholder:text-text-muted focus:border-accent/60"
               />
