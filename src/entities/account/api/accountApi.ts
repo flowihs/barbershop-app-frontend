@@ -23,7 +23,7 @@ export const accountService = {
     const formData = new FormData();
 
     formData.append('id', String(avatarChange.id));
-    formData.append('file', avatarChange.file);
+    formData.append('photo', avatarChange.file); 
 
     return api.post('/api/account/update-avatar', formData).then(e => e.data);
   }
