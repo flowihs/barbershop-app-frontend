@@ -1,4 +1,4 @@
-import "./Logo.less";
+import "./Logo.css";
 
 function Logo() {
     
