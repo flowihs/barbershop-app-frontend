@@ -1,10 +1,10 @@
 import { Clock, Scissors, MapPin } from 'lucide-react';
-import type { Provision } from '../../entities/provision';
+import type { ProvisionRequest } from '../../entities/provision';
 import { ExpandButton } from '../../shared/ui/ExpandButton/ExpandButton';
 import { Like } from '../../entities/provision/ui/like/Like';
 
 
-function ServiceInfo({ provision }: {provision: Provision}) {
+function ServiceInfo({ provision }: {provision: ProvisionRequest}) {
 
     return (
         <div className="flex flex-col ml-1 gap-4">

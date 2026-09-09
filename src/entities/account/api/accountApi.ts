@@ -1,6 +1,6 @@
 
 import { api, authApi } from "../../../shared/api/apiClient";
-import type { TelegramAuthResponse, TelegramProfile, UserProfile } from "../model/types";
+import type { TelegramAuthResponse, UserProfile } from "../model/types";
 
 export const accountService = {
   getMe: () => {
@@ -13,8 +13,8 @@ export const accountService = {
     ).then(e => e.data)
   },
   getProfileById: (id?: number) => api.get<UserProfile>(`/api/account/profile/${id}`).then(e => e.data),
-  getMeById: (id: number) => api.get<TelegramProfile>(`/api/users/${id}`).then(e => e.data),
-  updateDescription: (descriptionChange: Pick<TelegramProfile, 'description' | 'id'>) => api.post('/api/account/update-description', descriptionChange).then(e => e.data),
+  getMeById: (id: number) => api.get<UserProfile>(`/api/users/${id}`).then(e => e.data),
+  updateDescription: (descriptionChange: Pick<UserProfile, 'description' | 'id'>) => api.post('/api/account/update-description', descriptionChange).then(e => e.data),
   updateSocials: (socialsChange: Pick<UserProfile, 'tiktok' | 'id' | 'instagram' | 'number'>) => api.post('/api/account/update-social-netoworks', socialsChange).then(e => e.data),
   updateAvatar: (avatarChange: {
     id: number,

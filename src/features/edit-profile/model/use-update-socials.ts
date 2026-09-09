@@ -8,6 +8,7 @@ import {
 
 export function useUpdateSocials() {
   const userId = useUserStore((state) => state.user?.id);
+  const updateUser = useUserStore((state) => state.updateUser);
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -21,6 +22,8 @@ export function useUpdateSocials() {
       return { userId, socials };
     },
     onSuccess: ({ userId, socials }) => {
+      updateUser(socials);
+
       queryClient.setQueryData<UserProfile>(
         accountQueryKeys.profile(userId),
         (profile) => profile ? { ...profile, ...socials } : profile,

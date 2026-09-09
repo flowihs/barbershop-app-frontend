@@ -1,4 +1,5 @@
-import type { TelegramProfile } from '../../account';
+import type { UserProfile } from '../../account';
+
 
 export interface Category {
   id: number;
@@ -7,19 +8,27 @@ export interface Category {
   image?: string
 }
 
-// export interface Slot {
-//   id: number;
-//   time: string;
-//   isBooking: boolean;
-// }
-
 export interface ProvisionSlot {
+  id: number;
   provisionId: number;
   startTime: string;
   endTime: string;
-  isAvailable: boolean;
+  available: boolean;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface ProvisionRequest {
+  id: number;
+  title: string;
+  description: string;
+  rating: number;
+  user: UserProfile;
+  provisionSlot: ProvisionSlot[];
+  avatar: string;
+  provisionCategory: Category;
+  likesCount: number;
+  likedByMe: boolean;
 }
 
 export interface Provision {
@@ -27,12 +36,8 @@ export interface Provision {
   title: string;
   description: string;
   rating: number;
-  user: TelegramProfile;
-  slots: ProvisionSlot[]
-  avatar: string
-  provisionCategory: Category;
-  likesCount: number;
-  likedByMe: boolean;
+  avatar: string;
+  user: UserProfile
 }
 
 export interface CreateProvisionRequest {

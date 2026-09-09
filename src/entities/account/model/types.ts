@@ -1,18 +1,8 @@
 
 type Role = 'BARBER' | 'CLEINT' | 'ADMIN';
 
-export interface TelegramProfile {
-  id: number;
-  firstName: string;
-  lastName?: string;
-  username: string;
-  photoUrl?: string;
-  description?: string;
-  role: Role;
-}
-
 export interface TelegramAuthResponse {
-  user: TelegramProfile;
+  user: UserProfile;
   token: string;
 }
 

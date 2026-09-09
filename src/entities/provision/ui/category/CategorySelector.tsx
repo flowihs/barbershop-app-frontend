@@ -1,6 +1,7 @@
 
 import type { Category } from '../../model/types';
 import ListScroll from '@/shared/ui/ListScroll/ListScroll';
+import { CategoryImage } from './CategoryImage';
 
 
 interface CategorySelectorProps {
@@ -37,10 +38,7 @@ export function CategorySelector({
               onChange={() => onCategorySelect?.(category.id)}
               className="peer sr-only"
             />
-            <img 
-              src={category.image ?? 'public/images/warning.png'}
-              className="w-14 h-14 rounded-2xl bg-bg-card-2 flex items-center justify-center text-text-primary">
-            </img>
+            <CategoryImage category={category} />
             <span className="text-sm font-medium text-text-secondary transition-colors peer-checked:font-semibold peer-checked:text-accent">
               {category.name}
             </span>

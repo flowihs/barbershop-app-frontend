@@ -22,19 +22,20 @@ function SlotBanner({
     const [selectedTime, setSelectedTime] = useState<string | null>(null);
     const [currentDate, setCurrentDate] = useState(new Date());
 
-    const { data: provisions, isLoading, error } = useQuery({
+    const { data: provision, isLoading, error } = useQuery({
         queryKey: ['provisions', 'free', provisionId],
         queryFn: () => provisionService.getFreeSlots(provisionId),
         staleTime: 2000,
         gcTime: 20000
     });
 
-    const freeSlots = provisions?.slots ?? [];
+    const freeSlots = provision?.provisionSlot.filter((slot) => slot.available) ?? [];
 
     const groupedSlots: GroupedSlots = {};
 
     freeSlots.forEach((slot) => {
         const dateObject = new Date(slot.startTime);
+        if (Number.isNaN(dateObject.getTime())) return;
 
         const date = dateObject.toLocaleString("en", { month: "long", year: "numeric" }); // "March 2026"
         const day = dateObject.toLocaleString("en", { weekday: "short", day: "numeric" }).replace(',', ''); // Wed 1

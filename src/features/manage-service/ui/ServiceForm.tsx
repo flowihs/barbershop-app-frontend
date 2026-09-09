@@ -4,11 +4,9 @@ import { ProfilePageDefaultButton } from '@/shared/ui/Buttons/profile-page-butto
 import { ServiceCategoryField } from './ServiceCategoryField';
 import { ServicePhotoField } from './ServicePhotoField';
 import type { SubmitEventHandler } from 'react';
+import type { CreateProvisionRequest } from '@/entities/provision';
 
-export interface ServiceFormValues {
-  title?: string;
-  description?: string;
-  categoryId?: number;
+export interface ServiceFormValues extends Partial<Pick<CreateProvisionRequest, 'title' | 'description' | 'categoryId'>> {
   photo?: File;
 }
 
