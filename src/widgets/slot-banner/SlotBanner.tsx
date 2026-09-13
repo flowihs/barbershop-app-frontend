@@ -25,12 +25,12 @@ function SlotBanner({
 
     const { data: provision, isLoading, error } = useQuery({
         queryKey: ['provisions', 'free', provisionId],
-        queryFn: () => provisionService.getFreeSlots(provisionId),
+        queryFn: () => provisionService.getById(provisionId),
         staleTime: 2000,
         gcTime: 20000
     });
 
-    const freeSlots = provision?.provisionSlot.filter((slot) => slot.available) ?? [];
+    const freeSlots = provision?.provisionSlots.filter((slot) => slot.available) ?? [];
 
     const groupedSlots: GroupedSlots = {};
 

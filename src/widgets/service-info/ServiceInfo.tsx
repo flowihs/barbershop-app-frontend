@@ -11,6 +11,7 @@ function ServiceInfo({ provision }: {provision: ProvisionRequest}) {
         <div className={styles.content}>
             <div className={styles.imageFrame}>
                 <img
+                    src={provision.avatar}
                     alt={provision.title}
                     className={styles.image}
                 />

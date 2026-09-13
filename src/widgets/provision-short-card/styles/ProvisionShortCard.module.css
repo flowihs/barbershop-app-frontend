@@ -40,8 +40,9 @@
   overflow: hidden;
   margin: 0;
   color: var(--color-text-primary);
-  font-size: 0.875rem;
+  font-size: 1.05rem;
   font-weight: 600;
+  font: bold;
   line-height: 1.25rem;
   text-overflow: ellipsis;
   white-space: nowrap;

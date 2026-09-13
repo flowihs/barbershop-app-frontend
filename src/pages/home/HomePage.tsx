@@ -23,9 +23,7 @@ function HomePage() {
           <Funnel size={18} />
         </button>
       </div>
-      
       <CategoryList />
-      
       <ProvisionCardList />
     </div>
   )
