@@ -1,0 +1,120 @@
+@layer components {
+  .section {
+    margin-top: 1.75rem;
+  }
+
+  .header {
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: .75rem;
+    display: flex;
+  }
+
+  .title {
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  :where(.list > :not(:last-child)) {
+    margin-block: 0 .5rem;
+  }
+
+  .skeleton {
+    background-color: var(--color-bg-slot);
+    border-radius: .75rem;
+    height: 4.3125rem;
+    animation: 2s cubic-bezier(.4, 0, .6, 1) infinite pulse;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--color-text-secondary);
+    padding-block: 1.5rem;
+    font-size: .875rem;
+    line-height: var(--line-height-sm);
+  }
+
+  .row {
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    display: flex;
+  }
+
+  .content {
+    min-width: 0;
+  }
+
+  .serviceTitle {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--color-text-primary);
+    font-size: .875rem;
+    font-weight: 600;
+    line-height: var(--line-height-sm);
+    overflow: hidden;
+  }
+
+  .duration {
+    color: var(--color-text-secondary);
+    align-items: center;
+    gap: .375rem;
+    margin-top: .375rem;
+    display: flex;
+  }
+
+  .durationText {
+    text-transform: uppercase;
+    font-size: .75rem;
+    line-height: var(--line-height-xs);
+  }
+
+  .actions {
+    flex-shrink: 0;
+    align-items: center;
+    gap: .75rem;
+    display: flex;
+  }
+
+  .price {
+    color: var(--color-bg-textholder-area);
+    font-size: 1.125rem;
+    line-height: var(--line-height-lg);
+  }
+
+  .editButton {
+    cursor: pointer;
+    border: 1px solid #ffffff0d;
+    border-radius: 9999px;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-secondary);
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+    transition-duration: .15s;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .editButton {
+      border-color: color-mix(in oklab, var(--color-border) 5%, transparent);
+    }
+  }
+
+  @media (hover: hover) {
+    .editButton:hover {
+      color: var(--color-text-primary);
+    }
+  }
+
+  @keyframes pulse {
+    50% {
+      opacity: .5;
+    }
+  }
+}

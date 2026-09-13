@@ -1,0 +1,90 @@
+@layer components {
+  .content {
+    flex-direction: column;
+    gap: 1.5rem;
+    display: flex;
+  }
+
+  .title {
+    color: var(--color-text-primary);
+    text-transform: uppercase;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: var(--line-height-lg);
+  }
+
+  .loading {
+    color: var(--color-text-secondary);
+    font-size: .875rem;
+    line-height: var(--line-height-sm);
+  }
+
+  .monthPicker {
+    border: 1px solid #ffffff1a;
+    border-radius: .75rem;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    padding: .75rem;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .monthPicker {
+      border-color: color-mix(in oklab, var(--color-border) 10%, transparent);
+    }
+  }
+
+  .monthButton {
+    cursor: pointer;
+    color: var(--color-accent);
+    border-radius: .375rem;
+    padding: .25rem;
+  }
+
+  @media (hover: hover) {
+    .monthButton:hover {
+      background-color: #d9ad384d;
+    }
+
+    @supports (color: color-mix(in lab, red, red)) {
+      .monthButton:hover {
+        background-color: color-mix(in oklab, var(--color-accent-hover) 30%, transparent);
+      }
+    }
+  }
+
+  .monthTitle {
+    color: var(--color-text-primary);
+    text-transform: uppercase;
+    font-size: .875rem;
+    font-weight: 600;
+    line-height: var(--line-height-sm);
+  }
+
+  .fieldLabel {
+    color: var(--color-text-primary);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-size: .875rem;
+    font-weight: 600;
+    line-height: var(--line-height-sm);
+  }
+
+  .dates {
+    flex-direction: row-reverse;
+    gap: .75rem;
+    display: flex;
+  }
+
+  .timeScroll {
+    max-height: 6.25rem;
+    padding-right: .25rem;
+    overflow-y: auto;
+  }
+
+  .times {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .75rem;
+    display: grid;
+  }
+}

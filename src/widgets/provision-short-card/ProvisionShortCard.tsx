@@ -1,7 +1,8 @@
 import { Clock, SquareArrowOutUpRight } from 'lucide-react';
 import { Link } from 'react-router';
 import { CategoryImage } from '@/entities/provision';
-import styles from './ProvisionShortCard.module.css';
+import { CloudAlert } from 'lucide-react';
+import styles from './styles/ProvisionShortCard.module.css';
 
 interface ProvisionShortCardProps {
   provisionId: number;
@@ -29,7 +30,9 @@ export function ProvisionShortCard({
       <article className={styles.card}>
         <div className={styles.header}>
           <div className={styles.headerContainer}>
-            <CategoryImage category={{ name: categoryName, image: categoryImage }} />
+            { categoryImage 
+              ? <CategoryImage category={{ name: categoryName, image: categoryImage }} /> 
+              : <CloudAlert size={26} />}
             <div>
               <h3 className={styles.title}>{title}</h3>
 

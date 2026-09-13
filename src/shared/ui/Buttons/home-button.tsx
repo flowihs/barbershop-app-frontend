@@ -1,3 +1,4 @@
+import styles from './styles/home-button.module.css';
 interface HomePageButtonProps {
     onClick?: () => void
     text?: string
@@ -7,8 +8,9 @@ interface HomePageButtonProps {
 function HomePageButton({ onClick, text = 'Book Now', variant = 'primary' }: HomePageButtonProps) {
     return (
         <button
+            data-variant={variant}
             onClick={onClick}
-            className={`w-full cursor-pointer py-3 bg-accent hover:bg-accent-hover transition-colors duration-200 rounded-xl text-bg-${variant} font-bold text-sm uppercase tracking-wide`}
+            className={styles.button}
         >
             {text}
         </button>

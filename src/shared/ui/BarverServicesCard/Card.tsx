@@ -1,3 +1,4 @@
+import styles from './styles/Card.module.css';
 import type { ReactNode } from 'react';
 
 interface MetricCardProps {
@@ -6,7 +7,7 @@ interface MetricCardProps {
 
 export function BarberServicesCard({ children }: MetricCardProps) {
   return (
-    <div className="flex min-h-16 flex-1 flex-col justify-center rounded-lg bg-bg-slot px-3 py-2.5">
+    <div className={styles.card}>
       {children}
     </div>
   );

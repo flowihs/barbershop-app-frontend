@@ -1,0 +1,59 @@
+@layer components {
+  .page {
+    background-color: var(--color-bg-primary);
+    flex-direction: column;
+    width: 100%;
+    max-width: 26.875rem;
+    min-height: 100vh;
+    margin-inline: auto;
+    padding-bottom: 4rem;
+    display: flex;
+  }
+
+  .header {
+    padding-inline: 1rem;
+    border-color: #33383d;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+  }
+
+  .brand {
+    align-items: center;
+    gap: .75rem;
+    display: flex;
+  }
+
+  .backLink {
+    color: var(--color-text-primary);
+  }
+
+  .title {
+    color: var(--color-text-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .actions {
+    align-items: center;
+    gap: 1.25rem;
+    display: flex;
+  }
+
+  .actionButton {
+    color: var(--color-text-secondary);
+  }
+
+  .actionIcon {
+    cursor: pointer;
+  }
+
+  .main {
+    flex: 1;
+  }
+}

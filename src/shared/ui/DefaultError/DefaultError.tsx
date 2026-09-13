@@ -1,10 +1,11 @@
+import styles from './styles/DefaultError.module.css';
 function DefaultError({ text }: {
     text: string
 }) {
     return (
-      <div className="flex items-cetner gap-4">
+      <div className={styles.error}>
         <div>
-            <p className="text-xs text-text-secondary">
+            <p className={styles.message}>
                 {text}
             </p>
         </div>

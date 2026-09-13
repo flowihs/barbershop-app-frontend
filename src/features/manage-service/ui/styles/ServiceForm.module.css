@@ -1,0 +1,125 @@
+@layer components {
+  :where(.fields > :not(:last-child)) {
+    margin-block: 0 2rem;
+  }
+
+  .fields {
+    padding-block: 1.75rem;
+    padding-inline: 1.25rem;
+  }
+
+  .field {
+    display: block;
+  }
+
+  .label {
+    letter-spacing: .025em;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    margin-bottom: .75rem;
+    font-size: .875rem;
+    font-weight: 600;
+    line-height: var(--line-height-sm);
+    display: block;
+  }
+
+  .inputWrap {
+    display: block;
+    position: relative;
+  }
+
+  .input {
+    border: 1px solid #ffffff0d;
+    border-radius: .75rem;
+    width: 100%;
+    height: 3.25rem;
+    background-color: var(--color-bg-slot);
+    padding-inline: 1rem;
+    color: var(--color-text-primary);
+    outline-style: none;
+    padding-right: 3rem;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+    transition-duration: .15s;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .input {
+      border-color: color-mix(in oklab, var(--color-border) 5%, transparent);
+    }
+  }
+
+  .input::placeholder {
+    color: var(--color-text-secondary);
+  }
+
+  .input:focus {
+    border-color: #f0c04099;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .input:focus {
+      border-color: color-mix(in oklab, var(--color-accent) 60%, transparent);
+    }
+  }
+
+  .inputIcon {
+    pointer-events: none;
+    color: var(--color-text-secondary);
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    translate: 0 -50%;
+  }
+
+  .description {
+    resize: none;
+    border: 1px solid #ffffff0d;
+    border-radius: .75rem;
+    width: 100%;
+    min-height: 7rem;
+    background-color: var(--color-bg-slot);
+    color: var(--color-text-primary);
+    outline-style: none;
+    padding-block: .75rem;
+    padding-inline: 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+    transition-duration: .15s;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .description {
+      border-color: color-mix(in oklab, var(--color-border) 5%, transparent);
+    }
+  }
+
+  .description::placeholder {
+    color: var(--color-text-secondary);
+  }
+
+  .description:focus {
+    border-color: #f0c04099;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .description:focus {
+      border-color: color-mix(in oklab, var(--color-accent) 60%, transparent);
+    }
+  }
+
+  .addSlot {
+    justify-content: center;
+    padding-block: 1.5rem;
+    display: flex;
+  }
+
+  .submit {
+    padding-top: .5rem;
+  }
+}

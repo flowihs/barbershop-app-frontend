@@ -1,3 +1,4 @@
+import styles from './styles/SlotBanner.module.css';
 import { SlotTime, SlotDate } from "../../entities/provision";
 import { BottomSheet } from "../../shared/ui/BottomSheet/BottomSheet";
 import { provisionService } from "../../entities/provision/api/provisionApi";
@@ -24,12 +25,12 @@ function SlotBanner({
 
     const { data: provision, isLoading, error } = useQuery({
         queryKey: ['provisions', 'free', provisionId],
-        queryFn: () => provisionService.getFreeSlots(provisionId),
+        queryFn: () => provisionService.getById(provisionId),
         staleTime: 2000,
         gcTime: 20000
     });
 
-    const freeSlots = provision?.provisionSlot.filter((slot) => slot.available) ?? [];
+    const freeSlots = provision?.provisionSlots.filter((slot) => slot.available) ?? [];
 
     const groupedSlots: GroupedSlots = {};
 
@@ -71,11 +72,11 @@ function SlotBanner({
     
     return (
         <BottomSheet onClose={onClose}>
-            <div className="flex flex-col gap-6">
-                <h2 className="text-lg font-bold text-text-primary uppercase">Date & Time</h2>
+            <div className={styles.content}>
+                <h2 className={styles.title}>Date & Time</h2>
 
                 {isLoading && (
-                    <p className="text-text-secondary text-sm">Loading slots...</p>
+                    <p className={styles.loading}>Loading slots...</p>
                 )}
 
                 {error && (
@@ -84,24 +85,24 @@ function SlotBanner({
 
                 {!isLoading && !error && (
                     <>
-                        <div className="flex items-center justify-between rounded-xl p-3 border border-border/10">
-                            <button onClick={prevMonth} className="text-accent cursor-pointer p-1 rounded-md hover:bg-accent-hover/30">
+                        <div className={styles.monthPicker}>
+                            <button onClick={prevMonth} className={styles.monthButton}>
                                 <ChevronLeft size={20} />
                             </button>
 
-                            <span className="text-sm font-semibold text-text-primary uppercase">
+                            <span className={styles.monthTitle}>
                                 {currentMonth}
                             </span>
 
-                            <button onClick={nextMonth} className="text-accent cursor-pointer p-1 rounded-md hover:bg-accent-hover/30">
+                            <button onClick={nextMonth} className={styles.monthButton}>
                                 <ChevronRight size={20} />
                             </button>
                         </div>
 
                         <div>
-                            <p className="text-sm text-text-primary font-semibold uppercase mb-4">Date</p>
+                            <p className={styles.fieldLabel}>Date</p>
                             <ListScroll>
-                                <div className="flex flex-row-reverse gap-3">
+                                <div className={styles.dates}>
                                     {currentDays.map((dateSlot, i) => {
                                         
                                         // получить отдельно day = 2, weekday = Mon
@@ -129,9 +130,9 @@ function SlotBanner({
 
                         {selectedDate && (
                             <div>
-                                <p className="text-sm text-text-primary font-semibold uppercase mb-4">Time</p>
-                                <div className="pr-1 max-h-25 overflow-y-auto">
-                                    <div className="grid grid-cols-2 gap-3">
+                                <p className={styles.fieldLabel}>Time</p>
+                                <div className={styles.timeScroll}>
+                                    <div className={styles.times}>
                                         {selectedTimes.map((time, i) => (
                                             <SlotTime
                                                 key={i}

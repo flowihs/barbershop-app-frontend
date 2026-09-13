@@ -1,0 +1,127 @@
+@layer components {
+  .card {
+    min-width: 16.25rem;
+    max-width: 16.25rem;
+    position: relative;
+  }
+
+  .imageFrame {
+    height: var(--height-card);
+    background-color: var(--color-bg-card);
+    border-radius: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  .badges {
+    inset-inline: 1rem;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    position: absolute;
+    top: 1rem;
+  }
+
+  .locationButton {
+    border-radius: 9999px;
+    background-color: rgb(0 0 0 / .3);
+    backdrop-filter: blur(8px);
+    padding: .5rem;
+  }
+
+  .rating {
+    border-radius: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    gap: .5rem;
+    display: flex;
+    background-color: rgb(0 0 0 / .3);
+    padding: .25rem;
+    backdrop-filter: blur(8px);
+    padding-inline: .5rem;
+  }
+
+  .star {
+    color: var(--color-accent);
+  }
+
+  .ratingValue {
+    color: var(--color-text-primary);
+    font-size: 13px;
+  }
+
+  .footer {
+    inset-inline: 1rem;
+    position: absolute;
+    bottom: .75rem;
+  }
+
+  .summary {
+    border: 1px solid #ffffff1a;
+    border-radius: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    border-color: rgb(255 255 255 / 10%);
+    background-color: #171a1cb3;
+    backdrop-filter: blur(12px);
+    padding: 1rem;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .summary {
+      background-color: color-mix(in oklab, var(--color-bg-primary) 70%, transparent);
+    }
+  }
+
+  .content {
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .title {
+    -webkit-line-clamp: 1;
+    color: var(--color-text-primary);
+    -webkit-box-orient: vertical;
+    font-size: .875rem;
+    font-weight: 700;
+    line-height: var(--line-height-sm);
+    display: -webkit-box;
+    overflow: hidden;
+  }
+
+  .category {
+    color: var(--color-text-secondary);
+    margin-top: .25rem;
+    font-size: .75rem;
+    line-height: var(--line-height-xs);
+  }
+
+  .openButton {
+    cursor: pointer;
+    background-color: var(--color-accent);
+    color: #000;
+    border-radius: 1rem;
+    justify-content: center;
+    align-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+    transition-duration: .15s;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+    display: flex;
+  }
+
+  @media (hover: hover) {
+    .openButton:hover {
+      background-color: var(--color-accent-hover);
+    }
+  }
+}

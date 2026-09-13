@@ -1,0 +1,45 @@
+@layer components {
+  .nav {
+    border-top-style: solid;
+    border-top-width: 1px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-color: rgb(255 255 255 / 10%);
+    background-color: var(--color-bg-secondary);
+    padding-block: .5rem;
+    padding-inline: 1rem;
+  }
+
+  .items {
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 430px;
+    margin-inline: auto;
+    display: flex;
+  }
+
+  .link {
+    flex-direction: column;
+    align-items: center;
+    gap: .25rem;
+    padding-block: .25rem;
+    display: flex;
+  }
+
+  .active {
+    color: var(--color-accent);
+  }
+
+  .inactive {
+    color: var(--color-text-muted);
+  }
+
+  .label {
+    font-size: .75rem;
+    font-weight: 500;
+    line-height: var(--line-height-xs);
+  }
+}

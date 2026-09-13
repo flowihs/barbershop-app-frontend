@@ -1,3 +1,4 @@
+import styles from './styles/ListScroll.module.css';
 import { useRef, useState } from "react";
 
 function ListScroll({ children }: { children: React.ReactNode }) {
@@ -31,7 +32,7 @@ function ListScroll({ children }: { children: React.ReactNode }) {
     return (
         <div
             ref={containerRef}
-            className="flex gap-4 overflow-x-auto select-none scrollbar-none"
+            className={styles.scroll}
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}

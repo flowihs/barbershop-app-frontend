@@ -1,3 +1,4 @@
+import styles from './styles/CategoryList.module.css';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { CategorySelector } from '@/entities/provision';
@@ -18,13 +19,13 @@ function CategoryList() {
   if (error) return <DefaultError text={`Error is: ${errorMessage} ${error.cause}`} />
 
   if (isLoading) {
-    return <p className='text-text-secondary text-sm p-4'>Loading...</p>
+    return <p className={styles.loading}>Loading...</p>
   }
 
   return (
     <section>
-      <div className="flex justify-between my-4 px-2">
-        <p className="text-xl pb-3 text-text-primary">
+      <div className={styles.header}>
+        <p className={styles.title}>
           Категории
         </p>
       </div>

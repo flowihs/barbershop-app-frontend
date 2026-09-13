@@ -1,3 +1,4 @@
+import styles from './styles/BottomSheet.module.css';
 import { motion } from "motion/react";
 import { useEffect } from "react";
 import { useDragControls } from "motion/react";
@@ -25,9 +26,7 @@ function BottomSheet({
     return (
         <>
             <motion.div
-                className="
-                    fixed inset-0 z-1 bg-black/50
-                "
+                className={styles.overlay}
                 transition={{ type: "tween", duration: 0.3 }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -35,11 +34,7 @@ function BottomSheet({
                 onClick={onClose}
             />
             <motion.div
-                className="
-                    fixed z-2 inset-x-0 bottom-0 bg-bg-primary
-                    h-[90vh] w-full max-w-(--width-app) mx-auto border
-                    border-t-border/10 rounded-t-[10px] px-4 pt-10
-                "
+                className={styles.sheet}
                 drag="y"
                 dragControls={controls}
                 dragDirectionLock
@@ -58,14 +53,9 @@ function BottomSheet({
 
                 <div
                     onPointerDown={event => controls.start(event)} 
-                    className="
-                        absolute inset-x-0 rounded-t-[10px] top-0 py-4.5 
-                        w-full cursor-grab max-w-(--width-app) 
-                        flex justify-center active:cursor-grabbing 
-                        active:select-none
-                    "
+                    className={styles.handle}
                 >
-                    <div className="h-1 w-13 rounded-full bg-text-primary/70" />
+                    <div className={styles.handleBar} />
                 </div>
                 {children}
             </motion.div>

@@ -1,0 +1,23 @@
+@layer components {
+  .button {
+    cursor: pointer;
+    background-color: var(--color-accent);
+    letter-spacing: .025em;
+    text-transform: uppercase;
+    border-radius: .75rem;
+    width: 100%;
+    padding-block: .75rem;
+    font-size: .875rem;
+    font-weight: 700;
+    line-height: var(--line-height-sm);
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+    transition-duration: .2s;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  }
+
+  @media (hover: hover) {
+    .button:hover {
+      background-color: var(--color-accent-hover);
+    }
+  }
+}

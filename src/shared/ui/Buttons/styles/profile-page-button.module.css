@@ -1,0 +1,51 @@
+@layer components {
+  .button {
+    cursor: pointer;
+    border: 1px solid #f0c04066;
+    border-radius: .75rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: var(--color-accent);
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+    transition-duration: .15s;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .button {
+      border-color: color-mix(in oklab, var(--color-accent) 40%, transparent);
+    }
+  }
+
+  @media (hover: hover) {
+    .button:hover {
+      border-color: var(--color-accent);
+    }
+  }
+
+  @media (hover: hover) {
+    .button:hover {
+      background-color: var(--color-bg-card-2);
+    }
+  }
+
+  .compact {
+    height: 2rem;
+    padding-inline: .75rem;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .social {
+    background-color: var(--color-bg-card-2);
+    border-radius: 14px;
+    width: 51px;
+    height: 46px;
+  }
+
+  .icon {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}

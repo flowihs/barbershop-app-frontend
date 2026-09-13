@@ -1,0 +1,29 @@
+@layer components {
+  .loading {
+    align-items: center;
+    gap: 1rem;
+    display: flex;
+  }
+
+  .avatar {
+    background-color: var(--color-bg-secondary);
+    border-radius: 9999px;
+    width: 3rem;
+    height: 3rem;
+    animation: 2s cubic-bezier(.4, 0, .6, 1) infinite pulse;
+  }
+
+  .text {
+    background-color: var(--color-bg-secondary);
+    border-radius: .375rem;
+    width: 8rem;
+    height: 1.25rem;
+    animation: 2s cubic-bezier(.4, 0, .6, 1) infinite pulse;
+  }
+
+  @keyframes pulse {
+    50% {
+      opacity: .5;
+    }
+  }
+}

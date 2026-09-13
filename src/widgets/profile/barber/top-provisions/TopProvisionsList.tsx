@@ -4,7 +4,7 @@ import { provisionService } from '@/entities/provision/api/provisionApi';
 import { provisionQueryKeys } from '@/entities/provision/api/provisionQueryKeys';
 import DefaultError from '@/shared/ui/DefaultError/DefaultError';
 import { ProvisionShortCard } from '@/widgets/provision-short-card/ProvisionShortCard';
-import styles from "./style.module.css";
+import styles from "./styles/style.module.css";
 
 const fallbackPrice = 45;
 const fallbackTime = 20;

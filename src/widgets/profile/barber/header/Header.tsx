@@ -12,7 +12,7 @@ import {
   useUpdateDescription,
   useUploadAvatar,
 } from '@/features/edit-profile';
-import styles from './Header.module.css';
+import styles from './styles/Header.module.css';
 
 function HeaderBarberSide() {
   const user = useUserStore((state) => state.user);

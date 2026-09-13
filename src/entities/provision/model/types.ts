@@ -8,14 +8,11 @@ export interface Category {
   image?: string
 }
 
-export interface ProvisionSlot {
+export interface ProvisionSlots {
   id: number;
-  provisionId: number;
   startTime: string;
   endTime: string;
   available: boolean;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export interface ProvisionRequest {
@@ -24,7 +21,7 @@ export interface ProvisionRequest {
   description: string;
   rating: number;
   user: UserProfile;
-  provisionSlot: ProvisionSlot[];
+  provisionSlots: ProvisionSlots[];
   avatar: string;
   provisionCategory: Category;
   likesCount: number;
@@ -45,7 +42,7 @@ export interface CreateProvisionRequest {
   title: string;
   description: string;
   categoryId: number;
-  slots: ProvisionSlot[];
+  slots: ProvisionSlots[];
 }
 
 

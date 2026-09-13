@@ -1,0 +1,61 @@
+@layer components {
+  .date {
+    min-width: var(--width-date-card);
+    cursor: pointer;
+    border-radius: .75rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-block: 1.25rem;
+    padding-inline: 0;
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+    transition-duration: .15s;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+    display: flex;
+  }
+
+  .selected {
+    background-color: var(--color-accent);
+    color: var(--color-icon-dark);
+  }
+
+  .unselected {
+    background-color: #1e2124b3;
+    color: var(--color-text-primary);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .unselected {
+      background-color: color-mix(in oklab, var(--color-bg-slot) 70%, transparent);
+    }
+  }
+
+  .day {
+    font-size: 1.125rem;
+    line-height: var(--line-height-lg);
+  }
+
+  .weekday {
+    text-transform: uppercase;
+    font-size: 10px;
+  }
+
+  .time {
+    cursor: pointer;
+    border-radius: .75rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-block: .75rem;
+    padding-inline: .5rem;
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+    transition-duration: .15s;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+    display: flex;
+  }
+
+  .timeLabel {
+    font-size: .875rem;
+    line-height: var(--line-height-sm);
+  }
+}

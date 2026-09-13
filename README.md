@@ -32,6 +32,6 @@ Telegram Mini App для поиска услуг барбершопа и зап�
 - React Router
 - TanStack Query
 - Axios
-- Tailwind CSS 4
+- CSS Modules и общие CSS-переменные
 - Motion
 - Telegram Mini Apps SDK

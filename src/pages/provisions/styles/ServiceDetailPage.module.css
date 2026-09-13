@@ -1,0 +1,17 @@
+@layer components {
+  .loading {
+    color: var(--color-text-secondary);
+    padding: 1rem;
+    font-size: .875rem;
+    line-height: var(--line-height-sm);
+  }
+
+  .page {
+    padding-inline: 1rem;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+    display: flex;
+  }
+}
