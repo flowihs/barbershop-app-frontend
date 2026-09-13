@@ -1,0 +1,42 @@
+@layer components {
+  .page {
+    padding-block: 1rem;
+    padding-inline: .75rem;
+  }
+
+  .stats {
+    gap: .5rem;
+    margin-top: .625rem;
+    display: flex;
+  }
+
+  .label {
+    letter-spacing: .025em;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    font-size: 8px;
+    font-weight: 600;
+  }
+
+  .count {
+    color: var(--color-text-primary);
+    margin-top: .25rem;
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .placeholder {
+    color: var(--color-text-primary);
+    margin-top: .25rem;
+    font-size: .75rem;
+    font-weight: 600;
+    line-height: 1;
+    animation: 2s cubic-bezier(.4, 0, .6, 1) infinite pulse;
+  }
+
+  @keyframes pulse {
+    50% {
+      opacity: .5;
+    }
+  }
+}

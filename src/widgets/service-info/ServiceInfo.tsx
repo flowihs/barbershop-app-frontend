@@ -1,3 +1,4 @@
+import styles from './ServiceInfo.module.css';
 import { Clock, Scissors, MapPin } from 'lucide-react';
 import type { ProvisionRequest } from '../../entities/provision';
 import { ExpandButton } from '../../shared/ui/ExpandButton/ExpandButton';
@@ -7,50 +8,50 @@ import { Like } from '../../entities/provision/ui/like/Like';
 function ServiceInfo({ provision }: {provision: ProvisionRequest}) {
 
     return (
-        <div className="flex flex-col ml-1 gap-4">
-            <div className="relative h-62.5 rounded-2xl overflow-hidden">
+        <div className={styles.content}>
+            <div className={styles.imageFrame}>
                 <img
                     alt={provision.title}
-                    className="w-full h-full object-cover"
+                    className={styles.image}
                 />
             </div>
 
-            <div className="flex items-start justify-between">
-                <h1 className="text-xl font-bold text-text-primary">{provision.title}</h1>
-                <span className="text-xl font-bold text-accent">0 $</span>
+            <div className={styles.heading}>
+                <h1 className={styles.title}>{provision.title}</h1>
+                <span className={styles.price}>0 $</span>
             </div>  
             <ExpandButton>
-                <p className="text-sm text-text-secondary leading-relaxed">
+                <p className={styles.description}>
                     {provision.description}
                 </p>
             </ExpandButton>
-            <div className="flex items-center gap-4 text-text-secondary">
-                <div className="flex items-center gap-1.5">
-                    <Clock size={16} className="text-accent"/>
+            <div className={styles.metadata}>
+                <div className={styles.detail}>
+                    <Clock size={16} className={styles.accent}/>
                     {/*<span className="text-xs">{provision.time} mins</span>*/}
-                    <span className="text-xs">40 mins</span>
+                    <span className={styles.detailText}>40 mins</span>
                 </div>
-                <div className="flex items-center gap-1.5">
-                    <Scissors size={16} className="text-accent"/>
-                    <span className="text-xs">{provision.provisionCategory.name}</span>
+                <div className={styles.detail}>
+                    <Scissors size={16} className={styles.accent}/>
+                    <span className={styles.detailText}>{provision.provisionCategory.name}</span>
                 </div>
             </div>
 
-            <div className="flex items-center justify-between mt-2">
-                <div className="flex items-center gap-3">
+            <div className={styles.footer}>
+                <div className={styles.barber}>
                     <img
                         src="/public/default-user.png"
                         alt={provision.user.firstName}
-                        className="w-10 h-10 rounded-full object-cover"
+                        className={styles.avatar}
                     />
                     <div>
-                        <p className="text-sm font-bold text-text-primary">{provision.user.firstName}</p>
-                        <p className="text-xs text-text-secondary uppercase">Barber or client</p>
+                        <p className={styles.barberName}>{provision.user.firstName}</p>
+                        <p className={styles.barberRole}>Barber or client</p>
                     </div>
                 </div>
-                <div className="flex items-center gap-3">
-                    <button className="text-text-secondary">
-                        <MapPin size={20} className="text-accent cursor-pointer"/>
+                <div className={styles.actions}>
+                    <button className={styles.actionButton}>
+                        <MapPin size={20} className={styles.locationIcon}/>
                     </button>
                     <Like id={provision.id} />
                 </div>

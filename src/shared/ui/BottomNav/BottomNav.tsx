@@ -1,3 +1,4 @@
+import styles from './BottomNav.module.css';
 import { useLocation } from 'react-router';
 import { House, Calendar, User } from 'lucide-react';
 import { Link } from "react-router";
@@ -40,20 +41,18 @@ function BottomNav() {
   const location = useLocation();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-bg-secondary border-t border-white/10 px-4 py-2">
-      <div className="flex items-center justify-around max-w-[430px] mx-auto w-full">
+    <nav className={styles.nav}>
+      <div className={styles.items}>
         {NAV_ITEMS.map((item) => {
           const isActive = location.pathname === item.path
           return (
             <Link
               key={item.id}
               to={item.path}
-              className={`flex flex-col items-center gap-1 py-1 ${
-                isActive ? 'text-accent' : 'text-text-muted'
-              }`}
+              className={`${styles.link} ${isActive ? styles.active : styles.inactive}`}
             >
               {item.icon}
-              <span className="text-xs font-medium">{item.label}</span>
+              <span className={styles.label}>{item.label}</span>
             </Link>
           )
         })}

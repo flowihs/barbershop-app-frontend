@@ -1,0 +1,24 @@
+@layer components {
+  .heart {
+    cursor: pointer;
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+    transition-duration: .3s;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  }
+
+  @media (hover: hover) {
+    .heart:hover {
+      color: #fb2c36;
+      color: var(--color-like);
+    }
+  }
+
+  .liked {
+    color: #fb2c36;
+    color: var(--color-like);
+  }
+
+  .unliked {
+    color: var(--color-text-secondary);
+  }
+}

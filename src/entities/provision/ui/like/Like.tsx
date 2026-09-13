@@ -1,3 +1,4 @@
+import styles from './Like.module.css';
 import { Heart } from 'lucide-react';
 import { type ReactElement, useState } from 'react';
 import { provisionService } from "../../api/provisionApi";
@@ -30,7 +31,7 @@ export function Like({ id }: LikeProps): ReactElement {
         >
             <Heart 
                 size={20} 
-                className={`transition-colors duration-300 ${ isLiked ? 'text-red-500' : 'text-text-secondary' } hover:text-red-500 cursor-pointer`}
+                className={`${styles.heart} ${isLiked ? styles.liked : styles.unliked}`}
             />
         </button>
     )

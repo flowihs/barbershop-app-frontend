@@ -1,3 +1,4 @@
+import styles from './ProvisionTicket.module.css';
 
 import { SquareArrowOutUpRight } from 'lucide-react';
 import { Clock } from 'lucide-react';
@@ -14,23 +15,23 @@ function ProvisionTicket({
 
     return (
         <div>
-            <div className='grid grid-cols-2 gap-10' >
+            <div className={styles.ticket} >
                 <div>
                     {title}
                 </div>
-                <div className='space-x-5'>
-                    <span className='text-bg-textholder-area text-md font-bold'>
+                <div className={styles.priceRow}>
+                    <span className={styles.price}>
                         {price}
                     </span>
                     <span>
-                        <SquareArrowOutUpRight size={10} className='text-text-muted'/>
+                        <SquareArrowOutUpRight size={10} className={styles.muted}/>
                     </span>
                 </div>
-                <div className='col-span-2 space-x-5'>
+                <div className={styles.metadata}>
                     <span>
-                        <Clock size={6} className='text-text-muted' />
+                        <Clock size={6} className={styles.muted} />
                     </span>
-                    <span className='text-text-muted text-sm font-semibold'>{time} min</span>
+                    <span className={styles.duration}>{time} min</span>
                 </div>
             </div>
         </div>

@@ -1,0 +1,22 @@
+@layer components {
+  .loading {
+    color: var(--color-text-secondary);
+    padding: 1rem;
+    font-size: .875rem;
+    line-height: var(--line-height-sm);
+  }
+
+  .header {
+    justify-content: space-between;
+    margin-block: 1rem;
+    padding-inline: .5rem;
+    display: flex;
+  }
+
+  .title {
+    color: var(--color-text-primary);
+    padding-bottom: .75rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+}

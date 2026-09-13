@@ -1,3 +1,4 @@
+import styles from './Avatar.module.css';
 interface AvatarProps {
   photo?: string;
   alt?: string;
@@ -9,7 +10,7 @@ const defaultAvatar = '/default-user.png';
 function Avatar({
   photo,
   alt = 'User avatar',
-  className = 'h-12 w-12',
+  className = styles.defaultSize,
 }: AvatarProps) {
   return (
     <img
@@ -19,7 +20,7 @@ function Avatar({
         event.currentTarget.onerror = null;
         event.currentTarget.src = defaultAvatar;
       }}
-      className={`rounded-full bg-bg-secondary object-cover ${className}`}
+      className={`${styles.image} ${className}`}
     />
   );
 }

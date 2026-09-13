@@ -1,3 +1,4 @@
+import styles from './ServicePhotoField.module.css';
 import { Camera } from 'lucide-react';
 
 interface ServicePhotoFieldProps {
@@ -6,29 +7,29 @@ interface ServicePhotoFieldProps {
 
 export function ServicePhotoField({ photo }: ServicePhotoFieldProps) {
   return (
-    <section className="flex min-h-72 items-center justify-center bg-bg-card px-4 py-8">
-      <label className="flex cursor-pointer flex-col items-center text-center">
+    <section className={styles.section}>
+      <label className={styles.label}>
         <input
           type="file"
           name="photo"
           accept="image/png, image/jpeg, image/webp"
-          className="sr-only"
+          className={styles.input}
         />
         {photo ? (
           <img
             src={URL.createObjectURL(photo)}
             alt="Preview"
-            className="flex size-16 items-center justify-center rounded-full border border-accent/60 bg-bg-primary/90 text-accent"
+            className={styles.preview}
           />
         ) : (
-          <span className="flex size-16 items-center justify-center rounded-full border border-accent/60 bg-bg-primary/90 text-accent">
+          <span className={styles.preview}>
             <Camera size={28} strokeWidth={2} />
           </span>
         )}
-        <strong className="mt-4 text-lg text-text-primary">
+        <strong className={styles.title}>
           Добавить фото
         </strong>
-        <span className="mt-1 max-w-56 truncate text-xs text-text-secondary">
+        <span className={styles.hint}>
           до 5 МБ
         </span>
       </label>

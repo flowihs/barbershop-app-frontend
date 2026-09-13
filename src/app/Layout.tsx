@@ -1,3 +1,4 @@
+import styles from './Layout.module.css';
 import { Outlet, useLocation, Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Bell, Settings } from 'lucide-react';
 import BottomNav from '../shared/ui/BottomNav/BottomNav';
@@ -19,34 +20,34 @@ function Layout() {
   const isHomePage = location.pathname === '/';
 
   return (
-		<div className='flex flex-col min-h-screen pb-16 max-w-107.5 mx-auto w-full bg-bg-primary'>
-			<header className='px-4 pt-4 pb-4 flex justify-between items-center  border-b border-[#33383D]'>
-				<div className='flex items-center gap-3'>
+		<div className={styles.page}>
+			<header className={styles.header}>
+				<div className={styles.brand}>
 					{!isHomePage && (
-						<Link to='..' onClick={() => navigate(-1)} className='text-text-primary'>
+						<Link to='..' onClick={() => navigate(-1)} className={styles.backLink}>
 							<ArrowLeft size={24} />
 						</Link>
 					)}
 					{isHomePage ? (
 						<Logo />
 					) : (
-						<h1 className='text-xl font-semibold text-text-primary'>
+						<h1 className={styles.title}>
 							{currentTitle}
 						</h1>
 					)}
 				</div>
 
-				<div className='flex items-center gap-5'>
-					<button className='text-text-secondary'>
-						<Bell className="cursor-pointer" />
+				<div className={styles.actions}>
+					<button className={styles.actionButton}>
+						<Bell className={styles.actionIcon} />
 					</button>
-					<button className='text-text-secondary'>
-						<Settings className="cursor-pointer" />
+					<button className={styles.actionButton}>
+						<Settings className={styles.actionIcon} />
 					</button>
 				</div>
 			</header>
 
-			<main className='flex-1'>
+			<main className={styles.main}>
 				<Outlet />
 			</main>
 

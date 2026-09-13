@@ -1,0 +1,24 @@
+@layer components {
+  .legend {
+    letter-spacing: .025em;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    margin-bottom: .75rem;
+    font-size: .875rem;
+    font-weight: 600;
+    line-height: var(--line-height-sm);
+  }
+
+  .skeleton {
+    background-color: var(--color-bg-slot);
+    border-radius: .75rem;
+    height: 5rem;
+    animation: 2s cubic-bezier(.4, 0, .6, 1) infinite pulse;
+  }
+
+  @keyframes pulse {
+    50% {
+      opacity: .5;
+    }
+  }
+}

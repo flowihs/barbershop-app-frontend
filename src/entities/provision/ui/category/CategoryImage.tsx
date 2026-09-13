@@ -1,3 +1,4 @@
+import styles from './CategoryImage.module.css';
 import { useState } from 'react';
 import { Paintbrush, Scissors, Sparkles, SprayCan, UserRound } from 'lucide-react';
 import type { Category } from '../../model/types';
@@ -27,12 +28,12 @@ export function CategoryImage({ category }: { category: Pick<Category, 'name' | 
   const image = category.image?.trim();
 
   return (
-    <span className="flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-bg-card-2 text-accent">
+    <span className={styles.frame}>
       {image && image !== failedImage ? (
         <img
           src={image}
           alt=""
-          className="size-full object-cover"
+          className={styles.image}
           onError={() => setFailedImage(image)}
         />
       ) : (

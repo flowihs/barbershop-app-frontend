@@ -1,3 +1,4 @@
+import styles from './CategorySelector.module.css';
 
 import type { Category } from '../../model/types';
 import ListScroll from '@/shared/ui/ListScroll/ListScroll';
@@ -27,7 +28,7 @@ export function CategorySelector({
         return (
           <label
             key={category.id}
-            className="flex min-w-14 cursor-pointer flex-col items-center gap-2"
+            className={styles.category}
           >
             <input
               type="radio"
@@ -36,10 +37,10 @@ export function CategorySelector({
               checked={selectedCategoryId === category.id}
               defaultChecked={defaultCategoryId === category.id}
               onChange={() => onCategorySelect?.(category.id)}
-              className="peer sr-only"
+              className={styles.input}
             />
             <CategoryImage category={category} />
-            <span className="text-sm font-medium text-text-secondary transition-colors peer-checked:font-semibold peer-checked:text-accent">
+            <span className={styles.label}>
               {category.name}
             </span>
           </label>

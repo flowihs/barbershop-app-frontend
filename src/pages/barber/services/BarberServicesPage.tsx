@@ -1,3 +1,4 @@
+import styles from './BarberServicesPage.module.css';
 
 import { useNavigate } from 'react-router';
 import { BarberServicesCard } from '@/shared/ui/BarverServicesCard/Card';
@@ -9,20 +10,20 @@ function BarberServicesPage() {
   const navigate = useNavigate();
 
   return (
-    <section className="px-3 py-4">
+    <section className={styles.page}>
       <HomePageButton onClick={() => navigate('/create')} text="Добавить услугу" />
-      <div className="mt-2.5 flex gap-2">
+      <div className={styles.stats}>
         <BarberServicesCard>
-          <span className="text-[8px] font-semibold uppercase tracking-wide text-text-secondary">
+          <span className={styles.label}>
             Всего услуг
           </span>
-          <strong className="mt-1 text-base leading-none text-text-primary">
+          <strong className={styles.count}>
             5
           </strong>
         </BarberServicesCard>
 
         <BarberServicesCard>
-          <span className="mt-1 animate-pulse text-xs font-semibold leading-none text-text-primary">
+          <span className={styles.placeholder}>
             Coming soon...
           </span>
         </BarberServicesCard>

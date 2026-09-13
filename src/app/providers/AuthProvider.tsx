@@ -1,3 +1,4 @@
+import styles from './AuthProvider.module.css';
 import { useQuery } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import {
@@ -32,7 +33,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
 
   if (isPending) {
     return (
-      <div className="mx-auto w-full max-w-(--width-app) p-4">
+      <div className={styles.state}>
         <DefaultLoading />
       </div>
     );
@@ -40,7 +41,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
 
   if (error) {
     return (
-      <div className="mx-auto w-full max-w-(--width-app) p-4">
+      <div className={styles.state}>
         <DefaultError text={ErrorHandlingMassage(error)} />
       </div>
     );

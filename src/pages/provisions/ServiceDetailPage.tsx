@@ -1,3 +1,4 @@
+import styles from './ServiceDetailPage.module.css';
 import ServiceInfo from '../../widgets/service-info/ServiceInfo';
 import BookNowButton from '../../shared/ui/Buttons/home-button';
 import SlotBanner from '../../widgets/slot-banner/SlotBanner';
@@ -28,12 +29,12 @@ function ServiceDetailPage() {
     if (!isValid) return <DefaultError text="Something went wrong" />
 
     if (isLoading) {
-        return <p className='text-text-secondary text-sm p-4'>Loading...</p>
+        return <p className={styles.loading}>Loading...</p>
     }
 
     if (error || !provision) return <DefaultError text="Failed to load service..." />
     return (
-        <div className="px-4 pt-4 pb-6 flex flex-col gap-6">
+        <div className={styles.page}>
             <ServiceInfo provision={provision} />
             <BookNowButton onClick={() => setIsOpen(!isOpen)} />
             <AnimatePresence>

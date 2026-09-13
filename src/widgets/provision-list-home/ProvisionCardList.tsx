@@ -1,3 +1,4 @@
+import styles from './ProvisionCardList.module.css';
 import SeeAll from '../../shared/ui/SeeAllLink/SeeAll';
 import { ProvisionCard } from '../../entities/provision';
 import { useQuery } from '@tanstack/react-query';
@@ -13,7 +14,7 @@ function ProvisionCardList() {
   });
 
   if (isLoading) {
-    return <p className='text-text-secondary text-sm p-4'>Loading...</p>
+    return <p className={styles.loading}>Loading...</p>
   }
 
   const errorMessage = error instanceof Error ? error.message : 'Unknown error';
@@ -27,12 +28,12 @@ function ProvisionCardList() {
   if (error) return <DefaultError text={`Error: ${errorMessage}`} />
 
   return (
-    <section className="mb-10">
-      <div className='flex justify-between py-4 px-2'>
-        <p className="text-xl text-text-primary">
+    <section className={styles.section}>
+      <div className={styles.header}>
+        <p className={styles.title}>
           Услуги
         </p>
-        <div className="mt-1">
+        <div className={styles.moreLink}>
           <SeeAll route="/" />
         </div>
       </div>

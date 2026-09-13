@@ -1,3 +1,4 @@
+import styles from './SocialLinksModal.module.css';
 import { X } from 'lucide-react';
 import { type SubmitEvent, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
@@ -66,7 +67,7 @@ function SocialLinksModal() {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4"
+      className={styles.overlay}
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) closeModal();
       }}
@@ -75,12 +76,12 @@ function SocialLinksModal() {
         role="dialog"
         aria-modal="true"
         aria-labelledby="social-links-title"
-        className="w-full max-w-97.5 rounded-2xl border border-border/10 bg-bg-primary p-5 shadow-2xl"
+        className={styles.dialog}
       >
-        <div className="mb-5 flex items-center justify-between">
+        <div className={styles.header}>
           <h2
             id="social-links-title"
-            className="text-lg font-bold text-text-primary"
+            className={styles.title}
           >
             Social contacts
           </h2>
@@ -89,16 +90,16 @@ function SocialLinksModal() {
             type="button"
             onClick={closeModal}
             aria-label="Close social contacts"
-            className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-bg-card-2 hover:text-text-primary"
+            className={styles.closeButton}
           >
             <X size={20} />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className={styles.form}>
           {SOCIAL_LINKS.map((social) => (
-            <div key={social.key} className="flex items-center gap-3">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-bg-card-2 text-accent">
+            <div key={social.key} className={styles.field}>
+              <span className={styles.icon}>
                 <SocialIcon social={social} />
               </span>
 
@@ -109,12 +110,12 @@ function SocialLinksModal() {
                 placeholder={social.placeholder}
                 defaultValue={userProfile?.[social.key] ?? ''}
                 autoComplete={social.inputType === 'tel' ? 'tel' : 'url'}
-                className="h-11 min-w-0 flex-1 rounded-xl border border-border/10 bg-bg-card-2 px-4 text-sm text-text-primary outline-none placeholder:text-text-muted focus:border-accent/60"
+                className={styles.input}
               />
             </div>
           ))}
 
-          <div className="mt-2">
+          <div className={styles.actions}>
             <HomePageButton
               text={updateSocials.isPending ? 'Saving...' : 'Save'}
             />

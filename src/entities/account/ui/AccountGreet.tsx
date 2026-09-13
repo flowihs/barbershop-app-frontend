@@ -1,3 +1,4 @@
+import styles from './AccountGreet.module.css';
 import DefaultError from "../../../shared/ui/DefaultError/DefaultError";
 import { Avatar } from "../../../shared/ui/Avatar/Avatar";
 import { useUserStore } from "../store/userStore";
@@ -10,12 +11,12 @@ function AccountGreet() {
 	}
 
     return (
-			<div className='flex items-center gap-4'>
+			<div className={styles.greeting}>
 				<div>
 					<Avatar photo={account.photoUrl} alt={account.firstName} />
 				</div>
-				<span className='text-lg mx-13 font-bold'>
-					<span className="text-accent">Hey,</span> {account.firstName} 👋
+				<span className={styles.text}>
+					<span className={styles.accent}>Hey,</span> {account.firstName} 👋
 				</span>
 			</div>
 		)

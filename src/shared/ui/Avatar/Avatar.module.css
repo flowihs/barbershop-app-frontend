@@ -1,0 +1,12 @@
+@layer components {
+  .image {
+    background-color: var(--color-bg-secondary);
+    object-fit: cover;
+    border-radius: 9999px;
+  }
+
+  .defaultSize {
+    width: 3rem;
+    height: 3rem;
+  }
+}

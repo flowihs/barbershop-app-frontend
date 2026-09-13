@@ -1,3 +1,4 @@
+import styles from './ServiceCategoryField.module.css';
 import { useQuery } from '@tanstack/react-query';
 import { CategorySelector } from '@/entities/provision';
 import { categoryService } from '@/entities/provision/api/provisionApi';
@@ -23,12 +24,12 @@ export function ServiceCategoryField({
 
   return (
     <fieldset>
-      <legend className="mb-3 text-sm font-semibold uppercase tracking-wide text-text-secondary">
+      <legend className={styles.legend}>
         Категория
       </legend>
 
       {isPending ? (
-        <div className="h-20 animate-pulse rounded-xl bg-bg-slot" />
+        <div className={styles.skeleton} />
       ) : error ? (
         <DefaultError text="Не удалось загрузить категории" />
       ) : (

@@ -1,0 +1,73 @@
+@layer components {
+  .section {
+    background-color: var(--color-bg-card);
+    justify-content: center;
+    align-items: center;
+    min-height: 18rem;
+    padding-block: 2rem;
+    padding-inline: 1rem;
+    display: flex;
+  }
+
+  .label {
+    cursor: pointer;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+  }
+
+  .input {
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border-width: 0;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    position: absolute;
+    overflow: hidden;
+  }
+
+  .preview {
+    border: 1px solid #f0c04099;
+    border-radius: 9999px;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    background-color: #171a1ce6;
+    color: var(--color-accent);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .preview {
+      border-color: color-mix(in oklab, var(--color-accent) 60%, transparent);
+    }
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .preview {
+      background-color: color-mix(in oklab, var(--color-bg-primary) 90%, transparent);
+    }
+  }
+
+  .title {
+    color: var(--color-text-primary);
+    margin-top: 1rem;
+    font-size: 1.125rem;
+    line-height: var(--line-height-lg);
+  }
+
+  .hint {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 14rem;
+    color: var(--color-text-secondary);
+    margin-top: .25rem;
+    font-size: .75rem;
+    line-height: var(--line-height-xs);
+    overflow: hidden;
+  }
+}
