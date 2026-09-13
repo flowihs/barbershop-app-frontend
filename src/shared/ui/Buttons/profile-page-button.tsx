@@ -1,4 +1,4 @@
-import styles from './profile-page-button.module.css';
+import styles from './styles/profile-page-button.module.css';
 import type { ReactNode } from 'react';
 
 interface ProfilePageDefaultButtonProps {

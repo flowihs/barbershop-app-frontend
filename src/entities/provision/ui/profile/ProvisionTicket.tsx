@@ -1,4 +1,4 @@
-import styles from './ProvisionTicket.module.css';
+import styles from './styles/ProvisionTicket.module.css';
 
 import { SquareArrowOutUpRight } from 'lucide-react';
 import { Clock } from 'lucide-react';

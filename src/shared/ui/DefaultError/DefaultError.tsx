@@ -1,4 +1,4 @@
-import styles from './DefaultError.module.css';
+import styles from './styles/DefaultError.module.css';
 function DefaultError({ text }: {
     text: string
 }) {

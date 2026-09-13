@@ -1,4 +1,4 @@
-import styles from './CategoryList.module.css';
+import styles from './styles/CategoryList.module.css';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { CategorySelector } from '@/entities/provision';

@@ -1,6 +1,6 @@
 import { Phone } from 'lucide-react';
 import type { SocialLinkConfig } from '@/shared/config/socialLinks';
-import styles from './SocialIcon.module.css';
+import styles from './styles/SocialIcon.module.css';
 
 function SocialIcon({ social }: { social: SocialLinkConfig }) {
   if (social.iconSrc) {

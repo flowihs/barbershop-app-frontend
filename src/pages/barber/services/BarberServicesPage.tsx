@@ -1,4 +1,4 @@
-import styles from './BarberServicesPage.module.css';
+import styles from './styles/BarberServicesPage.module.css';
 
 import { useNavigate } from 'react-router';
 import { BarberServicesCard } from '@/shared/ui/BarverServicesCard/Card';

@@ -1,4 +1,4 @@
-import styles from './ServiceInfo.module.css';
+import styles from './styles/ServiceInfo.module.css';
 import { Clock, Scissors, MapPin } from 'lucide-react';
 import type { ProvisionRequest } from '../../entities/provision';
 import { ExpandButton } from '../../shared/ui/ExpandButton/ExpandButton';

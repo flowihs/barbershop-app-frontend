@@ -6,7 +6,7 @@ import {
   SocialIcon,
 } from '@/features/social-links';
 import { useModalStore } from '@/shared/lib/store/modalStore';
-import styles from './SocialsList.module.css';
+import styles from './styles/SocialsList.module.css';
 
 function Socials({ tiktok, instagram, number }: Partial<Pick<UserProfile, 'tiktok' | 'instagram' | 'number'>>) {
   const openModal = useModalStore((state) => state.openModal);

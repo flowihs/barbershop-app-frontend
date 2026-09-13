@@ -1,4 +1,4 @@
-import styles from './ServiceDetailPage.module.css';
+import styles from './styles/ServiceDetailPage.module.css';
 import ServiceInfo from '../../widgets/service-info/ServiceInfo';
 import BookNowButton from '../../shared/ui/Buttons/home-button';
 import SlotBanner from '../../widgets/slot-banner/SlotBanner';

@@ -1,4 +1,4 @@
-import styles from './ExpandButton.module.css';
+import styles from './styles/ExpandButton.module.css';
 import { ChevronDown } from "lucide-react";
 import { useState, useRef, useLayoutEffect } from "react";
 import * as motion from "motion/react-client"

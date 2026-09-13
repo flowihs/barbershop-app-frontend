@@ -1,7 +1,7 @@
 import { Clock, SquareArrowOutUpRight } from 'lucide-react';
 import { Link } from 'react-router';
 import { CategoryImage } from '@/entities/provision';
-import styles from './ProvisionShortCard.module.css';
+import styles from './styles/ProvisionShortCard.module.css';
 
 interface ProvisionShortCardProps {
   provisionId: number;

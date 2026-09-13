@@ -1,4 +1,4 @@
-import styles from './AccountGreet.module.css';
+import styles from './styles/AccountGreet.module.css';
 import DefaultError from "../../../shared/ui/DefaultError/DefaultError";
 import { Avatar } from "../../../shared/ui/Avatar/Avatar";
 import { useUserStore } from "../store/userStore";

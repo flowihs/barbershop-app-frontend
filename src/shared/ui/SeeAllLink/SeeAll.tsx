@@ -1,4 +1,4 @@
-import styles from './SeeAll.module.css';
+import styles from './styles/SeeAll.module.css';
 import { Link } from "react-router"
 
 interface SeeAllProps {

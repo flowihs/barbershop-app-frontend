@@ -1,4 +1,4 @@
-import styles from './SocialLinksModal.module.css';
+import styles from './styles/SocialLinksModal.module.css';
 import { X } from 'lucide-react';
 import { type SubmitEvent, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';

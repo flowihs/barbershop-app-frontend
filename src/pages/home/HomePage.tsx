@@ -1,4 +1,4 @@
-import styles from './HomePage.module.css';
+import styles from './styles/HomePage.module.css';
 import CategoryList from '../../widgets/category-list';
 import ProvisionCardList from '../../widgets/provision-list-home/ProvisionCardList';
 import { Search, Funnel  } from 'lucide-react';

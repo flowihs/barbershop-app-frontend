@@ -1,4 +1,4 @@
-import styles from './SlotBanner.module.css';
+import styles from './styles/SlotBanner.module.css';
 import { SlotTime, SlotDate } from "../../entities/provision";
 import { BottomSheet } from "../../shared/ui/BottomSheet/BottomSheet";
 import { provisionService } from "../../entities/provision/api/provisionApi";

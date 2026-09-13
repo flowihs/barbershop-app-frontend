@@ -1,4 +1,4 @@
-import styles from './SchedulePage.module.css';
+import styles from './styles/SchedulePage.module.css';
 import { useNavigate } from 'react-router';
 
 function ShedulePage() {

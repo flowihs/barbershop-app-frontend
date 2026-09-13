@@ -1,4 +1,4 @@
-import styles from './Layout.module.css';
+import styles from './styles/Layout.module.css';
 import { Outlet, useLocation, Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Bell, Settings } from 'lucide-react';
 import BottomNav from '../shared/ui/BottomNav/BottomNav';

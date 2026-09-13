@@ -1,4 +1,4 @@
-import styles from './DefaultLoading.module.css';
+import styles from './styles/DefaultLoading.module.css';
 
 export default function DefaultLoading() {
     return (

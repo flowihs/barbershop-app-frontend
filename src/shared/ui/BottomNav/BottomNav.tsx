@@ -1,4 +1,4 @@
-import styles from './BottomNav.module.css';
+import styles from './styles/BottomNav.module.css';
 import { useLocation } from 'react-router';
 import { House, Calendar, User } from 'lucide-react';
 import { Link } from "react-router";

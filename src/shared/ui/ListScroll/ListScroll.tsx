@@ -1,4 +1,4 @@
-import styles from './ListScroll.module.css';
+import styles from './styles/ListScroll.module.css';
 import { useRef, useState } from "react";
 
 function ListScroll({ children }: { children: React.ReactNode }) {

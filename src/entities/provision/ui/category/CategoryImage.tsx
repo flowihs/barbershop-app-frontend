@@ -1,4 +1,4 @@
-import styles from './CategoryImage.module.css';
+import styles from './styles/CategoryImage.module.css';
 import { useState } from 'react';
 import { Paintbrush, Scissors, Sparkles, SprayCan, UserRound } from 'lucide-react';
 import type { Category } from '../../model/types';

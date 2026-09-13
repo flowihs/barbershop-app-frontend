@@ -1,4 +1,4 @@
-import styles from './AuthProvider.module.css';
+import styles from './styles/AuthProvider.module.css';
 import { useQuery } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import {

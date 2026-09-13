@@ -1,4 +1,4 @@
-import styles from './BarberServicesList.module.css';
+import styles from './styles/BarberServicesList.module.css';
 import { useQuery } from '@tanstack/react-query';
 import { Clock, Pencil } from 'lucide-react';
 import { useUserStore } from '@/entities/account';

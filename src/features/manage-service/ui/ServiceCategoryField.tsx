@@ -1,4 +1,4 @@
-import styles from './ServiceCategoryField.module.css';
+import styles from './styles/ServiceCategoryField.module.css';
 import { useQuery } from '@tanstack/react-query';
 import { CategorySelector } from '@/entities/provision';
 import { categoryService } from '@/entities/provision/api/provisionApi';

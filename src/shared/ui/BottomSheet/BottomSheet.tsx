@@ -1,4 +1,4 @@
-import styles from './BottomSheet.module.css';
+import styles from './styles/BottomSheet.module.css';
 import { motion } from "motion/react";
 import { useEffect } from "react";
 import { useDragControls } from "motion/react";

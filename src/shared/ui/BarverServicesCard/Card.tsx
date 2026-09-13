@@ -1,4 +1,4 @@
-import styles from './Card.module.css';
+import styles from './styles/Card.module.css';
 import type { ReactNode } from 'react';
 
 interface MetricCardProps {

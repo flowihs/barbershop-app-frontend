@@ -1,4 +1,4 @@
-import styles from './Like.module.css';
+import styles from './styles/Like.module.css';
 import { Heart } from 'lucide-react';
 import { type ReactElement, useState } from 'react';
 import { provisionService } from "../../api/provisionApi";

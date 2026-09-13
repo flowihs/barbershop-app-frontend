@@ -1,4 +1,4 @@
-import styles from './CategorySelector.module.css';
+import styles from './styles/CategorySelector.module.css';
 
 import type { Category } from '../../model/types';
 import ListScroll from '@/shared/ui/ListScroll/ListScroll';

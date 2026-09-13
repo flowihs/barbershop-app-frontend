@@ -1,4 +1,4 @@
-import styles from './ServiceForm.module.css';
+import styles from './styles/ServiceForm.module.css';
 import { Plus, Tag } from 'lucide-react';
 import HomePageButton from '@/shared/ui/Buttons/home-button';
 import { ProfilePageDefaultButton } from '@/shared/ui/Buttons/profile-page-button';

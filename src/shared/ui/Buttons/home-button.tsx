@@ -1,4 +1,4 @@
-import styles from './home-button.module.css';
+import styles from './styles/home-button.module.css';
 interface HomePageButtonProps {
     onClick?: () => void
     text?: string

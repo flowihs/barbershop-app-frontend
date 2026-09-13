@@ -1,4 +1,4 @@
-import styles from './ProvisionCardList.module.css';
+import styles from './styles/ProvisionCardList.module.css';
 import SeeAll from '../../shared/ui/SeeAllLink/SeeAll';
 import { ProvisionCard } from '../../entities/provision';
 import { useQuery } from '@tanstack/react-query';

@@ -1,4 +1,4 @@
-import styles from './ServicePhotoField.module.css';
+import styles from './styles/ServicePhotoField.module.css';
 import { Camera } from 'lucide-react';
 
 interface ServicePhotoFieldProps {
