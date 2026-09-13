@@ -37,7 +37,8 @@ export interface Provision {
   description: string;
   rating: number;
   avatar: string;
-  user: UserProfile
+  user: UserProfile;
+  provisionCategory?: Category;
 }
 
 export interface CreateProvisionRequest {

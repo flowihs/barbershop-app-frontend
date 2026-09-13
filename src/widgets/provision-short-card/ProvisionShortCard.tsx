@@ -1,11 +1,15 @@
 import { Clock, SquareArrowOutUpRight } from 'lucide-react';
 import { Link } from 'react-router';
+import { CategoryImage } from '@/entities/provision';
+import styles from './ProvisionShortCard.module.css';
 
 interface ProvisionShortCardProps {
   provisionId: number;
   title: string;
   price: number;
   time: number;
+  categoryName?: string;
+  categoryImage?: string;
 }
 
 export function ProvisionShortCard({
@@ -13,32 +17,37 @@ export function ProvisionShortCard({
   title,
   price,
   time,
+  categoryName = 'Service',
+  categoryImage,
 }: ProvisionShortCardProps) {
   return (
-    <article className="w-full py-4">
-      <div className="flex items-start justify-between gap-4">
-        <h3 className="min-w-0 truncate text-sm font-semibold leading-5 text-text-primary">
-          {title}
-        </h3>
+    <Link
+      to={`/provisions/${provisionId}`}
+      aria-label={`Open ${title}`}
+      className={styles.cardLink}
+    >
+      <article className={styles.card}>
+        <div className={styles.header}>
+          <div className={styles.headerContainer}>
+            <CategoryImage category={{ name: categoryName, image: categoryImage }} />
+            <div>
+              <h3 className={styles.title}>{title}</h3>
 
-        <div className="flex shrink-0 items-center gap-2">
-          <span className="text-sm font-bold text-bg-textholder-area">
-            ${price}
-          </span>
-          <Link
-            to={`/provisions/${provisionId}`}
-            aria-label={`Open ${title}`}
-            className="text-text-secondary transition-colors hover:text-text-primary"
-          >
-            <SquareArrowOutUpRight size={13} strokeWidth={1.8} />
-          </Link>
+              <div className={styles.duration}>
+                <Clock size={12} strokeWidth={1.8} />
+                <span>{time} min</span>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.details}>
+            <span className={styles.price}>${price}</span>
+            <span className={styles.link} aria-hidden="true">
+            <SquareArrowOutUpRight size={16} strokeWidth={1.8} />
+            </span>
+          </div>
         </div>
-      </div>
-
-      <div className="mt-1.5 flex items-center gap-1.5 text-text-secondary">
-        <Clock size={12} strokeWidth={1.8} />
-        <span className="text-xs">{time} min</span>
-      </div>
-    </article>
+      </article>
+    </Link>
   );
 }

@@ -1,10 +1,10 @@
-
 import { useQuery } from '@tanstack/react-query';
 import { useUserStore } from '@/entities/account';
 import { provisionService } from '@/entities/provision/api/provisionApi';
 import { provisionQueryKeys } from '@/entities/provision/api/provisionQueryKeys';
 import DefaultError from '@/shared/ui/DefaultError/DefaultError';
 import { ProvisionShortCard } from '@/widgets/provision-short-card/ProvisionShortCard';
+import styles from "./style.module.css";
 
 const fallbackPrice = 45;
 const fallbackTime = 20;
@@ -31,7 +31,7 @@ export function TopProvisionsList() {
 
   if (!profileId) {
     return (
-      <div className="px-4 py-5">
+      <div className={styles.stateMessage}>
         <DefaultError text="Profile is not available" />
       </div>
     );
@@ -40,13 +40,13 @@ export function TopProvisionsList() {
   if (isPending) {
     return (
       <div
-        className="divide-y divide-border/5 px-4"
+        className={styles.loadingList}
         aria-label="Loading top services"
       >
         {Array.from({ length: 3 }, (_, index) => (
-          <div key={index} className="animate-pulse py-4">
-            <div className="h-4 w-2/3 rounded bg-bg-secondary" />
-            <div className="mt-2 h-3 w-16 rounded bg-bg-secondary" />
+          <div key={index} className={styles.loadingItem}>
+            <div className={styles.loadingTitle} />
+            <div className={styles.loadingMeta} />
           </div>
         ))}
       </div>
@@ -55,7 +55,7 @@ export function TopProvisionsList() {
 
   if (error) {
     return (
-      <div className="px-4 py-5">
+      <div className={styles.stateMessage}>
         <DefaultError text="Failed to load top services" />
       </div>
     );
@@ -63,14 +63,14 @@ export function TopProvisionsList() {
 
   if (provisions.length === 0) {
     return (
-      <p className="px-4 py-6 text-center text-sm text-text-secondary">
+      <p className={styles.emptyMessage}>
         No services yet
       </p>
     );
   }
 
   return (
-    <div className="divide-y divide-border/5 px-4">
+    <div className={styles.provisionListProfile}>
       {provisions.map((provision) => (
         <ProvisionShortCard
           key={provision.id}
@@ -78,6 +78,8 @@ export function TopProvisionsList() {
           title={provision.title}
           price={fallbackPrice}
           time={fallbackTime}
+          categoryName={provision.provisionCategory?.name}
+          categoryImage={provision.provisionCategory?.image}
         />
       ))}
     </div>

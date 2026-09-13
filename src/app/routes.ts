@@ -6,6 +6,7 @@ import ProfilePage from '../pages/profile/ProfilePage';
 import ServiceDetailPage from '../pages/provisions/ServiceDetailPage';
 import BarberServicesPage from '../pages/barber/services/BarberServicesPage';
 import CreateService from '../pages/barber/services/create/CreateService';
+import NotFoundPage from '../pages/not-found/NotFoundPage';
 
 export const router = createBrowserRouter([
   {
@@ -35,7 +36,11 @@ export const router = createBrowserRouter([
           { path: 'create', Component: CreateService}
           // { path: 'edit/:id', Component: }
         ]
-      }
+      },
+      {
+        path: '*',
+        Component: NotFoundPage,
+      },
     ],
   },
 ]);

@@ -1,10 +1,10 @@
-
 import DefaultError from "../../shared/ui/DefaultError/DefaultError";
 import DefaultLoading from "../../shared/ui/DefaultLoading/DefaultLoading";
 import { useQuery } from "@tanstack/react-query";
 import { provisionService } from "../../entities/provision/api/provisionApi";
 import { ErrorHandlingMassage } from "../../shared/lib/api-error/apiErrorHandling";
 import { ProvisionTicket } from "../../entities/provision/ui/profile/ProvisionTicket";
+import './provision-list-profile.css';
 
 function ProvisionTicketList() {
     

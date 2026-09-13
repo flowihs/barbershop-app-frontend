@@ -6,14 +6,14 @@ import {
   SocialIcon,
 } from '@/features/social-links';
 import { useModalStore } from '@/shared/lib/store/modalStore';
-import { ProfilePageDefaultButton } from '@/shared/ui/Buttons/profile-page-button';
+import styles from './SocialsList.module.css';
 
 function Socials({ tiktok, instagram, number }: Partial<Pick<UserProfile, 'tiktok' | 'instagram' | 'number'>>) {
   const openModal = useModalStore((state) => state.openModal);
   const socialValues = { tiktok, instagram, number };
 
   return (
-    <div className="mt-5 flex items-center justify-center gap-4">
+    <div className={styles.socials}>
       {SOCIAL_LINKS.map((social) => {
         const value = socialValues[social.key];
 
@@ -28,19 +28,21 @@ function Socials({ tiktok, instagram, number }: Partial<Pick<UserProfile, 'tikto
             target={social.key === 'number' ? undefined : '_blank'}
             rel={social.key === 'number' ? undefined : 'noreferrer'}
             aria-label={social.name}
-            className="flex h-11 w-11 items-center justify-center rounded-xl bg-bg-card-2 transition-transform hover:scale-105"
+            className={styles.socialLink}
           >
             <SocialIcon social={social} />
           </a>
         );
       })}
 
-      <ProfilePageDefaultButton
+      <button
+        type="button"
         onClick={() => openModal(SOCIAL_LINKS_MODAL_ID)}
-        ariaLabel="Add socials"
+        aria-label="Add socials"
+        className={styles.addButton}
       >
         <Plus size={20} />
-      </ProfilePageDefaultButton>
+      </button>
     </div>
   );
 }

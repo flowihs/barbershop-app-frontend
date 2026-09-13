@@ -18,6 +18,10 @@ export function ErrorHandlingMassage(error: unknown) {
             return "Telegram session could not be verified.";
         }
 
+        if (status === 401 || status === 403) {
+            return "Telegram authorization is invalid or expired. Reopen the Mini App from Telegram.";
+        }
+
         if (status >= 500) {
             return "Profile service is temporarily unavailable.";
         }

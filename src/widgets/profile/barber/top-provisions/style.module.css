@@ -1,0 +1,53 @@
+.provisionListProfile {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+}
+
+.stateMessage {
+    padding: 1.25rem 0.75rem;
+}
+
+.loadingList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.75rem;
+}
+
+.loadingItem {
+    padding: 1rem 0;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.loadingTitle,
+.loadingMeta {
+    background: var(--color-bg-secondary);
+    border-radius: 0.25rem;
+}
+
+.loadingTitle {
+    width: 66%;
+    height: 1rem;
+}
+
+.loadingMeta {
+    width: 4rem;
+    height: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.emptyMessage {
+    margin: 0;
+    padding: 1.5rem 0.75rem;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+@keyframes pulse {
+    50% {
+        opacity: 0.45;
+    }
+}
