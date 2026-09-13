@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 interface ProfilePageDefaultButtonProps {
   children: ReactNode;
   onClick?: () => void;
-  variant?: 'icon' | 'compact';
+  variant?: 'icon' | 'compact' | 'social';
   ariaLabel?: string;
   className?: string;
 }
@@ -16,7 +16,9 @@ export function ProfilePageDefaultButton({
 }: ProfilePageDefaultButtonProps) {
   const sizeClassName = variant === 'compact'
     ? 'h-8 px-3 text-[11px] font-bold'
-    : 'h-11 w-11';
+    : variant === 'social'
+      ? 'h-[46px] w-[51px] rounded-[14px] bg-bg-card-2'
+      : 'h-11 w-11';
 
   return (
     <button

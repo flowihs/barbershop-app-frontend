@@ -1,0 +1,95 @@
+.card {
+  width: 100%;
+  min-height: 76px;
+  box-sizing: border-box;
+  background: #1f2224;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.cardLink {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 14px;
+}
+
+.cardLink:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.cardLink:hover .card {
+  background: #24282b;
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.header {
+  box-sizing: border-box;
+  padding: 12px 13px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.title {
+  max-width: 190px;
+  overflow: hidden;
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.details {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.price {
+  color: var(--color-bg-textholder-area);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.link {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 8px;
+  color: var(--color-text-secondary);
+  transition: color 150ms ease-in-out;
+}
+
+.cardLink:hover .link {
+  color: var(--color-text-primary);
+}
+
+.duration {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  color: var(--color-text-secondary);
+}
+
+.duration span {
+  font-size: 0.75rem;
+}
+
+.headerContainer {
+  display: flex;
+  min-width: 0;
+  gap: 12px;
+  align-items: center;
+}

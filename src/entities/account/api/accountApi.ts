@@ -4,8 +4,13 @@ import type { TelegramAuthResponse, UserProfile } from "../model/types";
 
 export const accountService = {
   getMe: () => {
+    const webApp = window.Telegram?.WebApp;
+    webApp?.ready();
+    const data = webApp?.initData;
 
-    const data = window.Telegram?.WebApp?.initData;
+    if (!data) {
+      return Promise.reject(new Error('Telegram initData is missing. Open the app from Telegram.'));
+    }
 
     return authApi.post<TelegramAuthResponse>("/api/auth/telegram",
       { initData: data },

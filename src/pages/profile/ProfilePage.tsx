@@ -1,26 +1,25 @@
 import { HeaderBarberSide } from '../../widgets/profile/barber';
-import { ProfilePageDefaultButton } from '@/shared/ui/Buttons/profile-page-button';
 import { TopProvisionsList } from '@/widgets/profile/barber/top-provisions/TopProvisionsList';
 import { useNavigate } from 'react-router';
+import styles from './ProfilePage.module.css';
 
 function ProfilePage() {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-bg-primary">
+    <div className={styles.page}>
       <HeaderBarberSide />
-      <section className="border-t border-border/5 pb-6">
-        <div className="flex w-full items-center justify-between px-4 pb-1 pt-4">
-          <h2 className="text-base font-bold text-text-primary">
-            Top services
-          </h2>
-          <ProfilePageDefaultButton
+      <section className={styles.servicesSection}>
+        <div className={styles.servicesHeader}>
+          <h2 className={styles.servicesTitle}>Top services</h2>
+          <button
+            type="button"
             onClick={() => navigate('/barber-services')}
-            variant="compact"
-            ariaLabel="View all services"
+            aria-label="View all services"
+            className={styles.viewAll}
           >
             View all
-          </ProfilePageDefaultButton>
+          </button>
         </div>
         <TopProvisionsList />
       </section>
