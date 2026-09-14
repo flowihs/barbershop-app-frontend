@@ -1,4 +1,4 @@
-import { Clock, SquareArrowOutUpRight } from 'lucide-react';
+import { Clock, Pencil, SquareArrowOutUpRight } from 'lucide-react';
 import { Link } from 'react-router';
 import { CategoryImage } from '@/entities/provision';
 import { CloudAlert } from 'lucide-react';
@@ -11,6 +11,7 @@ interface ProvisionShortCardProps {
   time: number;
   categoryName?: string;
   categoryImage?: string;
+  iconPurpose: 'profile' | 'detailes';
 }
 
 export function ProvisionShortCard({
@@ -20,7 +21,11 @@ export function ProvisionShortCard({
   time,
   categoryName = 'Service',
   categoryImage,
+  iconPurpose,
 }: ProvisionShortCardProps) {
+
+  const iconClass = { size: 25, strokeWidth: 1.8 };
+
   return (
     <Link
       to={`/provisions/${provisionId}`}
@@ -46,7 +51,9 @@ export function ProvisionShortCard({
           <div className={styles.details}>
             <span className={styles.price}>${price}</span>
             <span className={styles.link} aria-hidden="true">
-            <SquareArrowOutUpRight size={16} strokeWidth={1.8} />
+              {iconPurpose === 'profile' ? <SquareArrowOutUpRight {...iconClass} /> 
+              : iconPurpose=== 'detailes' ? <Pencil {...iconClass} /> 
+              : null} 
             </span>
           </div>
         </div>

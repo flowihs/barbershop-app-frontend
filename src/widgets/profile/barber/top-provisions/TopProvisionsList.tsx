@@ -80,6 +80,7 @@ export function TopProvisionsList() {
           time={fallbackTime}
           categoryName={provision.provisionCategory?.name}
           categoryImage={provision.provisionCategory?.image}
+          iconPurpose='profile'
         />
       ))}
     </div>

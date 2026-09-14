@@ -1,10 +1,9 @@
 import styles from './styles/BarberServicesList.module.css';
 import { useQuery } from '@tanstack/react-query';
-import { Clock, Pencil } from 'lucide-react';
 import { useUserStore } from '@/entities/account';
 import { provisionService } from '@/entities/provision/api/provisionApi';
 import { provisionQueryKeys } from '@/entities/provision/api/provisionQueryKeys';
-import { BarberServicesCard } from '@/shared/ui/BarverServicesCard/Card';
+import { ProvisionShortCard } from '@/widgets/provision-short-card/ProvisionShortCard';
 import DefaultError from '@/shared/ui/DefaultError/DefaultError';
 import { ProfilePageDefaultButton } from '@/shared/ui/Buttons/profile-page-button';
 
@@ -65,35 +64,16 @@ export function BarberServicesList() {
       ) : (
         <div className={styles.list}>
           {provisions.map((provision) => (
-            <BarberServicesCard key={provision.id}>
-              <div className={styles.row}>
-                <div className={styles.content}>
-                  <h3 className={styles.serviceTitle}>
-                    {provision.title}
-                  </h3>
-
-                  <div className={styles.duration}>
-                    <Clock size={12} strokeWidth={1.8} />
-                    <span className={styles.durationText}>
-                      {fallbackDuration} min
-                    </span>
-                  </div>
-                </div>
-
-                <div className={styles.actions}>
-                  <strong className={styles.price}>
-                    ${fallbackPrice}
-                  </strong>
-                  <button
-                    type="button"
-                    aria-label={`Edit ${provision.title}`}
-                    className={styles.editButton}
-                  >
-                    <Pencil size={13} strokeWidth={1.6} />
-                  </button>
-                </div>
-              </div>
-            </BarberServicesCard>
+            <ProvisionShortCard
+              key={provision.id}
+              provisionId={provision.id}
+              title={provision.title}
+              price={fallbackPrice}
+              time={fallbackDuration}
+              categoryName={provision.provisionCategory?.name}
+              categoryImage={provision.provisionCategory?.image}
+              iconPurpose='detailes'
+            />
           ))}
         </div>
       )}
