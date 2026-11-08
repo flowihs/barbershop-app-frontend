@@ -2,6 +2,7 @@
 @import "./reset.css";
 
 :root {
+  --ui-scale: 1;
   --color-bg-primary: #171a1c;
   --color-bg-textholder-area: #fdcf08;
   --color-bg-secondary: #2a2a2a;
@@ -9,7 +10,7 @@
   --color-bg-slot: #1E2124;
   --color-bg-card-2: #242424;
   --color-bg-card: #2f2f2f;
-  --color-accent: #f0c040;
+  --color-accent: #fdcf08;
   --color-accent-hover: #d9ad38;
   --color-border: #ffffff;
   --color-text-primary: #ffffff;
@@ -23,13 +24,28 @@
   --line-height-sm: calc(20 / 14);
   --line-height-lg: calc(28 / 18);
   --line-height-2xl: calc(32 / 24);
-  --width-app: 430px;
+  /* Keep the visible app width and viewport height independent of UI scale. */
+  --width-app: calc(430px / var(--ui-scale));
+  --app-viewport-height: calc(100vh / var(--ui-scale));
   --width-date-card: 55px;
   --height-card: 350px;
   --height-time-panel: 200px;
   --width-time-panel: 80px;
 }
 
+
+@supports (zoom: 1) {
+  :root {
+    /* 0.9 = 90%; change this value to adjust the entire interface. */
+    --ui-scale: 0.9;
+  }
+}
+
+@supports (height: 100dvh) {
+  :root {
+    --app-viewport-height: calc(100dvh / var(--ui-scale));
+  }
+}
 
 body {
   margin: 0;
@@ -42,7 +58,8 @@ body {
 }
 
 #root {
-  min-height: 100vh;
+  zoom: var(--ui-scale);
+  min-height: var(--app-viewport-height);
   display: flex;
   flex-direction: column;
 }

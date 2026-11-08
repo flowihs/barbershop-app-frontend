@@ -6,6 +6,7 @@
     text-transform: uppercase;
     border-radius: .75rem;
     width: 100%;
+    color: #000000;
     padding-block: .75rem;
     font-size: .875rem;
     font-weight: 700;
@@ -13,6 +14,11 @@
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
     transition-duration: .2s;
     transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  }
+
+  .button:disabled {
+    cursor: wait;
+    opacity: .6;
   }
 
   @media (hover: hover) {

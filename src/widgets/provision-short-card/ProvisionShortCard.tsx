@@ -12,6 +12,8 @@ interface ProvisionShortCardProps {
   categoryName?: string;
   categoryImage?: string;
   iconPurpose: 'profile' | 'detailes';
+  className?: object;
+  role: string;
 }
 
 export function ProvisionShortCard({
@@ -22,13 +24,15 @@ export function ProvisionShortCard({
   categoryName = 'Service',
   categoryImage,
   iconPurpose,
+  className,
+  role
 }: ProvisionShortCardProps) {
 
-  const iconClass = { size: 25, strokeWidth: 1.8 };
+  const iconClass = { size: 17, strokeWidth: 1.8, ...className };
 
   return (
     <Link
-      to={`/provisions/${provisionId}`}
+      to={role === 'BARBER' || role === 'ADMIN' ? '/create' : `/provisions/${provisionId}`}
       aria-label={`Open ${title}`}
       className={styles.cardLink}
     >

@@ -15,7 +15,7 @@ export interface ProvisionSlots {
   available: boolean;
 }
 
-export interface ProvisionRequest {
+export interface ProvisionResponse {
   id: number;
   title: string;
   description: string;
@@ -23,26 +23,25 @@ export interface ProvisionRequest {
   user: UserProfile;
   provisionSlots: ProvisionSlots[];
   avatar: string;
+  images: string[];
   provisionCategory: Category;
   likesCount: number;
   likedByMe: boolean;
 }
 
-export interface Provision {
-  id: number;
-  title: string;
-  description: string;
-  rating: number;
-  avatar: string;
-  user: UserProfile;
-  provisionCategory?: Category;
+export interface CreateProvisionSlotRequest {
+  provisionId: number;
+  startTime: string;
+  endTime: string;
 }
 
 export interface CreateProvisionRequest {
   title: string;
   description: string;
+  avatar: File;
+  images: File[];
   categoryId: number;
-  slots: ProvisionSlots[];
+  slots: CreateProvisionSlotRequest[];
 }
 
 

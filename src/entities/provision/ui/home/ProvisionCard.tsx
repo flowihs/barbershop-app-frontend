@@ -1,9 +1,9 @@
 import styles from './styles/ProvisionCard.module.css';
-import type { ProvisionRequest } from '../../model/types';
+import type { ProvisionResponse } from '../../model/types';
 import { MoveRight, MapPin, Star } from 'lucide-react';
 import { useNavigate } from 'react-router';
 
-function ProvisionCard({ provision }: { provision: ProvisionRequest }) {
+function ProvisionCard({ provision }: { provision: ProvisionResponse }) {
 
   const navigate = useNavigate();
 

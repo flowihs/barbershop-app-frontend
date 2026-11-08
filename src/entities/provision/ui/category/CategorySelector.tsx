@@ -9,6 +9,7 @@ interface CategorySelectorProps {
   categories: Category[];
   selectedCategoryId?: number;
   name: string;
+  required?: boolean;
   defaultCategoryId?: number;
   onCategorySelect?: (categoryId: number) => void;
 }
@@ -19,7 +20,10 @@ export function CategorySelector({
   selectedCategoryId,
   defaultCategoryId,
   onCategorySelect,
+  required = false,
 }: CategorySelectorProps) {
+
+  const isControlled = selectedCategoryId !== undefined || onCategorySelect !== undefined;
 
   return (
     <ListScroll>
@@ -34,8 +38,10 @@ export function CategorySelector({
               type="radio"
               name={name}
               value={category.id}
-              checked={selectedCategoryId === category.id}
-              defaultChecked={defaultCategoryId === category.id}
+              required={required}
+              {...(isControlled
+                ? { checked: selectedCategoryId === category.id }
+                : { defaultChecked: defaultCategoryId === category.id })}
               onChange={() => onCategorySelect?.(category.id)}
               className={styles.input}
             />

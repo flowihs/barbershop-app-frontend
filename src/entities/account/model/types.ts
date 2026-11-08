@@ -1,5 +1,5 @@
 
-type Role = 'BARBER' | 'CLEINT' | 'ADMIN';
+type Role = 'BARBER' | 'CLIENT' | 'ADMIN';
 
 export interface TelegramAuthResponse {
   user: UserProfile;

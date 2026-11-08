@@ -1,7 +1,16 @@
 import styles from './styles/BottomSheet.module.css';
-import { motion } from "motion/react";
+import { motion, MotionConfig } from "motion/react";
 import { useEffect } from "react";
 import { useDragControls } from "motion/react";
+
+function scalePointerPosition(point: { x: number; y: number }) {
+    const scale = Number.parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue('--ui-scale'),
+    ) || 1;
+
+    // Convert pointer coordinates to zoomed layout units for Motion.
+    return { x: point.x / scale, y: point.y / scale };
+}
 
 function BottomSheet({ 
     onClose, 
@@ -24,7 +33,7 @@ function BottomSheet({
     }, []);
 
     return (
-        <>
+        <MotionConfig transformPagePoint={scalePointerPosition}>
             <motion.div
                 className={styles.overlay}
                 transition={{ type: "tween", duration: 0.3 }}
@@ -59,7 +68,7 @@ function BottomSheet({
                 </div>
                 {children}
             </motion.div>
-        </>
+        </MotionConfig>
     );
 }
 

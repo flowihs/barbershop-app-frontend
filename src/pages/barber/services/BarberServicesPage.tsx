@@ -11,7 +11,7 @@ function BarberServicesPage() {
 
   return (
     <section className={styles.page}>
-      <HomePageButton onClick={() => navigate('/create')} text="Добавить услугу" />
+      <HomePageButton onClick={() => navigate('/barber-services/create')} text="Добавить услугу" />
       <div className={styles.stats}>
         <BarberServicesCard>
           <span className={styles.label}>

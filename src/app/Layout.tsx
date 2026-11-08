@@ -1,5 +1,5 @@
 import styles from './styles/Layout.module.css';
-import { Outlet, useLocation, Link, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Bell, Settings } from 'lucide-react';
 import BottomNav from '../shared/ui/BottomNav/BottomNav';
 import Logo from '../shared/ui/Logo/Logo';
@@ -10,6 +10,7 @@ const pageTitles: Record<string, string> = {
   '/schedule': 'Schedule',
   '/profile': 'Profile',
   '/barber-services': 'Services',
+  '/barber-services/create': 'Create service',
 }
 
 function Layout() {
@@ -24,9 +25,16 @@ function Layout() {
 			<header className={styles.header}>
 				<div className={styles.brand}>
 					{!isHomePage && (
-						<Link to='..' onClick={() => navigate(-1)} className={styles.backLink}>
+						<button
+							type="button"
+							onClick={() => location.pathname === '/barber-services/create'
+								? navigate('/barber-services')
+								: navigate(-1)}
+							aria-label="Go back"
+							className={styles.backLink}
+						>
 							<ArrowLeft size={24} />
-						</Link>
+						</button>
 					)}
 					{isHomePage ? (
 						<Logo />

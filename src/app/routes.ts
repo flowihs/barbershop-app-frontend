@@ -1,4 +1,5 @@
-import { createBrowserRouter } from 'react-router';
+import { createElement } from 'react';
+import { createBrowserRouter, Navigate } from 'react-router';
 import Layout from './Layout';
 import HomePage from '../pages/home/HomePage';
 import ShedulePage from '../pages/schedule/SchedulePage';
@@ -31,11 +32,15 @@ export const router = createBrowserRouter([
       },
       {
         path: 'barber-services',
-        Component: BarberServicesPage,
         children: [
-          { path: 'create', Component: CreateService}
+          { index: true, Component: BarberServicesPage },
+          { path: 'create', Component: CreateService },
           // { path: 'edit/:id', Component: }
-        ]
+        ],
+      },
+      {
+        path: 'create',
+        element: createElement(Navigate, { to: '/barber-services/create', replace: true }),
       },
       {
         path: '*',

@@ -1,5 +1,5 @@
 export { default as ProvisionCard } from './ui/home/ProvisionCard';
-export type { Provision, ProvisionRequest, Category, CreateProvisionRequest, ProvisionSlots } from './model/types';
+export type { ProvisionResponse, ProvisionResponse as ProvisionRequest, Category, CreateProvisionRequest, CreateProvisionSlotRequest, ProvisionSlots } from './model/types';
 export { SlotDate, SlotTime } from './ui/booking/Slot'
 export { Like } from './ui/like/Like';
 export { CategorySelector } from './ui/category/CategorySelector';

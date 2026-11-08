@@ -3,8 +3,8 @@
     background-color: var(--color-bg-primary);
     flex-direction: column;
     width: 100%;
-    max-width: 26.875rem;
-    min-height: 100vh;
+    max-width: var(--width-app);
+    min-height: var(--app-viewport-height);
     margin-inline: auto;
     padding-bottom: 4rem;
     display: flex;

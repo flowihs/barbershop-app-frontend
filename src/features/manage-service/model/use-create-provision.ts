@@ -1,28 +1,28 @@
-
-import { provisionQueryKeys } from '@/entities/provision/api/provisionQueryKeys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import type { CreateProvisionRequest } from '@/entities/provision/model/types';
+import { provisionQueryKeys } from '@/entities/provision/api/provisionQueryKeys';
 import { provisionService } from '@/entities/provision/api/provisionApi';
-import type { Provision } from '@/entities/provision/model/types';
+import type { CreateProvisionRequest, ProvisionResponse } from '@/entities/provision/model/types';
 import { useUserStore } from '@/entities/account/store/userStore';
 
 export function useCreateProvision() {
+  const userId = useUserStore((state) => state.user?.id);
+  const queryClient = useQueryClient();
 
-    const id = useUserStore((state) => state.user?.id);
-    if (!id) {
-        throw new Error('User ID is not available. Please ensure the user is logged in.');
-    }
-    const queryClient = useQueryClient();
-
-    return useMutation({
-        mutationFn: async (newProvision: CreateProvisionRequest) => {
-            return provisionService.provisionCreate(newProvision);
-        },
-        onSuccess: (newProvision: Provision) => {
-            queryClient.setQueryData<Provision[]>(
-                provisionQueryKeys.barberProvisions(id),
-                (oldData) => oldData ? [...oldData, newProvision] : oldData
-            )
-        },
-    })
-}  
+  return useMutation({
+    retry: false,
+    mutationFn: async (newProvision: CreateProvisionRequest) => {
+      if (!userId) throw new Error('Откройте приложение из Telegram, чтобы создать услугу.');
+      return provisionService.provisionCreate(newProvision);
+    },
+    onSuccess: async (newProvision: ProvisionResponse) => {
+      if (userId) {
+        queryClient.setQueryData<ProvisionResponse[]>(
+          provisionQueryKeys.barberProvisions(userId),
+          (previous = []) => [newProvision, ...previous.filter((entry) => entry.id !== newProvision.id)],
+        );
+        await queryClient.invalidateQueries({ queryKey: provisionQueryKeys.topFive(userId), exact: true });
+      }
+      await queryClient.invalidateQueries({ queryKey: ['provisions'], exact: true });
+    },
+  });
+}

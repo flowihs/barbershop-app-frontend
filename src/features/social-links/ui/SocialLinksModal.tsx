@@ -1,6 +1,5 @@
 import styles from './styles/SocialLinksModal.module.css';
-import { X } from 'lucide-react';
-import { type SubmitEvent, useEffect } from 'react';
+import { type SubmitEvent } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import {
   accountQueryKeys,
@@ -14,6 +13,7 @@ import HomePageButton from '@/shared/ui/Buttons/home-button';
 import { SOCIAL_LINKS_MODAL_ID } from '../model/constants';
 import { SOCIAL_LINKS } from '@/shared/config/socialLinks';
 import { SocialIcon } from './SocialIcon';
+import { Modal } from '@/shared/ui/Modal';
 
 function SocialLinksModal() {
   const isOpen = useModalStore(
@@ -28,23 +28,6 @@ function SocialLinksModal() {
     enabled: isOpen && Boolean(userId),
     staleTime: 5 * 60 * 1000,
   });
-
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const previousOverflow = document.body.style.overflow;
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') closeModal();
-    };
-
-    document.body.style.overflow = 'hidden';
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [closeModal, isOpen]);
 
   if (!isOpen) return null;
 
@@ -66,63 +49,33 @@ function SocialLinksModal() {
   };
 
   return (
-    <div
-      className={styles.overlay}
-      onMouseDown={(event) => {
-        if (event.target === event.currentTarget) closeModal();
-      }}
-    >
-      <section
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="social-links-title"
-        className={styles.dialog}
-      >
-        <div className={styles.header}>
-          <h2
-            id="social-links-title"
-            className={styles.title}
-          >
-            Social contacts
-          </h2>
+    <Modal isOpen={isOpen} onClose={closeModal} title="Social contacts">
+      <form onSubmit={handleSubmit} className={styles.form}>
+        {SOCIAL_LINKS.map((social) => (
+          <div key={social.key} className={styles.field}>
+            <span className={styles.icon}>
+              <SocialIcon social={social} />
+            </span>
 
-          <button
-            type="button"
-            onClick={closeModal}
-            aria-label="Close social contacts"
-            className={styles.closeButton}
-          >
-            <X size={20} />
-          </button>
-        </div>
-
-        <form onSubmit={handleSubmit} className={styles.form}>
-          {SOCIAL_LINKS.map((social) => (
-            <div key={social.key} className={styles.field}>
-              <span className={styles.icon}>
-                <SocialIcon social={social} />
-              </span>
-
-              <input
-                type={social.inputType}
-                name={social.key}
-                aria-label={social.name}
-                placeholder={social.placeholder}
-                defaultValue={userProfile?.[social.key] ?? ''}
-                autoComplete={social.inputType === 'tel' ? 'tel' : 'url'}
-                className={styles.input}
-              />
-            </div>
-          ))}
-
-          <div className={styles.actions}>
-            <HomePageButton
-              text={updateSocials.isPending ? 'Saving...' : 'Save'}
+            <input
+              type={social.inputType}
+              name={social.key}
+              aria-label={social.name}
+              placeholder={social.placeholder}
+              defaultValue={userProfile?.[social.key] ?? ''}
+              autoComplete={social.inputType === 'tel' ? 'tel' : 'url'}
+              className={styles.input}
             />
           </div>
-        </form>
-      </section>
-    </div>
+        ))}
+
+        <div className={styles.actions}>
+          <HomePageButton
+            text={updateSocials.isPending ? 'Saving...' : 'Save'}
+          />
+        </div>
+      </form>
+    </Modal>
   );
 }
 

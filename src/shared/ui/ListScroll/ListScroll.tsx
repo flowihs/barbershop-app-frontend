@@ -22,7 +22,8 @@ function ListScroll({ children }: { children: React.ReactNode }) {
         if (!container) return;
 
         const delta = startX.current - event.clientX;
-        container.scrollLeft = scrollStart.current + delta;
+        const scale = container.getBoundingClientRect().width / container.offsetWidth || 1;
+        container.scrollLeft = scrollStart.current + delta / scale;
     }
 
     const handlePointerUp = () => {

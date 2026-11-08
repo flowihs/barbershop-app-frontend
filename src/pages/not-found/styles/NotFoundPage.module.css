@@ -1,6 +1,6 @@
 .page {
   display: grid;
-  min-height: calc(100vh - 150px);
+  min-height: calc(var(--app-viewport-height) - 150px);
   place-items: center;
   padding: 2rem 1.25rem 4rem;
   background: var(--color-bg-primary);

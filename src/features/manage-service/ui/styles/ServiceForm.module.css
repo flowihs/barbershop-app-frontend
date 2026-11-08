@@ -1,4 +1,13 @@
 @layer components {
+  .content { min-width: 0; }
+
+  .error {
+    margin-bottom: 1rem;
+    color: #ff8798;
+    font-size: .875rem;
+    overflow-wrap: anywhere;
+  }
+
   :where(.fields > :not(:last-child)) {
     margin-block: 0 2rem;
   }

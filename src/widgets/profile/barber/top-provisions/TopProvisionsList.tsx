@@ -81,6 +81,7 @@ export function TopProvisionsList() {
           categoryName={provision.provisionCategory?.name}
           categoryImage={provision.provisionCategory?.image}
           iconPurpose='profile'
+          role={provision.user.role}
         />
       ))}
     </div>

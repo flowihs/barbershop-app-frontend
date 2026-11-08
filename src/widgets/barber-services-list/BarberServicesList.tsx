@@ -6,12 +6,14 @@ import { provisionQueryKeys } from '@/entities/provision/api/provisionQueryKeys'
 import { ProvisionShortCard } from '@/widgets/provision-short-card/ProvisionShortCard';
 import DefaultError from '@/shared/ui/DefaultError/DefaultError';
 import { ProfilePageDefaultButton } from '@/shared/ui/Buttons/profile-page-button';
+import { useProvisionStore } from '@/entities/provision/store/provisionStore';
 
 const fallbackPrice = 45;
 const fallbackDuration = 20;
 
 export function BarberServicesList() {
   const profileId = useUserStore((state) => state.user?.id);
+  const setProvisions = useProvisionStore((state) => state.setBarberProvisions);
 
   const {
     data: provisions = [],
@@ -29,6 +31,8 @@ export function BarberServicesList() {
     enabled: Boolean(profileId),
     staleTime: 5 * 60 * 1000,
   });
+
+  setProvisions(provisions);
 
   return (
     <section className={styles.section}>
@@ -73,6 +77,7 @@ export function BarberServicesList() {
               categoryName={provision.provisionCategory?.name}
               categoryImage={provision.provisionCategory?.image}
               iconPurpose='detailes'
+              role={provision.user.role}
             />
           ))}
         </div>

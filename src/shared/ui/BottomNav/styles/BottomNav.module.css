@@ -16,7 +16,7 @@
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    max-width: 430px;
+    max-width: var(--width-app);
     margin-inline: auto;
     display: flex;
   }
