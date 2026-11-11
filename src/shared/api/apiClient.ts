@@ -9,6 +9,9 @@ const apiConfig = {
     baseURL,
     timeout: 5000,
     withCredentials: true,
+    headers: import.meta.env.DEV && baseURL.includes('.ngrok-free.dev')
+        ? { 'ngrok-skip-browser-warning': 'true' }
+        : undefined,
 };
 
 const authApi = axios.create(apiConfig);
