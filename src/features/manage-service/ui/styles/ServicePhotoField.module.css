@@ -96,6 +96,61 @@
     gap: .375rem;
   }
 
+  .menuWrap {
+    position: absolute;
+    top: .75rem;
+    right: .75rem;
+    z-index: 2;
+  }
+
+  .menuButton {
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    border-radius: 50%;
+    color: var(--color-text-primary);
+    background: rgb(23 26 28 / 78%);
+    cursor: pointer;
+  }
+
+  .menuButton:focus-visible,
+  .menu button:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .menu {
+    position: absolute;
+    top: calc(100% + .5rem);
+    right: 0;
+    display: grid;
+    width: max-content;
+    min-width: 13rem;
+    padding: .375rem;
+    border: 1px solid #ffffff1a;
+    border-radius: .875rem;
+    background: var(--color-bg-primary);
+    box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 35%);
+  }
+
+  .menu button {
+    display: flex;
+    align-items: center;
+    gap: .625rem;
+    min-height: 2.75rem;
+    padding: .625rem .75rem;
+    border-radius: .625rem;
+    color: var(--color-text-primary);
+    text-align: left;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .menu button:hover { background: var(--color-bg-card-2); }
+  .menu button:disabled { color: var(--color-text-secondary); cursor: default; opacity: .7; }
+  .menu svg { color: var(--color-accent); flex-shrink: 0; }
+
   .badge {
     padding: .375rem .625rem;
     border-radius: 999px;
@@ -178,4 +233,10 @@
     color: var(--color-bg-cancel);
     font-size: .875rem;
   }
+
+  .confirmText { margin: 0 0 1rem; color: var(--color-text-secondary); line-height: 1.5; }
+  .confirmActions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .625rem; }
+  .confirmNo, .confirmYes { min-height: 2.75rem; border-radius: .875rem; font-weight: 700; cursor: pointer; }
+  .confirmNo { color: var(--color-text-secondary); background: var(--color-bg-card-2); }
+  .confirmYes { color: #171a1c; background: var(--color-accent); }
 }

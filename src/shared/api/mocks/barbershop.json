@@ -1,0 +1,90 @@
+{
+  "user": {
+    "id": 1730654045,
+    "firstName": "Александр",
+    "lastName": "Барбер",
+    "username": "barber_demo",
+    "photoUrl": "https://placehold.co/256x256/1f2937/ffffff?text=AB",
+    "description": "Барбер с 8-летним опытом. Помогаю подобрать стрижку под ваш стиль.",
+    "tiktok": "barber_demo",
+    "instagram": "barber_demo",
+    "number": "+7 900 000-00-00",
+    "role": "BARBER"
+  },
+  "categories": [
+    { "id": 1, "name": "Стрижки", "description": "Мужские и женские стрижки", "image": "https://placehold.co/320x220/172554/ffffff?text=Haircuts" },
+    { "id": 2, "name": "Борода", "description": "Оформление и моделирование бороды", "image": "https://placehold.co/320x220/3f1d0b/ffffff?text=Beard" },
+    { "id": 3, "name": "Укладка", "description": "Укладки для любого случая", "image": "https://placehold.co/320x220/4c1d95/ffffff?text=Styling" },
+    { "id": 4, "name": "Комплекс", "description": "Стрижка и оформление бороды", "image": "https://placehold.co/320x220/064e3b/ffffff?text=Combo" }
+  ],
+  "provisions": [
+    {
+      "id": 101,
+      "title": "Классическая мужская стрижка",
+      "description": "Аккуратная стрижка ножницами и машинкой с укладкой.",
+      "rating": 4.9,
+      "avatar": "https://placehold.co/640x420/172554/ffffff?text=Classic+Cut",
+      "images": ["https://placehold.co/640x420/172554/ffffff?text=Classic+Cut"],
+      "likesCount": 27,
+      "likedByMe": false,
+      "provisionCategory": { "id": 1, "name": "Стрижки", "description": "Мужские и женские стрижки", "image": "https://placehold.co/320x220/172554/ffffff?text=Haircuts" },
+      "user": { "id": 1730654045, "firstName": "Александр", "lastName": "Барбер", "username": "barber_demo", "photoUrl": "https://placehold.co/256x256/1f2937/ffffff?text=AB", "description": "Барбер с 8-летним опытом.", "tiktok": "barber_demo", "instagram": "barber_demo", "number": "+7 900 000-00-00", "role": "BARBER" },
+      "provisionSlots": [
+        { "id": 1001, "startTime": "2026-11-14T10:00:00", "endTime": "2026-11-14T10:45:00", "available": true },
+        { "id": 1002, "startTime": "2026-11-14T12:00:00", "endTime": "2026-11-14T12:45:00", "available": true }
+      ]
+    },
+    {
+      "id": 102,
+      "title": "Фейд и текстура",
+      "description": "Плавный переход, текстурирование и укладка матовой пастой.",
+      "rating": 4.8,
+      "avatar": "https://placehold.co/640x420/0f766e/ffffff?text=Fade",
+      "images": ["https://placehold.co/640x420/0f766e/ffffff?text=Fade"],
+      "likesCount": 18,
+      "likedByMe": false,
+      "provisionCategory": { "id": 1, "name": "Стрижки", "description": "Мужские и женские стрижки", "image": "https://placehold.co/320x220/172554/ffffff?text=Haircuts" },
+      "user": { "id": 1730654045, "firstName": "Александр", "lastName": "Барбер", "username": "barber_demo", "photoUrl": "https://placehold.co/256x256/1f2937/ffffff?text=AB", "description": "Барбер с 8-летним опытом.", "tiktok": "barber_demo", "instagram": "barber_demo", "number": "+7 900 000-00-00", "role": "BARBER" },
+      "provisionSlots": [{ "id": 1003, "startTime": "2026-11-15T11:00:00", "endTime": "2026-11-15T11:50:00", "available": true }]
+    },
+    {
+      "id": 103,
+      "title": "Моделирование бороды",
+      "description": "Контур, горячее полотенце и уход за кожей после бритья.",
+      "rating": 5,
+      "avatar": "https://placehold.co/640x420/3f1d0b/ffffff?text=Beard",
+      "images": ["https://placehold.co/640x420/3f1d0b/ffffff?text=Beard"],
+      "likesCount": 34,
+      "likedByMe": false,
+      "provisionCategory": { "id": 2, "name": "Борода", "description": "Оформление и моделирование бороды", "image": "https://placehold.co/320x220/3f1d0b/ffffff?text=Beard" },
+      "user": { "id": 1730654045, "firstName": "Александр", "lastName": "Барбер", "username": "barber_demo", "photoUrl": "https://placehold.co/256x256/1f2937/ffffff?text=AB", "description": "Барбер с 8-летним опытом.", "tiktok": "barber_demo", "instagram": "barber_demo", "number": "+7 900 000-00-00", "role": "BARBER" },
+      "provisionSlots": [{ "id": 1004, "startTime": "2026-11-16T14:00:00", "endTime": "2026-11-16T14:40:00", "available": true }]
+    },
+    {
+      "id": 104,
+      "title": "Стрижка + борода",
+      "description": "Полный образ: стрижка, моделирование бороды и укладка.",
+      "rating": 4.7,
+      "avatar": "https://placehold.co/640x420/064e3b/ffffff?text=Combo",
+      "images": ["https://placehold.co/640x420/064e3b/ffffff?text=Combo"],
+      "likesCount": 21,
+      "likedByMe": false,
+      "provisionCategory": { "id": 4, "name": "Комплекс", "description": "Стрижка и оформление бороды", "image": "https://placehold.co/320x220/064e3b/ffffff?text=Combo" },
+      "user": { "id": 1730654045, "firstName": "Александр", "lastName": "Барбер", "username": "barber_demo", "photoUrl": "https://placehold.co/256x256/1f2937/ffffff?text=AB", "description": "Барбер с 8-летним опытом.", "tiktok": "barber_demo", "instagram": "barber_demo", "number": "+7 900 000-00-00", "role": "BARBER" },
+      "provisionSlots": [{ "id": 1005, "startTime": "2026-11-17T09:00:00", "endTime": "2026-11-17T10:15:00", "available": true }]
+    },
+    {
+      "id": 105,
+      "title": "Укладка на мероприятие",
+      "description": "Укладка с фиксацией и рекомендациями по домашнему уходу.",
+      "rating": 4.6,
+      "avatar": "https://placehold.co/640x420/4c1d95/ffffff?text=Styling",
+      "images": ["https://placehold.co/640x420/4c1d95/ffffff?text=Styling"],
+      "likesCount": 12,
+      "likedByMe": false,
+      "provisionCategory": { "id": 3, "name": "Укладка", "description": "Укладки для любого случая", "image": "https://placehold.co/320x220/4c1d95/ffffff?text=Styling" },
+      "user": { "id": 1730654045, "firstName": "Александр", "lastName": "Барбер", "username": "barber_demo", "photoUrl": "https://placehold.co/256x256/1f2937/ffffff?text=AB", "description": "Барбер с 8-летним опытом.", "tiktok": "barber_demo", "instagram": "barber_demo", "number": "+7 900 000-00-00", "role": "BARBER" },
+      "provisionSlots": [{ "id": 1006, "startTime": "2026-11-18T16:00:00", "endTime": "2026-11-18T16:45:00", "available": true }]
+    }
+  ]
+}
