@@ -1,0 +1,22 @@
+@layer components {
+  .page {
+    padding: 1rem;
+  }
+
+  .title {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: var(--line-height-2xl);
+  }
+
+  .description {
+    margin-bottom: 1rem;
+  }
+
+  .backButton {
+    color: #3080ff;
+    color: var(--color-link);
+    text-decoration-line: underline;
+  }
+}

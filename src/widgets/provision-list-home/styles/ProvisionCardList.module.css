@@ -1,0 +1,29 @@
+@layer components {
+  .loading {
+    color: var(--color-text-secondary);
+    padding: 1rem;
+    font-size: .875rem;
+    line-height: var(--line-height-sm);
+  }
+
+  .section {
+    margin-bottom: 2.5rem;
+  }
+
+  .header {
+    justify-content: space-between;
+    padding-block: 1rem;
+    padding-inline: .5rem;
+    display: flex;
+  }
+
+  .title {
+    color: var(--color-text-primary);
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+
+  .moreLink {
+    margin-top: .25rem;
+  }
+}

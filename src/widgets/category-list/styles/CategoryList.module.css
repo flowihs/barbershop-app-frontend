@@ -1,0 +1,50 @@
+@layer components {
+  .loading {
+    color: var(--color-text-secondary);
+    padding: 1rem;
+    font-size: .875rem;
+    line-height: var(--line-height-sm);
+  }
+
+  .header {
+    justify-content: space-between;
+    margin-block: 1rem;
+    padding-inline: .5rem;
+    display: flex;
+  }
+
+  .title {
+    color: var(--color-text-primary);
+    padding-bottom: .75rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+}
+
+@layer components {
+  .error {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .5rem;
+  }
+
+  .retry {
+    padding: .5rem .75rem;
+    border: 1px solid var(--color-accent);
+    border-radius: .625rem;
+    color: var(--color-accent);
+    font-size: .875rem;
+    cursor: pointer;
+  }
+
+  .retry:disabled {
+    opacity: .5;
+    cursor: default;
+  }
+
+  .retry:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}

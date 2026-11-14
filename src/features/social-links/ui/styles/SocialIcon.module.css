@@ -1,0 +1,12 @@
+@layer components {
+  .image {
+    object-fit: contain;
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .phone {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}

@@ -1,24 +1,47 @@
-import type { TelegramProfile } from '../../account';
+import type { UserProfile } from '../../account';
+
 
 export interface Category {
   id: number;
   name: string;
-  imageUrl: string;
+  description: string;
+  image?: string
 }
 
-export interface Slot {
+export interface ProvisionSlots {
   id: number;
-  time: string;
-  isBooking: boolean;
+  startTime: string;
+  endTime: string;
+  available: boolean;
 }
 
-export interface Provision {
+export interface ProvisionResponse {
   id: number;
   title: string;
   description: string;
-  price: number;
-  image: string;
-  user: TelegramProfile;
-  category: Category;
-  slots: Slot[];
+  rating: number;
+  user: UserProfile;
+  provisionSlots: ProvisionSlots[];
+  avatar: string;
+  images: string[];
+  provisionCategory: Category;
+  likesCount: number;
+  likedByMe: boolean;
 }
+
+export interface CreateProvisionSlotRequest {
+  provisionId: number;
+  startTime: string;
+  endTime: string;
+}
+
+export interface CreateProvisionRequest {
+  title: string;
+  description: string;
+  avatar: File;
+  images: File[];
+  categoryId: number;
+  slots: CreateProvisionSlotRequest[];
+}
+
+

@@ -1,0 +1,33 @@
+.socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.socialLink,
+.addButton {
+  display: flex;
+  width: 51px;
+  height: 46px;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 1px solid rgba(51, 56, 61, 0.5);
+  border-radius: 14px;
+  background: var(--color-bg-card-2);
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.socialLink:hover,
+.addButton:hover {
+  background: var(--color-bg-card);
+  border-color: rgba(253, 207, 8, 0.45);
+}
+
+.addButton {
+  color: var(--color-bg-textholder-area);
+  border-color: rgba(253, 207, 8, 0.5);
+  cursor: pointer;
+}

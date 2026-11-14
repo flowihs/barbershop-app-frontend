@@ -1,0 +1,8 @@
+@layer components {
+  .state {
+    width: 100%;
+    max-width: var(--width-app);
+    margin-inline: auto;
+    padding: 1rem;
+  }
+}

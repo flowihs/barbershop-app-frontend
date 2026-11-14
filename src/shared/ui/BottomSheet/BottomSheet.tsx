@@ -1,11 +1,21 @@
-import { motion } from "motion/react";
+import styles from './styles/BottomSheet.module.css';
+import { motion, MotionConfig } from "motion/react";
 import { useEffect } from "react";
 import { useDragControls } from "motion/react";
 
+function scalePointerPosition(point: { x: number; y: number }) {
+    const scale = Number.parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue('--ui-scale'),
+    ) || 1;
+
+    // Convert pointer coordinates to zoomed layout units for Motion.
+    return { x: point.x / scale, y: point.y / scale };
+}
+
 function BottomSheet({ 
-    onClose, 
-    children 
-}: { 
+    onClose,
+    children
+}: {
     onClose: () => void, 
     children: React.ReactNode 
 }) {
@@ -23,11 +33,9 @@ function BottomSheet({
     }, []);
 
     return (
-        <>
+        <MotionConfig transformPagePoint={scalePointerPosition}>
             <motion.div
-                className="
-                    fixed inset-0 z-1 bg-black/50
-                "
+                className={styles.overlay}
                 transition={{ type: "tween", duration: 0.3 }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -35,41 +43,32 @@ function BottomSheet({
                 onClick={onClose}
             />
             <motion.div
-                className="
-                    fixed z-2 inset-x-0 bottom-0 bg-bg-primary
-                    h-[90vh] w-full max-w-(--width-app) mx-auto border
-                    border-t-border/10 rounded-t-[10px] px-4 pt-10
-                "
+                className={styles.sheet}
                 drag="y"
                 dragControls={controls}
+                dragListener={false}
                 dragDirectionLock
                 dragMomentum={false}
-                dragListener={false}
-                dragElastic={{ top: 0, bottom: 0.8 }}
-                dragConstraints={{ top: 0, bottom: 0 }}
+                dragConstraints={{ top: 0, bottom: 9999 }}
+                dragElastic={{ top: 0.05, bottom: 0 }}
                 onDragEnd={(_, info) => {
-                    if (info.offset.y >= limit) onClose();
+                    if (info.offset.y > limit || info.velocity.y > 500) {
+                        onClose();
+                    }
                 }}
-                initial={{ y: "100%" }}
-                animate={{ y: "0" }}
                 exit={{ y: "100%" }}
-                transition={{ type: "tween", duration: 0.2}}
+                transition={{ type: "tween", duration: 0.2 }}
             >
 
                 <div
-                    onPointerDown={event => controls.start(event)} 
-                    className="
-                        absolute inset-x-0 rounded-t-[10px] top-0 py-4.5 
-                        w-full cursor-grab max-w-(--width-app) 
-                        flex justify-center active:cursor-grabbing 
-                        active:select-none
-                    "
+                    onPointerDown={event => controls.start(event)}
+                    className={styles.handle}
                 >
-                    <div className="h-1 w-13 rounded-full bg-text-primary/70" />
+                    <div className={styles.handleBar} />
                 </div>
                 {children}
             </motion.div>
-        </>
+        </MotionConfig>
     );
 }
 

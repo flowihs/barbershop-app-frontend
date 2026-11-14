@@ -1,46 +1,45 @@
-import ListScroll from '../../shared/ui/ListScroll/ListScroll';
-import { useQuery } from '@tanstack/react-query';
-import { categoryService } from '../../entities/provision/api/provisionApi';
-import DefaultError from '../../shared/ui/DefaultError/DefaultError';
+import { useState } from 'react';
+import { CategorySelector } from '@/entities/provision';
+import { useCategories } from '@/entities/provision/model/useCategories';
+import DefaultError from '@/shared/ui/DefaultError/DefaultError';
+import styles from './styles/CategoryList.module.css';
 
 function CategoryList() {
-
-  const { data: categories, isLoading, error } = useQuery({
-    queryKey: ['categories'],
-    queryFn: categoryService.getAll,
-  });
-
-  const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-  if (error) return <DefaultError text={`Error is: ${errorMessage} ${error.cause}`} />
+  const [selectedCategoryId, setSelectedCategoryId] = useState<number>();
+  const { categories, isLoading, isFetching, error, refetch } = useCategories();
 
   if (isLoading) {
-    return <p className='text-text-secondary text-sm p-4'>Loading...</p>
+    return <p className={styles.loading}>Loading...</p>;
+  }
+
+  if (error && categories.length === 0) {
+    return (
+      <div className={styles.error} role="alert">
+        <DefaultError text="Не удалось загрузить категории" />
+        <button type="button" className={styles.retry} disabled={isFetching} onClick={() => void refetch()}>
+          {isFetching ? 'Загрузка...' : 'Повторить'}
+        </button>
+      </div>
+    );
   }
 
   return (
     <section>
-      <div className="flex justify-between my-4 px-2">
-        <p className="text-xl pb-3 text-text-primary">
-          Categories
-        </p>
+      <div className={styles.header}>
+        <p className={styles.title}>Категории</p>
       </div>
-      <ListScroll>
-        {categories?.map((cat) => (
-          <button
-            key={cat.id}
-            className="flex flex-col items-center gap-2 min-w-18 overflow-hidden"
-          >
-            <div className="w-14 h-14 rounded-2xl bg-bg-card-2 flex items-center justify-center text-text-primary">
-              {/*{cat.icon}*/}
-            </div>
-            <span className="text-xs text-text-secondary font-medium uppercase tracking-wide">
-              {cat.name}
-            </span>
-          </button>
-        ))}
-      </ListScroll>
+      {categories.length === 0 ? (
+        <p className={styles.loading}>Категории пока не добавлены</p>
+      ) : (
+        <CategorySelector
+          categories={categories}
+          name="category-filter"
+          selectedCategoryId={selectedCategoryId}
+          onCategorySelect={setSelectedCategoryId}
+        />
+      )}
     </section>
-  )
+  );
 }
 
-export default CategoryList
+export default CategoryList;

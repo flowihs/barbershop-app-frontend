@@ -1,51 +1,30 @@
+import { HeaderBarberSide } from '../../widgets/profile/barber';
+import { TopProvisionsList } from '@/widgets/profile/barber/top-provisions/TopProvisionsList';
 import { useNavigate } from 'react-router';
-import { useQuery } from '@tanstack/react-query';
-import { useLaunchParams } from '@telegram-apps/sdk-react';
-import { accountService } from '../../entities/account/api/accountApi';
-import Header from '../../widgets/profile/Header';
-import ActionsButton from '../../widgets/profile/ActionsButtons';
-import DefaultError from '../../shared/ui/DefaultError/DefaultError';
-import './profile.less';
+import styles from './styles/ProfilePage.module.css';
 
 function ProfilePage() {
   const navigate = useNavigate();
-  const tgWebAppData = useLaunchParams();
-
-  const { data: userData, isLoading, error } = useQuery({
-    queryKey: ['account', 'me'],
-    queryFn: accountService.getMe,
-  });
-
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center p-4">
-        <p className='text-center text-text-secondary text-sm p-4'>
-          Loading...
-        </p>
-      </div>
-    )
-  }
-
-  if (error) return <DefaultError text="" />
-
-  // свою дату закинь если не так что то
-  const avatar = tgWebAppData.initData?.user?.photoUrl;
-  const name = userData?.firstName || tgWebAppData.initData?.user?.firstName || 'no name';
-  const description = userData?.description || 'no description';
-  const rating = 4.5; // пока так сделал, чтобы typescript не жаловался
 
   return (
-		<div className='profile-page'>
-			<Header
-				avatar={avatar}
-				name={name}
-				description={description}
-				rating={rating}
-			/>
-
-			<ActionsButton onSchedule={() => navigate('/schedule')} onEdit={() => navigate('/settings')} />
-		</div>
-	)
+    <div className={styles.page}>
+      <HeaderBarberSide />
+      <section className={styles.servicesSection}>
+        <div className={styles.servicesHeader}>
+          <h2 className={styles.servicesTitle}>Top services</h2>
+          <button
+            type="button"
+            onClick={() => navigate('/barber-services')}
+            aria-label="View all services"
+            className={styles.viewAll}
+          >
+            View all
+          </button>
+        </div>
+        <TopProvisionsList />
+      </section>
+    </div>
+  );
 }
 
 export default ProfilePage;

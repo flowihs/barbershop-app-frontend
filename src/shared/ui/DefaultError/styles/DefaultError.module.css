@@ -1,0 +1,12 @@
+@layer components {
+  .error {
+    gap: 1rem;
+    display: flex;
+  }
+
+  .message {
+    color: var(--color-text-secondary);
+    font-size: .75rem;
+    line-height: var(--line-height-xs);
+  }
+}

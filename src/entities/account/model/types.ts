@@ -1,10 +1,20 @@
-export interface TelegramProfile {
-  id: number;
-  firstName: string;
-  username: string | null;
-  description: string | null;
-  role: string;
-  email: string | null; 
-  createdAt: string;
-  updatedAt: string;
+
+type Role = 'BARBER' | 'CLIENT' | 'ADMIN';
+
+export interface TelegramAuthResponse {
+  user: UserProfile;
+  token: string;
+}
+
+export interface UserProfile {
+  id: number,
+  firstName: string,
+  lastName: string,
+  username: string,
+  photoUrl: string,
+  description: string,
+  tiktok: string,
+  instagram: string,
+  number: string
+  role: Role,
 }

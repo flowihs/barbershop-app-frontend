@@ -1,14 +1,15 @@
+import styles from './styles/SchedulePage.module.css';
 import { useNavigate } from 'react-router';
 
 function ShedulePage() {
   const navigate = useNavigate();
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Booking</h1>
-      <p className="mb-4">Select a service and time</p>
+    <div className={styles.page}>
+      <h1 className={styles.title}>Booking</h1>
+      <p className={styles.description}>Select a service and time</p>
       <button
-        className="text-blue-500 underline"
+        className={styles.backButton}
         onClick={() => navigate(-1)}
       >
         Go Back

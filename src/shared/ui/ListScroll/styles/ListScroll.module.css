@@ -1,0 +1,14 @@
+@layer components {
+  .scroll {
+    user-select: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    gap: 1rem;
+    display: flex;
+    overflow-x: auto;
+  }
+
+  .scroll::-webkit-scrollbar {
+    display: none;
+  }
+}

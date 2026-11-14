@@ -1,0 +1,18 @@
+@layer components {
+  .greeting {
+    align-items: center;
+    gap: 1rem;
+    display: flex;
+  }
+
+  .text {
+    margin-inline: 3.25rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: var(--line-height-lg);
+  }
+
+  .accent {
+    color: var(--color-accent);
+  }
+}

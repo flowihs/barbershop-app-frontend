@@ -1,6 +1,12 @@
+import styles from './styles/ListScroll.module.css';
 import { useRef, useState } from "react";
 
-function ListScroll({ children }: { children: React.ReactNode }) {
+type Props = {
+    children: React.ReactNode;
+    gap?: number | string;
+};
+
+function ListScroll({ children, gap }: Props) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [isDragging, setIsDragging] = useState(false);
     const startX = useRef(0);
@@ -21,7 +27,8 @@ function ListScroll({ children }: { children: React.ReactNode }) {
         if (!container) return;
 
         const delta = startX.current - event.clientX;
-        container.scrollLeft = scrollStart.current + delta;
+        const scale = container.getBoundingClientRect().width / container.offsetWidth || 1;
+        container.scrollLeft = scrollStart.current + delta / scale;
     }
 
     const handlePointerUp = () => {
@@ -31,13 +38,16 @@ function ListScroll({ children }: { children: React.ReactNode }) {
     return (
         <div
             ref={containerRef}
-            className="flex gap-4 overflow-x-auto select-none scrollbar-none"
+            className={styles.scroll}
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
             onPointerLeave={handlePointerUp}
             onDragStart={(e) => e.preventDefault()}
-            style={{ cursor: isDragging ? "grabbing" : "grab" }}
+            style={{
+                cursor: isDragging ? "grabbing" : "grab",
+                ...(gap !== undefined && { gap }),
+            }}
         >
             {children}
         </div>

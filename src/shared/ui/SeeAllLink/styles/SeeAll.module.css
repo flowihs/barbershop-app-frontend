@@ -1,0 +1,16 @@
+@layer components {
+  .container {
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    padding-left: 1rem;
+    display: flex;
+  }
+
+  .link {
+    color: var(--color-accent);
+    font-size: .875rem;
+    font-weight: 500;
+    line-height: var(--line-height-sm);
+  }
+}

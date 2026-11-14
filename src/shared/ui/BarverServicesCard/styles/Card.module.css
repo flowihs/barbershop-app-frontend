@@ -1,0 +1,13 @@
+@layer components {
+  .card {
+    background-color: var(--color-bg-slot);
+    border-radius: .5rem;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+    min-height: 4rem;
+    padding-block: .625rem;
+    padding-inline: .75rem;
+    display: flex;
+  }
+}

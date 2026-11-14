@@ -1,0 +1,38 @@
+.page {
+  background: var(--color-bg-primary);
+}
+
+.servicesSection {
+  padding-bottom: 0.75rem;
+}
+
+.servicesHeader {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+  padding-top: 0.75rem;
+}
+
+.servicesTitle {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.viewAll {
+  color: var(--color-accent);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease;
+  text-decoration: underline;
+}
+
+.viewAll:hover {
+  border-color: var(--color-accent);
+}

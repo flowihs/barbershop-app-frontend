@@ -1,0 +1,33 @@
+﻿#:schema https://developers.openai.com/codex/config-schema.json
+
+# Project-level Codex defaults. This file is loaded only for trusted repositories.
+[agents]
+enabled = true
+max_concurrent_threads_per_session = 3
+default_subagent_model = "gpt-6.1-sol"
+default_subagent_reasoning_effort = "high"
+
+[agents."code-reviewer"]
+description = "Review the complete change surface for correctness, regressions, security, performance, accessibility, and missing tests. Do not edit files."
+config_file = "agents/code-reviewer.toml"
+
+[agents."security-reviewer"]
+description = "Audit trust boundaries, secrets, authentication, authorization, input validation, dependency risk, and data exposure. Do not edit files."
+config_file = "agents/security-reviewer.toml"
+
+[agents."test-reviewer"]
+description = "Check the implementation and its tests for meaningful coverage, edge cases, and reproducible verification. Do not edit files."
+config_file = "agents/test-reviewer.toml"
+
+[agents.explorer]
+description = "Map the relevant code paths, callers, configuration, and validation commands before implementation. Read-only."
+config_file = "agents/explorer.toml"
+
+# Keep the Ponytail plugin available for this repository.
+[marketplaces.ponytail]
+source_type = "git"
+source = "https://github.com/sohsaws/ponytail.git"
+ref = "main"
+
+[plugins."ponytail@ponytail"]
+enabled = true

@@ -1,0 +1,35 @@
+@layer components {
+  .container {
+    flex-direction: column;
+    gap: .25rem;
+    display: flex;
+  }
+
+  .content {
+    overflow: hidden;
+  }
+
+  .inner {
+    margin-top: 0;
+  }
+
+  .button {
+    justify-content: center;
+    margin-inline: auto;
+    display: flex;
+  }
+
+  .icon {
+    cursor: pointer;
+    color: #fff;
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+    transition-duration: .15s;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  }
+
+  @media (hover: hover) {
+    .icon:hover {
+      color: var(--color-accent-hover);
+    }
+  }
+}

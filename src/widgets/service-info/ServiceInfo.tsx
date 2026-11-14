@@ -1,64 +1,104 @@
-import { Clock, Scissors, MapPin, Heart } from 'lucide-react';
-import type { Provision } from '../../entities/provision';
-import { ExpandButton } from '../../shared/ui/ExpandButton/ExpandButton';
+import styles from './styles/ServiceInfo.module.css';
+import { Clock, Scissors, MapPin } from 'lucide-react';
+import type { ProvisionRequest } from '../../entities/provision';
+import { Like } from '../../entities/provision/ui/like/Like';
+import { useState } from 'react';
+import ListScroll from '@/shared/ui/ListScroll/ListScroll.tsx';
 
-
-function ServiceInfo({ provision }: {provision: Provision}) {
+function ServiceInfo({ provision }: { provision: ProvisionRequest }) {
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
+    const allImages = [provision.avatar, ...(provision.images || [])];
+    const mainImage = allImages[activeIndex];
 
     return (
-        <div className="flex flex-col ml-1 gap-4">
-            <div className="relative h-[250px] rounded-2xl overflow-hidden">
-                <img
-                    src={provision.image}
-                    alt={provision.title}
-                    className="w-full h-full object-cover"
-                />
+        <div className={styles.content}>
+            <div className={styles.headerImages}>
+                <div className={styles.imageFrame}>
+                    <img
+                        src={mainImage}
+                        alt={provision.title}
+                        className={styles.image}
+                    />
+                </div>
+                <ListScroll gap={8}>
+                    {allImages.map((img, index) => (
+                        <img
+                            key={index}
+                            src={img}
+                            className={`${styles.imagesContainerItem} ${
+                                index === activeIndex
+                                    ? styles['imagesContainerItem--active']
+                                    : ''
+                            }`}
+                            onClick={() => setActiveIndex(index)}
+                            alt={'Потом вставлю'}
+                        />
+                    ))}
+                </ListScroll>
             </div>
 
-            <div className="flex items-start justify-between">
-                <h1 className="text-xl font-bold text-text-primary">{provision.title}</h1>
-                <span className="text-xl font-bold text-accent">${provision.price}</span>
+            <div className={styles.heading}>
+                <h1 className={styles.title}>{provision.title}</h1>
+                <span className={styles.price}>0 $</span>
             </div>
-            <ExpandButton>
-                <p className="text-sm text-text-secondary leading-relaxed">
-                    {provision.description}
-                </p>
-            </ExpandButton>
-            <div className="flex items-center gap-4 text-text-secondary">
-                <div className="flex items-center gap-1.5">
-                    <Clock size={16} className="text-accent"/>
-                    {/*<span className="text-xs">{provision.time} mins</span>*/}
-                    <span className="text-xs">40 mins</span>
+
+            <div
+                className={`${styles.descriptionContainer} ${
+                    isDescriptionExpanded ? styles['descriptionContainer--expanded'] : ''
+                }`}
+                onClick={() => setIsDescriptionExpanded(() => true)}
+                role="button"
+                tabIndex={0}
+            >
+                <p className={styles.description}>{provision.description}</p>
+
+                {!isDescriptionExpanded && (
+                    <div className={styles.descriptionFade} />
+                )}
+
+
+                {!isDescriptionExpanded && (
+                    <span className={styles.descriptionToggle}>
+                        Смотреть все
+                    </span>
+                )}
+            </div>
+
+            <div className={styles.metadata}>
+                <div className={styles.detail}>
+                    <Clock size={16} className={styles.accent} />
+                    <span className={styles.detailText}>40 mins</span>
                 </div>
-                <div className="flex items-center gap-1.5">
-                    <Scissors size={16} className="text-accent"/>
-                    <span className="text-xs">{provision.category.name}</span>
+                <div className={styles.detail}>
+                    <Scissors size={16} className={styles.accent} />
+                    <span className={styles.detailText}>
+                        {provision.provisionCategory.name}
+                    </span>
                 </div>
             </div>
 
-            <div className="flex items-center justify-between mt-2">
-                <div className="flex items-center gap-3">
+            <div className={styles.footer}>
+                <div className={styles.barber}>
                     <img
                         src="/public/default-user.png"
                         alt={provision.user.firstName}
-                        className="w-10 h-10 rounded-full object-cover"
+                        className={styles.avatar}
                     />
                     <div>
-                        <p className="text-sm font-bold text-text-primary">{provision.user.firstName}</p>
-                        <p className="text-xs text-text-secondary uppercase">Barber or client</p>
+                        <p className={styles.barberName}>{provision.user.firstName}</p>
+                        <p className={styles.barberRole}>Barber or client</p>
                     </div>
                 </div>
-                <div className="flex items-center gap-3">
-                    <button className="text-text-secondary">
-                        <MapPin size={20} className="text-accent cursor-pointer"/>
+                <div className={styles.actions}>
+                    <button className={styles.actionButton}>
+                        <MapPin size={20} className={styles.locationIcon} />
                     </button>
-                    <button className="text-text-secondary">
-                        <Heart size={20} className="transition-colors duration-300 hover:text-red-500 cursor-pointer"/>
-                    </button>
+                    <Like id={provision.id} />
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default ServiceInfo
+export default ServiceInfo;

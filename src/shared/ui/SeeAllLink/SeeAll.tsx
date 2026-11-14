@@ -1,3 +1,4 @@
+import styles from './styles/SeeAll.module.css';
 import { Link } from "react-router"
 
 interface SeeAllProps {
@@ -6,9 +7,9 @@ interface SeeAllProps {
 
 function SeeAll({route}: SeeAllProps) {
   return (
-    <div className="flex items-center justify-between mb-5 pl-4">
+    <div className={styles.container}>
       <Link
-        className="text-sm font-medium text-accent"
+        className={styles.link}
         to={route}
       >
         See All

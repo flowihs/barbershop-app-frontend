@@ -1,0 +1,76 @@
+@layer components {
+  .overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: rgb(0 0 0 / .7);
+  }
+
+  .dialog {
+    width: 100%;
+    max-width: 24.375rem;
+    max-height: calc(var(--app-viewport-height, 100vh) - 2rem);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #454a4d transparent;
+    color-scheme: dark;
+    overscroll-behavior: contain;
+    border: 1px solid #ffffff1a;
+    border-radius: 1rem;
+    padding: 1.25rem;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    box-shadow: 0 25px 50px -12px #00000040;
+    outline: none;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .dialog {
+      border-color: color-mix(in oklab, var(--color-border) 10%, transparent);
+    }
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .title {
+    color: var(--color-text-primary);
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: var(--line-height-lg);
+  }
+
+  .closeButton {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    margin-left: auto;
+    border-radius: .5rem;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+  }
+
+  .closeButton:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  @media (hover: hover) {
+    .closeButton:hover {
+      background-color: var(--color-bg-card-2);
+      color: var(--color-text-primary);
+    }
+  }
+}

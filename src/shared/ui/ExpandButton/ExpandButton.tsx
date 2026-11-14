@@ -1,3 +1,4 @@
+import styles from './styles/ExpandButton.module.css';
 import { ChevronDown } from "lucide-react";
 import { useState, useRef, useLayoutEffect } from "react";
 import * as motion from "motion/react-client"
@@ -20,7 +21,7 @@ function ExpandButton({ children }: { children: React.ReactNode }) {
     const extensible = expandedH > normalH;
 
     return (
-        <div className={`flex flex-col gap-1`}>
+        <div className={styles.container}>
             <motion.div
                 animate={
                     extensible
@@ -28,9 +29,9 @@ function ExpandButton({ children }: { children: React.ReactNode }) {
                     : { height: normalH }
                 }
                 transition={{ duration: animationDefaultTime, ease: "easeInOut"}}
-                className='overflow-hidden'
+                className={styles.content}
             >
-                <div ref={container} className="mt-0">
+                <div ref={container} className={styles.inner}>
                     {children}
                 </div>
             </motion.div>
@@ -38,7 +39,7 @@ function ExpandButton({ children }: { children: React.ReactNode }) {
             {extensible && (
                 <motion.button 
                     transition={{ duration: animationDefaultTime, ease: "easeInOut"}}
-                    className="flex mx-auto justify-center" 
+                    className={styles.button}
                     onClick={() => setIsExpanded((v) => !v)}
                 >
                     <motion.div
@@ -47,9 +48,7 @@ function ExpandButton({ children }: { children: React.ReactNode }) {
                     >
                         <ChevronDown 
                             size={23} 
-                            className='
-                                transition-colors hover:text-accent-hover
-                                text-white cursor-pointer'  
+                            className={styles.icon}
                                 />
                     </motion.div>
                 </motion.button>

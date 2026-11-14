@@ -1,49 +1,23 @@
-import { useTelegramUser } from "../../../shared/hooks/useTelegramUser";
+import styles from './styles/AccountGreet.module.css';
 import DefaultError from "../../../shared/ui/DefaultError/DefaultError";
-import { useQuery } from "@tanstack/react-query";
-import { accountService } from "../api/accountApi";
+import { Avatar } from "../../../shared/ui/Avatar/Avatar";
+import { useUserStore } from "../store/userStore";
 
 function AccountGreet() {
+	const account = useUserStore((state) => state.user);
 
-	const { data: account, isLoading, error } = useQuery({
-		queryKey: ['account', 'me'],
-		queryFn: accountService.getMe,
-	});
+	if (!account) {
+		return <DefaultError text="Something went wrong" />
+	}
 
-    const TelegramUser = useTelegramUser();	
-
-	const firstName = account?.firstName;
-	const photoUrl = TelegramUser?.photoUrl;
-	
-	const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-	if (error) return <DefaultError text={`Failed to load user data: ${errorMessage}`} />;
-
-	if (isLoading) {
-		return (
-			<div className="flex items-center justify-center p-4">
-				<p className='text-center text-text-secondary text-sm p-4'>
-				Loading...
-				</p>
-			</div>
-		)
-  	}
-	
     return (
-			<div className='flex items-center gap-4'>
-				{photoUrl ? (
-					<img
-						src={photoUrl}
-						alt={firstName}
-						className='w-12 h-12 rounded-full object-cover'
-					/>
-				) : (
-					<div className='w-12 h-12 rounded-full bg-bg-secondary' />
-				)}
-				{firstName ? (
-					<span className='text-lg text-text-primary mx-13'>Hey, {firstName} 👋</span>
-				) : (
-					<span className='text-lg font-semibold mx-20'>Hey, Stranger</span>
-				)}
+			<div className={styles.greeting}>
+				<div>
+					<Avatar photo={account.photoUrl} alt={account.firstName} />
+				</div>
+				<span className={styles.text}>
+					<span className={styles.accent}>Hey,</span> {account.firstName} 👋
+				</span>
 			</div>
 		)
 }

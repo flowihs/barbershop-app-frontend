@@ -1,0 +1,17 @@
+@layer components {
+  .toast {
+    position: fixed;
+    right: 1rem;
+    bottom: calc(1rem + env(safe-area-inset-bottom));
+    z-index: 60;
+    max-width: min(22rem, calc(100vw - 2rem));
+    padding: .75rem 1rem;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 55%, transparent);
+    border-radius: 1rem;
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 35%);
+    font-size: .875rem;
+    font-weight: 600;
+  }
+}

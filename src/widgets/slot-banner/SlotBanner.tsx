@@ -1,12 +1,14 @@
-import { SlotTime, SlotDate } from "../../entities/provision/ui/Slot";
+import styles from './styles/SlotBanner.module.css';
+import { SlotTime, SlotDate } from "../../entities/provision";
 import { BottomSheet } from "../../shared/ui/BottomSheet/BottomSheet";
 import { provisionService } from "../../entities/provision/api/provisionApi";
 import { useState } from "react";
-import BookNowButton from "../../shared/ui/DefaultButton/DefaultButton";
+import BookNowButton from "../../shared/ui/Buttons/home-button";
 import ListScroll from "../../shared/ui/ListScroll/ListScroll";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import DefaultError from "../../shared/ui/DefaultError/DefaultError";
+import { CalendarX } from "lucide-react";
 
 type GroupedSlots = Record<string, Record<string, string[]>>;
 
@@ -22,19 +24,20 @@ function SlotBanner({
     const [selectedTime, setSelectedTime] = useState<string | null>(null);
     const [currentDate, setCurrentDate] = useState(new Date());
 
-    const { data: provisions, isLoading, error } = useQuery({
+    const { data: provision, isLoading, error } = useQuery({
         queryKey: ['provisions', 'free', provisionId],
-        queryFn: () => provisionService.getFreeSlots(provisionId),
+        queryFn: () => provisionService.getById(provisionId),
         staleTime: 2000,
         gcTime: 20000
     });
 
-    const freeSlots = provisions?.slots ?? [];
+    const freeSlots = provision?.provisionSlots.filter((slot) => slot.available) ?? [];
 
     const groupedSlots: GroupedSlots = {};
 
     freeSlots.forEach((slot) => {
-        const dateObject = new Date(slot.time);
+        const dateObject = new Date(slot.startTime);
+        if (Number.isNaN(dateObject.getTime())) return;
 
         const date = dateObject.toLocaleString("en", { month: "long", year: "numeric" }); // "March 2026"
         const day = dateObject.toLocaleString("en", { weekday: "short", day: "numeric" }).replace(',', ''); // Wed 1
@@ -48,7 +51,7 @@ function SlotBanner({
                 minute: '2-digit',
                 hour12: false
             })
-        ); // 09:00
+        );
     });
 
     const prevMonth = () => {
@@ -70,11 +73,11 @@ function SlotBanner({
     
     return (
         <BottomSheet onClose={onClose}>
-            <div className="flex flex-col gap-6">
-                <h2 className="text-lg font-bold text-text-primary uppercase">Date & Time</h2>
+            <div className={styles.content}>
+                <h2 className={styles.title}>Date & Time</h2>
 
                 {isLoading && (
-                    <p className="text-text-secondary text-sm">Loading slots...</p>
+                    <p className={styles.loading}>Loading slots...</p>
                 )}
 
                 {error && (
@@ -83,71 +86,96 @@ function SlotBanner({
 
                 {!isLoading && !error && (
                     <>
-                        <div className="flex items-center justify-between rounded-xl p-3 border border-border/10">
-                            <button onClick={prevMonth} className="text-accent cursor-pointer p-1 rounded-md hover:bg-accent-hover/30">
-                                <ChevronLeft size={20} />
-                            </button>
-
-                            <span className="text-sm font-semibold text-text-primary uppercase">
-                                {currentMonth}
-                            </span>
-
-                            <button onClick={nextMonth} className="text-accent cursor-pointer p-1 rounded-md hover:bg-accent-hover/30">
-                                <ChevronRight size={20} />
-                            </button>
-                        </div>
-
-                        <div>
-                            <p className="text-sm text-text-primary font-semibold uppercase mb-4">Date</p>
-                            <ListScroll>
-                                <div className="flex flex-row-reverse gap-3">
-                                    {currentDays.map((dateSlot, i) => {
-                                        
-                                        // получить отдельно day = 2, weekday = Mon
-                                        
-                                        const day = dateSlot?.split(' ')[0];
-                                        const weekday = dateSlot?.split(' ')[1];
-
-                                        return <SlotDate
-                                            key={i}
-                                            slotDate={{
-                                                label: day,
-                                                sublabel: weekday,
-                                                isSelected: selectedDate === dateSlot,
-                                                onSelect: () => {
-                                                    setSelectedDate(dateSlot);
-                                                    setSelectedTime(null);
-                                                },
-                                            }}
-                                        />
-                                        }
-                                    )}   
-                                </div>
-                            </ListScroll>
-                        </div>
-
-                        {selectedDate && (
-                            <div>
-                                <p className="text-sm text-text-primary font-semibold uppercase mb-4">Time</p>
-                                <div className="pr-1 max-h-[100px] overflow-y-auto">
-                                    <div className="grid grid-cols-2 gap-3">
-                                        {selectedTimes.map((time, i) => (
-                                            <SlotTime
-                                                key={i}
-                                                slotTime={{
-                                                    label: time,
-                                                    isSelected: selectedTime === time,
-                                                    onSelect: () => setSelectedTime(time),
-                                                }}
-                                            />
-                                        ))}
-                                    </div>
-                                </div>
+                        {freeSlots.length === 0 ? (
+                            <div className={styles.emptyState}>
+                                <CalendarX size={80} className={styles.emptyIcon} />
+                                <p className={styles.emptyTitle}>No slots available</p>
+                                <p className={styles.emptyText}>
+                                    There are no free slots for booking right now. Please check back later.
+                                </p>
                             </div>
+                        ) : (
+                            <>
+                                <div className={styles.monthPicker}>
+                                    <button onClick={prevMonth} className={styles.monthButton}>
+                                        <ChevronLeft size={20} />
+                                    </button>
+
+                                    <span className={styles.monthTitle}>{currentMonth}</span>
+
+                                    <button onClick={nextMonth} className={styles.monthButton}>
+                                        <ChevronRight size={20} />
+                                    </button>
+                                </div>
+
+                                {currentDays.length === 0 ? (
+                                    <div className={styles.emptyState}>
+                                        <CalendarX size={40} className={styles.emptyIcon} />
+                                        <p className={styles.emptyTitle}>No slots available</p>
+                                        <p className={styles.emptyText}>...</p>
+                                    </div>
+                                ) : (
+                                    <>
+                                        <div>
+                                            <p className={styles.fieldLabel}>Date</p>
+                                            <ListScroll>
+                                                <div className={styles.dates}>
+                                                    {currentDays.map((dateSlot, i) => {
+                                                        const day = dateSlot?.split(' ')[0];
+                                                        const weekday = dateSlot?.split(' ')[1];
+
+                                                        return (
+                                                            <SlotDate
+                                                                key={i}
+                                                                slotDate={{
+                                                                    label: day,
+                                                                    sublabel: weekday,
+                                                                    isSelected: selectedDate === dateSlot,
+                                                                    onSelect: () => {
+                                                                        setSelectedDate(dateSlot);
+                                                                        setSelectedTime(null);
+                                                                    },
+                                                                }}
+                                                            />
+                                                        );
+                                                    })}
+                                                </div>
+                                            </ListScroll>
+                                        </div>
+
+                                        {selectedDate && (
+                                            <div>
+                                                <p className={styles.fieldLabel}>Time</p>
+                                                <div className={styles.timeScroll}>
+                                                    <div className={styles.times}>
+                                                        {selectedTimes.length === 0 ? (
+                                                            <p className={styles.emptyText}>
+                                                                No times left for this date.
+                                                            </p>
+                                                        ) : (
+                                                            selectedTimes.map((time, i) => (
+                                                                <SlotTime
+                                                                    key={i}
+                                                                    slotTime={{
+                                                                        label: time,
+                                                                        isSelected: selectedTime === time,
+                                                                        onSelect: () => setSelectedTime(time),
+                                                                    }}
+                                                                />
+                                                            ))
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        <div>
+                                            <BookNowButton text="BOOK" />
+                                        </div>
+                                    </>
+                                )}
+                            </>
                         )}
-                        <div>
-                            <BookNowButton text="BOOK"/>
-                        </div>
                     </>
                 )}
             </div>
