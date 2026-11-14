@@ -1,7 +1,12 @@
 import styles from './styles/ListScroll.module.css';
 import { useRef, useState } from "react";
 
-function ListScroll({ children }: { children: React.ReactNode }) {
+type Props = {
+    children: React.ReactNode;
+    gap?: number | string;
+};
+
+function ListScroll({ children, gap }: Props) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [isDragging, setIsDragging] = useState(false);
     const startX = useRef(0);
@@ -39,7 +44,10 @@ function ListScroll({ children }: { children: React.ReactNode }) {
             onPointerUp={handlePointerUp}
             onPointerLeave={handlePointerUp}
             onDragStart={(e) => e.preventDefault()}
-            style={{ cursor: isDragging ? "grabbing" : "grab" }}
+            style={{
+                cursor: isDragging ? "grabbing" : "grab",
+                ...(gap !== undefined && { gap }),
+            }}
         >
             {children}
         </div>

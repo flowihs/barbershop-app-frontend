@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const productionBaseURL = import.meta.env.VITE_BASE_URL ?? 'https://barbershop-app-backend-java-54t9.onrender.com/';
+const productionBaseURL = import.meta.env.VITE_BASE_URL ?? 'https://opportunely-main-sidewinder.cloudpub.ru/';
 const baseURL = import.meta.env.DEV
     ? (import.meta.env.VITE_DEV_API_URL ?? productionBaseURL)
     : productionBaseURL;

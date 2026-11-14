@@ -14,7 +14,7 @@ export function setupApiInterceptors() {
     }
 
     return config;
-  });
+  });7
 
   isConfigured = true;
 }

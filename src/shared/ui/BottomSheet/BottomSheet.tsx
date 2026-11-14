@@ -13,9 +13,9 @@ function scalePointerPosition(point: { x: number; y: number }) {
 }
 
 function BottomSheet({ 
-    onClose, 
-    children 
-}: { 
+    onClose,
+    children
+}: {
     onClose: () => void, 
     children: React.ReactNode 
 }) {
@@ -46,22 +46,22 @@ function BottomSheet({
                 className={styles.sheet}
                 drag="y"
                 dragControls={controls}
+                dragListener={false}
                 dragDirectionLock
                 dragMomentum={false}
-                dragListener={false}
-                dragElastic={{ top: 0, bottom: 0.8 }}
-                dragConstraints={{ top: 0, bottom: 0 }}
+                dragConstraints={{ top: 0, bottom: 9999 }}
+                dragElastic={{ top: 0.05, bottom: 0 }}
                 onDragEnd={(_, info) => {
-                    if (info.offset.y >= limit) onClose();
+                    if (info.offset.y > limit || info.velocity.y > 500) {
+                        onClose();
+                    }
                 }}
-                initial={{ y: "100%" }}
-                animate={{ y: "0" }}
                 exit={{ y: "100%" }}
-                transition={{ type: "tween", duration: 0.2}}
+                transition={{ type: "tween", duration: 0.2 }}
             >
 
                 <div
-                    onPointerDown={event => controls.start(event)} 
+                    onPointerDown={event => controls.start(event)}
                     className={styles.handle}
                 >
                     <div className={styles.handleBar} />

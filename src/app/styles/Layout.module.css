@@ -8,9 +8,14 @@
     margin-inline: auto;
     padding-bottom: 4rem;
     display: flex;
+    position: relative;
   }
 
   .header {
+    position: sticky !important;
+    top: 0;
+    left: 0;
+    z-index: 100;
     padding-inline: 1rem;
     border-color: #33383d;
     border-bottom-style: solid;
@@ -20,6 +25,7 @@
     padding-top: 1rem;
     padding-bottom: 1rem;
     display: flex;
+    background-color: var(--color-bg-primary);
   }
 
   .brand {

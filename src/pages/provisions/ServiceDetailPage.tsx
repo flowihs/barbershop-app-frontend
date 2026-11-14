@@ -1,6 +1,6 @@
 import styles from './styles/ServiceDetailPage.module.css';
 import ServiceInfo from '../../widgets/service-info/ServiceInfo';
-import BookNowButton from '../../shared/ui/Buttons/home-button';
+import BookNowButton from '../../shared/ui/Buttons/book-provision-button.tsx';
 import SlotBanner from '../../widgets/slot-banner/SlotBanner';
 import DefaultError from '../../shared/ui/DefaultError/DefaultError';
 import { AnimatePresence } from 'motion/react';
@@ -15,7 +15,6 @@ function ServiceDetailPage() {
     const { id } = useParams();
     const nId = Number(id);
     const isValid = id !== undefined && !isNaN(nId);
-    // Проверка на то, что id не undefained и не по типу 'abc'    
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -23,7 +22,6 @@ function ServiceDetailPage() {
         queryKey: ['provisions', id],
         queryFn: () => provisionService.getById(nId),
         enabled: isValid,
-        //отправляет запрос только когда id валидный
     });
 
     if (!isValid) return <DefaultError text="Something went wrong" />

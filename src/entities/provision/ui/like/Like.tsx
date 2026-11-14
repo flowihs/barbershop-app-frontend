@@ -30,7 +30,7 @@ export function Like({ id }: LikeProps): ReactElement {
             disabled={isPending}
         >
             <Heart 
-                size={20} 
+                size={25}
                 className={`${styles.heart} ${isLiked ? styles.liked : styles.unliked}`}
             />
         </button>
