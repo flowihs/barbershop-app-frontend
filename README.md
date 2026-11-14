@@ -35,3 +35,11 @@ Telegram Mini App для поиска услуг барбершопа и зап�
 - CSS Modules и общие CSS-переменные
 - Motion
 - Telegram Mini Apps SDK
+
+## Настройки окружения
+
+- `npm run dev` использует локальные настройки из `.env.local`: адрес API задаётся через `VITE_DEV_API_URL`, моки — через `VITE_USE_API_MOCKS`.
+- `npm run build` использует `.env.production`: запросы идут на `VITE_BASE_URL`, моки выключены (`VITE_USE_API_MOCKS=false`). Этот файл имеет приоритет над `.env.local` для указанных в нём переменных.
+- `npm run preview` позволяет проверить собранную production-версию локально.
+
+При сборке в Vercel переменные из Settings → Environment Variables имеют приоритет над env-файлами. Для Production укажите `VITE_USE_API_MOCKS=false` и актуальный `VITE_BASE_URL`, затем выполните новый деплой.
